@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psicoeducação das Emoções — Bruno Santana | Psicologia Clínica</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --sand:          #E8DFD3;
+  --sand-light:    #F2EDE6;
+  --cream:         #FAF8F5;
+  --linen:         #F5F0EB;
+  --amber:         #8B7340;
+  --amber-light:   #AA915A;
+  --amber-deep:    #6E5A32;
+  --forest:        #506B4A;
+  --forest-light:  #7A9472;
+  --forest-pale:   #D4DED0;
+  --deep-brown:    #3D2E22;
+  --walnut:        #5C4433;
+  --charcoal-warm: #4A4240;
+  --night-green:   #2C3B2E;
+  --stone:         #8C8078;
+  --stone-light:   #A69E96;
+  --fog:           #D4CCC4;
+  --white:         #FDFCFB;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Outfit', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--charcoal-warm);
+  line-height: 1.75;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── CABEÇALHO ── */
+.doc-header {
+  background: var(--night-green);
+  padding: 52px 40px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.doc-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light), var(--amber));
+}
+.doc-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber-light);
+  margin-bottom: 16px;
+}
+.doc-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 300;
+  color: var(--sand-light);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.doc-subtitle {
+  font-family: var(--serif);
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--forest-pale);
+}
+
+/* ── PROGRESSO ── */
+.progress-bar-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 3px;
+  background: var(--fog);
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light));
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ── NAVEGAÇÃO DE CAPÍTULOS ── */
+.chapter-nav {
+  background: rgba(250,248,245,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--fog);
+  padding: 0 40px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.chapter-nav::-webkit-scrollbar { display: none; }
+.chapter-nav a {
+  display: inline-block;
+  padding: 14px 0;
+  margin-right: 28px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--stone);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.25s, border-color 0.25s;
+}
+.chapter-nav a:hover,
+.chapter-nav a.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+/* ── CONTEÚDO ── */
+.doc-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 40px 80px;
+}
+
+/* ── METADADOS ── */
+.meta-block {
+  background: var(--linen);
+  border-left: 3px solid var(--amber-light);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  margin-bottom: 48px;
+  font-size: 13px;
+  color: var(--stone);
+  line-height: 1.8;
+}
+.meta-block strong { color: var(--walnut); font-weight: 500; }
+
+/* ── TÍTULOS ── */
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 300;
+  color: var(--deep-brown);
+  margin: 56px 0 20px;
+  line-height: 1.2;
+}
+h2 {
+  font-family: var(--serif);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin: 48px 0 16px;
+  line-height: 1.3;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--fog);
+}
+h3 {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--walnut);
+  margin: 36px 0 14px;
+}
+
+/* ── PARÁGRAFOS E LISTAS ── */
+p { font-size: 15px; margin-bottom: 18px; color: var(--charcoal-warm); }
+ul, ol { padding-left: 22px; margin-bottom: 18px; }
+li { font-size: 15px; margin-bottom: 6px; color: var(--charcoal-warm); }
+strong { font-weight: 500; color: var(--walnut); }
+em { font-style: italic; }
+hr { border: none; border-top: 1px solid var(--fog); margin: 40px 0; }
+.doc-body > hr:first-child { display: none; }
+h2:first-of-type { margin-top: 8px; }
+
+/* ── CITAÇÕES / CASOS CLÍNICOS ── */
+blockquote {
+  border-left: 3px solid var(--amber-light);
+  padding: 16px 20px;
+  margin: 28px 0;
+  background: var(--linen);
+  border-radius: 0 6px 6px 0;
+}
+blockquote p {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--walnut);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── FRASE DE ANCORAGEM ── */
+.anchor-phrase {
+  background: var(--night-green);
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin: 36px 0;
+}
+.anchor-phrase p {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--sand-light);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── BLOCOS DE EXERCÍCIO ── */
+.exercise-block {
+  background: var(--white);
+  border: 1px solid var(--fog);
+  border-top: 3px solid var(--amber);
+  border-radius: 0 0 10px 10px;
+  padding: 28px;
+  margin: 32px 0;
+}
+.exercise-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 10px;
+}
+.exercise-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin-bottom: 14px;
+}
+.exercise-block p {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block ul, .exercise-block ol {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block li { color: var(--stone); }
+
+textarea.exercise-field {
+  width: 100%;
+  min-height: 120px;
+  background: var(--cream);
+  border: 1px solid var(--fog);
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--charcoal-warm);
+  line-height: 1.7;
+  resize: vertical;
+  transition: border-color 0.2s;
+  margin-top: 10px;
+}
+textarea.exercise-field:focus {
+  outline: none;
+  border-color: var(--amber-light);
+  background: var(--white);
+}
+textarea.exercise-field::placeholder { color: var(--stone-light); }
+
+/* ── BOTÃO DE DOWNLOAD ── */
+.download-section {
+  background: var(--linen);
+  border-radius: 10px;
+  padding: 32px;
+  margin: 56px 0 0;
+  text-align: center;
+  border: 1px solid var(--fog);
+}
+.download-section p {
+  font-size: 13px;
+  color: var(--stone);
+  margin-bottom: 20px;
+}
+.btn-download {
+  display: inline-block;
+  padding: 13px 32px;
+  background: var(--amber);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+.btn-download:hover { background: var(--amber-deep); transform: translateY(-1px); }
+.btn-download:active { transform: translateY(0); }
+
+/* ── RODAPÉ ── */
+.doc-footer {
+  text-align: center;
+  padding: 32px 40px;
+  border-top: 1px solid var(--fog);
+  font-size: 11px;
+  color: var(--forest-pale);
+  letter-spacing: 0.5px;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 600px) {
+  .doc-header   { padding: 40px 24px 36px; }
+  .chapter-nav  { padding: 0 24px; }
+  .doc-body     { padding: 40px 24px 64px; }
+  .exercise-block { padding: 20px; }
+  .download-section { padding: 24px; }
+}
+
+/* ── ANIMAÇÃO DE ENTRADA ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.doc-body > * {
+  animation: fadeUp 0.5s ease both;
+}
+
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="doc-label">Material Psicoeducativo</div>
+  <h1 class="doc-title">Psicoeducação das Emoções</h1>
+  <p class='doc-subtitle'>Guia para compreender e regular o que se passa por dentro</p>
+</header>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<nav class="chapter-nav"><a href="#apresentacao">Apresentação</a><a href="#capitulo-1-o-que-sao-as-emocoes-e-como-elas-funcionam"></a><a href="#capitulo-2-as-seis-emocoes-basicas"></a><a href="#capitulo-3-as-emocoes-secundarias"></a><a href="#capitulo-4-regulacao-emocional-expressao-assertiva-e-reparacao"></a><a href="#encerramento">Encerramento</a></nav>
+
+<main class="doc-body">
+
+<hr />
+<h2 id="apresentacao">Apresentação</h2>
+<p>Esta cartilha é um mapa, não um manual. Foi pensada para acompanhar você entre as sessões de terapia, oferecendo conceitos, exemplos e exercícios que ajudam a compreender o que sentimos e por que sentimos. A leitura pode ser feita aos poucos, capítulo por capítulo, reservando alguns dias entre eles para experimentar as práticas propostas.</p>
+<p>Não é necessário concordar com tudo o que está escrito aqui. As ideias servem como ponto de partida para a conversa que continua acontecendo no consultório. Se algo despertar dúvidas, desconforto ou curiosidade, vale anotar e trazer para a sessão. O material foi pensado para abrir perguntas, não para fechá-las.</p>
+<p>Ao final de cada capítulo há exercícios pequenos e práticos. Não são tarefas escolares com certo e errado. São convites a observar, registrar e experimentar. Vamos juntos.</p>
+<hr />
+<h2 id="capitulo-1-o-que-sao-as-emocoes-e-como-elas-funcionam">Capítulo 1: O que são as emoções e como elas funcionam</h2>
+<h3>Emoções como descargas biológicas</h3>
+<p>As emoções não nascem na mente. Nascem no corpo. Elas são descargas biológicas envolvendo o sistema endócrino, o sistema nervoso autônomo e diversas regiões cerebrais. Existem por uma razão evolutiva muito clara: cumprem duas funções essenciais para a vida humana, que são nos ajudar a adaptar ao ambiente e a nos comunicar uns com os outros.</p>
+<p>Como o pesquisador Antônio Damásio demonstrou em décadas de estudo, sentir emoções é antes de tudo um fenômeno fisiológico. O coração acelera, a respiração muda, os músculos se tensionam, o estômago se aperta. Tudo isso acontece em milissegundos, antes mesmo de termos consciência de que algo está acontecendo. É só depois que o cérebro semântico, a parte de nós que dá sentido às coisas, entra em cena e nomeia o que sentimos.</p>
+<h3>Quatro fenômenos que costumamos confundir</h3>
+<p>Distinguir quatro construtos parecidos costuma ser um dos primeiros ganhos clínicos do processo terapêutico. Quatro palavras, quatro fenômenos diferentes.</p>
+<p><strong>Emoção</strong> é a descarga fisiológica. Tem início, meio e fim. Quando ativada, dura em média entre 18 e 24 minutos em adultos. Depois disso, se não for alimentada por pensamentos ruminantes ou por nova situação ativadora, ela se dissipa.</p>
+<p><strong>Sentimento</strong> é o que o cérebro faz com a emoção. É a leitura interpretativa, a história que contamos sobre o que está acontecendo no corpo. "Estou com taquicardia" descreve a emoção. "Estou achando que vou fracassar nessa apresentação" descreve o sentimento que se forma a partir dela.</p>
+<p><strong>Pré-emoção</strong> é o estado de quando nenhuma emoção está ativada. Pode ser de bem-estar (tranquilidade, disposição, conforto) ou de desconforto (uma dor, um cansaço, uma sensação de mal-estar sem causa emocional). Bebês recém-nascidos exemplificam bem: bebê sequinho, aquecido, alimentado, em bem-estar. Bebê com fome, frio ou dor, em desconforto.</p>
+<p><strong>Estado emocional</strong> é diferente de emoção ativada. É uma propensão prolongada à ativação de uma emoção específica. Alguém em luto não sente tristeza ativada o tempo todo. Está em um estado emocional entristecido, o que significa que pequenos estímulos podem despertar a emoção tristeza com mais facilidade e intensidade que em outros momentos da vida.</p>
+<p>Confundir esses quatro fenômenos gera dois mal-entendidos comuns. O primeiro é achar que uma emoção que dura muito significa que estamos quebrados. Não é a emoção que dura, é o estado emocional. O segundo é achar que se podemos pensar diferente, deveríamos parar de sentir. Não é assim que funciona. A emoção é fisiológica e tem seu tempo próprio. O sentimento é onde mora a possibilidade de revisão.</p>
+<h3>Emoções agradáveis e desagradáveis de sentir</h3>
+<p>Você talvez já tenha ouvido falar em "emoções positivas" e "emoções negativas". Aqui vamos evitar essas palavras. Elas sugerem que algumas emoções são boas e outras são ruins, o que não é verdade.</p>
+<p>Todas as emoções têm função. A raiva protege limites. O medo nos preserva. A tristeza nos faz pausar. O nojo nos afasta do que pode contaminar. A alegria fortalece vínculos. O amor nos aproxima. Não há emoção dispensável. Há, sim, emoções agradáveis de sentir (alegria, amor) e emoções desagradáveis de sentir (medo, raiva, tristeza, nojo). A diferença está em como elas são vividas no corpo, não no seu valor.</p>
+<p>Vale notar que temos quatro emoções básicas desagradáveis e apenas duas agradáveis. Parece injusto, mas faz sentido evolutivo. As emoções desagradáveis sinalizam perigo, perda ou ameaça, e a natureza nos fez prestar mais atenção a esses sinais porque eles têm a ver com sobrevivência. Por isso lembramos com mais clareza dias difíceis do que dias bons.</p>
+<h3>O bem-estar como ponto de regulação</h3>
+<p>Regulação emocional, no sentido que esta cartilha adota, é a capacidade de sentir todas as emoções, em doses altas ou baixas, e voltar ao bem-estar. Esse retorno é o que importa. Não se trata de não sentir, nem de sentir só o agradável. Trata-se de poder transitar.</p>
+<p>O bem-estar é como um porto. As emoções são as ondas que nos tiram dele. A regulação é a habilidade de voltar quando a onda passa. Quem está regulado emocionalmente não tem menos emoções. Tem mais mobilidade entre elas.</p>
+<h3>Marcadores somáticos</h3>
+<p>Damásio nomeou de marcador somático o jeito como o corpo registra cada emoção antes que a consciência perceba. Coração disparando, mãos suando, garganta apertando, peso no peito, calor no rosto. São sinais que o corpo manda para informar que algo está acontecendo, e eles funcionam como um sistema de leitura rápida para tomada de decisão, anterior ao pensamento racional.</p>
+<p>Os marcadores somáticos não pedem para serem controlados. Pedem para serem escutados. Quando aprendemos a reconhecer os sinais corporais de cada emoção, ganhamos uma vantagem enorme. Passamos a perceber a emoção antes que ela tome conta da cena. Isso muda o que conseguimos fazer com ela.</p>
+<h3>Campo semântico das emoções</h3>
+<p>Cada emoção tem um vocabulário próprio. Quando sentimos medo, os pensamentos que surgem giram em torno de palavras como ameaça, vulnerabilidade, insegurança, perigo, sem saída. Quando sentimos raiva, surgem ofensa, injustiça, desrespeito, agressão, indignação. Quando sentimos tristeza, surgem perda, abandono, desvalorização, incapacidade, rejeição.</p>
+<p>Esse conjunto de palavras é o que chamamos de campo semântico da emoção. Reconhecê-lo ativa um atalho diagnóstico. Se nos pegamos pensando "ninguém gosta de mim", há uma boa chance de estarmos sentindo tristeza, mesmo que o corpo ainda não tenha sinalizado. Se nos pegamos pensando "isso é uma falta de respeito", há uma boa chance de estarmos sentindo raiva, mesmo que ainda não tenhamos identificado.</p>
+<p>Nos capítulos a seguir vamos mapear o campo semântico de cada emoção básica.</p>
+<hr />
+<h3>Exercícios do Capítulo 1</h3>
+<p><strong>Perceba em você</strong> Durante três dias, escolha um momento qualquer do dia (de preferência o mesmo horário, para criar consistência) e pause por um minuto. Observe o corpo: como está o coração, a respiração, os ombros, a mandíbula, o estômago. Não tente mudar nada. Apenas anote, em uma frase, o que percebeu. No fim dos três dias, releia o que escreveu. Há um padrão? Algumas regiões reativas?</p>
+<p><strong>Registre</strong> Em uma página em branco, divida o espaço em quatro quadrantes e escreva no topo de cada um: emoção, sentimento, pré-emoção, estado emocional. Em cada quadrante, escreva uma experiência recente sua que se encaixaria ali. Não precisa ser dramático. Pode ser algo cotidiano. O objetivo é começar a distinguir esses quatro fenômenos na sua vida real.</p>
+<hr />
+<blockquote><p><strong>Para retomar:</strong> sentir é fisiológico. Interpretar é cognitivo. As duas coisas se conversam, mas seguem ritmos diferentes. Regular não é parar de sentir. É voltar ao bem-estar depois de sentir.</p></blockquote>
+<hr />
+<h2 id="capitulo-2-as-seis-emocoes-basicas">Capítulo 2: As seis emoções básicas</h2>
+<p>Existem seis emoções consideradas básicas pela maior parte da literatura científica em neurociência e psicologia das emoções: medo, raiva, tristeza, nojo, alegria e amor. Cada uma tem uma função adaptativa específica, um padrão de marcadores somáticos próprio, um campo semântico característico e um conjunto típico de invalidações sociais que aprendemos a aplicar a elas ao longo da vida.</p>
+<p>Neste capítulo, conhecemos cada uma delas. A proposta não é decorar definições. É começar a reconhecê-las quando aparecem, em você e nos outros.</p>
+<h3>Medo</h3>
+<p><strong>Função básica.</strong> Preservar a vida e a integridade, tanto física quanto emocional. Sem medo seríamos incapazes de discernir o que ameaça e o que não ameaça. O medo é a emoção que pesa consequências antes da ação.</p>
+<p><strong>Gatilhos comuns.</strong> Ambientes novos ou imprevisíveis, ameaças concretas (físicas, financeiras, profissionais), ameaças sociais (rejeição, julgamento, exposição), antecipação de fracasso ou perda.</p>
+<p><strong>Marcadores somáticos.</strong> Taquicardia, respiração curta, pupilas dilatadas, mãos frias, suor leve, sensação de "frio na barriga", tensão muscular em pernas e ombros.</p>
+<p><strong>Campo semântico.</strong> Vulnerabilidade, desproteção, fragilidade, exposição, periculosidade, ameaça, sem saída, insegurança. Pensamentos recorrentes: "algo de ruim pode acontecer", "não consigo controlar isso", "vou ficar mal", "posso falhar".</p>
+<p><strong>Invalidações sociais comuns.</strong> "Você não precisa ter medo", "homem não sente medo", "isso é coisa de covarde", "pessoa forte não tem medo". Quando essas mensagens são absorvidas, formam crenças do tipo "se eu sinto medo, então sou fraco" ou "se sinto medo, sou inadequado".</p>
+<p><strong>Quando se desregula.</strong> Em excesso: evitação ampla, catastrofização, hipervigilância, ataques de pânico, fobias específicas, preocupação constante. Em escassez: impulsividade, exposição imprudente, dificuldade em discriminar riscos reais.</p>
+<p><strong>Necessidade de reparação.</strong> Proteção, fortalecimento, alternativas. O que acalma o medo regulado não é a remoção da ameaça, é a sensação de que há recursos disponíveis para enfrentá-la ou de que alguém pode oferecer suporte.</p>
+<h3>Raiva</h3>
+<p><strong>Função básica.</strong> Proteger limites, recursos e o próprio self diante de invasões, ofensas, desrespeito ou injustiça. A raiva é a emoção que diz "isto não está certo, e eu importo".</p>
+<p><strong>Gatilhos comuns.</strong> Percepção de injustiça, desrespeito ou desconsideração, invasão de espaço físico ou simbólico, quebra de confiança, frustração de expectativas, ameaças a pessoas queridas.</p>
+<p><strong>Marcadores somáticos.</strong> Aumento da temperatura corporal (calor no rosto, peito), tensão muscular nas mãos e mandíbula, aceleração cardíaca, respiração mais curta, sensação de pressão na cabeça.</p>
+<p><strong>Campo semântico.</strong> Ofensa, violação, injustiça, desrespeito, agressão, indignação. Pensamentos recorrentes: "isso não é justo", "não tinham o direito", "ele passou dos limites", "vou explodir", "preciso falar".</p>
+<p><strong>Invalidações sociais comuns.</strong> "Que feio sentir raiva", "raiva é coisa de gente má", "pessoas controladas não se irritam", "raiva faz mal para a saúde". Essas mensagens muitas vezes ensinam a engolir a raiva, transformando-a em ressentimento ou somatização.</p>
+<p><strong>Quando se desregula.</strong> Em excesso: explosões intermitentes, agressividade verbal ou física, conflitos crônicos, comportamento explosivo desproporcional. Em escassez: passividade, dificuldade de impor limites, permissividade abusiva consigo mesmo e com os outros.</p>
+<p><strong>Necessidade de reparação.</strong> Que a ofensa cesse, que o limite seja reconhecido, que haja escuta e validação. A raiva regulada se acomoda quando consegue se expressar assertivamente, sem agressão, e ser ouvida.</p>
+<h3>Tristeza</h3>
+<p><strong>Função básica.</strong> Permitir pausa, reflexão e reorganização diante de perdas, frustrações ou fim de ciclos. A tristeza também sinaliza socialmente que precisamos de apoio. Quando bem regulada, é o que possibilita o pensamento metacognitivo, a capacidade de pensar sobre o que pensamos e sentimos. É também a porta de entrada para a mudança, porque é ela que produz a dissonância entre o que somos e o que gostaríamos de ser.</p>
+<p><strong>Gatilhos comuns.</strong> Perdas de qualquer natureza (pessoas, oportunidades, status, projetos), rejeição, fracasso, decepção, sensação de impotência, esgotamento.</p>
+<p><strong>Marcadores somáticos.</strong> Sensação de peso no peito ou nos ombros, baixa energia, lentidão de movimento, vontade de chorar, garganta apertada, sensação de "ser sugado" de dentro.</p>
+<p><strong>Campo semântico.</strong> Perda, desvalorização, abandono, desprestígio, rejeição, incapacidade. Pensamentos recorrentes: "ninguém gosta de mim", "não tenho valor", "não consigo nada direito", "as pessoas não me entendem".</p>
+<p><strong>Invalidações sociais comuns.</strong> "Tem que ter força de vontade", "isso é preguiça", "ninguém suporta gente baixo astral", "pessoas de sucesso são esforçadas". Aprendemos a esconder a tristeza, o que paradoxalmente a alimenta.</p>
+<p><strong>Quando se desregula.</strong> Em excesso: depressão, anedonia, isolamento, desesperança, ruminação prolongada. Em escassez: dificuldade de processar perdas, racionalização excessiva, evitação afetiva.</p>
+<p><strong>Necessidade de reparação.</strong> Acolhimento, validação, presença. A tristeza regulada se acomoda quando encontra escuta, sem precisar ser resolvida, e quando há espaço para o luto, físico ou simbólico, ser feito no seu tempo.</p>
+<h3>Nojo</h3>
+<p><strong>Função básica.</strong> Afastar de substâncias, situações ou comportamentos potencialmente contaminantes, no plano físico (alimentos estragados, sujeira) ou simbólico (transgressões morais, condutas que ferem nossos valores).</p>
+<p><strong>Gatilhos comuns.</strong> Estímulos sensoriais aversivos (odores, sabores, imagens), comportamentos moralmente condenáveis, contato com pessoas ou ambientes que ferem valores pessoais.</p>
+<p><strong>Marcadores somáticos.</strong> Náusea, retração corporal, careta involuntária, vontade de afastamento físico, calafrios.</p>
+<p><strong>Campo semântico.</strong> Repulsa, contaminação, antipatia, repúdio, deterioração. Pensamentos recorrentes: "que coisa nojenta", "preciso me lavar", "não suporto isso", "que repugnante".</p>
+<p><strong>Invalidações sociais comuns.</strong> "Você é cheio de manias", "para você tudo é sujo", "é difícil agradar", "não seja esnobe". Quando o nojo é invalidado, perdemos a capacidade de discernir o que de fato não nos serve.</p>
+<p><strong>Quando se desregula.</strong> Em excesso: comportamentos compulsivos de limpeza, contaminação obsessiva, rejeição ampla a pessoas e contextos, julgamento moral rígido. Em escassez: falha em discriminar o que prejudica a saúde física ou ética.</p>
+<p><strong>Necessidade de reparação.</strong> Afastamento adequado do que contamina, sem reforço de excessos. A regulação do nojo passa por reconhecer o que merece distância e o que é exagero defensivo.</p>
+<h3>Alegria</h3>
+<p><strong>Função básica.</strong> Fortalecer vínculos sociais e reforçar comportamentos adaptativos. A alegria comunica aos outros que algo bom aconteceu e convida à partilha. É também o contraponto que ajuda a balancear as emoções desagradáveis.</p>
+<p><strong>Gatilhos comuns.</strong> Conquistas pessoais, reconhecimento, conexão afetiva, momentos de prazer, surpresas agradáveis.</p>
+<p><strong>Marcadores somáticos.</strong> Sensação de leveza, sorriso espontâneo, brilho nos olhos, aumento de energia, relaxamento facial, vontade de compartilhar.</p>
+<p><strong>Campo semântico.</strong> Satisfação, prestígio, valorização, acolhimento, aceitação, adequação. Pensamentos recorrentes: "que bom", "valeu a pena", "estou no lugar certo".</p>
+<p><strong>Invalidações sociais comuns.</strong> "Não é hora para isso", "qual a graça", "pessoa séria não ri tanto", "isso é falta de respeito". Aprendemos a conter manifestações públicas de alegria, especialmente em contextos profissionais ou formais.</p>
+<p><strong>Quando se desregula.</strong> Em excesso: episódios maníacos, narcisismo, impulsividade, desconexão da realidade, comportamentos socialmente inadequados. Em escassez: anedonia, dificuldade de saborear o que é bom, autossabotagem.</p>
+<p><strong>Necessidade de reparação.</strong> Expressão assertiva. A alegria regulada precisa poder ser dita, compartilhada, recebida. Sua acomodação acontece no pingue-pongue social do reconhecimento mútuo.</p>
+<h3>Amor</h3>
+<p><strong>Função básica.</strong> Aproximar, vincular, cuidar, proteger. O amor é o que cria os laços que sustentam a teia social. Está no nascimento da empatia, no apego entre pais e filhos, na amizade, nas parcerias afetivas.</p>
+<p><strong>Gatilhos comuns.</strong> Presença significativa, conexão genuína, reciprocidade, cuidado mútuo, proximidade afetiva com segurança.</p>
+<p><strong>Marcadores somáticos.</strong> Sensação de calor no peito, relaxamento, leveza, vontade de aproximação física, sensação de segurança.</p>
+<p><strong>Campo semântico.</strong> Proteção, amparo, acolhimento, aceitação, querer bem. Pensamentos recorrentes: "gosto de estar com essa pessoa", "me sinto bem aqui", "quero o bem dela", "ela me importa".</p>
+<p><strong>Invalidações sociais comuns.</strong> "Isso é coisa de gente dependente", "demonstrar afeto é fraqueza", "homem não fala dessas coisas", "os outros vão se aproveitar". Crescemos aprendendo a economizar afeto, com consequências para a saúde dos vínculos.</p>
+<p><strong>Quando se desregula.</strong> Em excesso: dependência afetiva, idealização do outro, perda de autonomia, dificuldade de separar-se quando preciso. Em escassez: evitação de vínculos, dificuldade de receber afeto, isolamento.</p>
+<p><strong>Necessidade de reparação.</strong> Reciprocidade. O amor regulado precisa de troca, de poder ser dito e recebido sem que isso ameace o self ou crie dívida afetiva.</p>
+<hr />
+<h3>Exercícios do Capítulo 2</h3>
+<p><strong>Complete a frase</strong> Para cada uma das seis emoções básicas, complete mentalmente ou por escrito: "Se eu sinto [emoção] e aprendi que pessoas [adjetivo aprendido na infância] não sentem isso, então eu sou <strong><em>_</em></strong>____?" O que aparece nessa lacuna é frequentemente uma crença sobre si mesmo, formada a partir de invalidações que talvez nunca tenham sido nomeadas. Não há resposta certa. O exercício é de observação.</p>
+<p><strong>Perceba em você</strong> Nos próximos sete dias, ao perceber alguma emoção forte ativada, pause por trinta segundos e tente identificar três coisas: o marcador somático principal (onde no corpo), o sentimento (que pensamento está vindo junto), e o campo semântico (que palavras descreveriam essa emoção). Anote rapidamente. Não tente regular a emoção. Só observe.</p>
+<p><strong>Registre</strong> Escolha uma das seis emoções básicas com a qual você sente que tem mais dificuldade. Pode ser uma que você evita, uma que sente em excesso, ou uma que parece nunca acessar. Escreva meia página sobre como essa emoção aparecia (ou não) na sua família de origem, o que você aprendeu sobre ela, e como ela se manifesta na sua vida adulta. Esse material pode ser trazido para sessão.</p>
+<hr />
+<blockquote><p><strong>Para retomar:</strong> as seis emoções básicas não são boas nem más. São funções adaptativas. Conhecê-las uma a uma é começar a recuperar acesso ao próprio repertório emocional.</p></blockquote>
+<hr />
+<h2 id="capitulo-3-as-emocoes-secundarias">Capítulo 3: As emoções secundárias</h2>
+<h3>O que torna uma emoção "secundária"</h3>
+<p>As emoções básicas são universais e inatas. Aparecem em qualquer cultura, em bebês, em outros primatas. Já as emoções secundárias têm uma característica diferente: elas são aprendidas, dependem de auto-reflexão, e são moldadas pela cultura e pelas relações que tivemos ao longo da vida.</p>
+<p>Há duas formas principais de uma emoção ser secundária. A primeira é por combinação. A emoção surge da mistura de duas ou mais emoções básicas, com proporções variáveis. Culpa, por exemplo, costuma combinar tristeza (de ter feito algo que machuca) com medo (das consequências). A segunda é por auto-avaliação. A emoção surge quando aplicamos a nós mesmos um critério sobre o que sentimos ou fizemos. Vergonha, orgulho e culpa pertencem a esse grupo.</p>
+<p>Em geral, emoções secundárias começam a aparecer entre o primeiro e o segundo ano de vida, justamente quando a criança começa a se reconhecer como sujeito separado dos outros.</p>
+<p>Outra característica importante: muitas vezes a emoção secundária aparece sobre outra emoção. Sentir ansiedade ao sentir raiva. Sentir vergonha ao sentir medo. Sentir culpa ao sentir alegria. Quando isso acontece, fica difícil perceber a emoção primária, e o sofrimento se intensifica em camadas. A primeira tarefa clínica costuma ser ajudar a distinguir o que é primário e o que é secundário.</p>
+<h3>Por que essa distinção importa</h3>
+<p>Compreender essa diferença abre três portas. A primeira é a porta da autocompaixão. Emoções secundárias são aprendidas, e o que foi aprendido pode ser revisto. Ninguém escolheu sentir vergonha de chorar. Foi ensinado. A segunda é a porta da intervenção. Enquanto estamos reagindo à emoção secundária, a emoção primária segue ativa por baixo, pedindo escuta. A terceira é a porta da regulação. Ao identificar a cadeia (medo primário, vergonha secundária, ansiedade em cima de tudo), conseguimos atuar em cada nível com mais clareza.</p>
+<p>Para identificar uma emoção secundária, três perguntas ajudam:</p>
+<ol>
+<li>Que emoção mais óbvia estou sentindo agora?</li>
+<li>Há uma emoção "por baixo" dela?</li>
+<li>Que mensagem ou crença liga as duas?</li>
+</ol>
+<h3>Mapa das emoções secundárias</h3>
+<p>A seguir, um mapa das emoções secundárias mais frequentes na prática clínica adulta. Estão organizadas em três blocos pela direção funcional, e dentro de cada bloco a ordem segue da maior para a menor frequência clínica. Cada emoção tem cinco informações: as primárias que a compõem, a mensagem central, sua função adaptativa quando regulada, os sinais de quando se torna disfuncional, e a necessidade subjacente que pede reparação.</p>
+<h4>Bloco 1: Emoções secundárias de afastamento e proteção</h4>
+<p><strong>Ansiedade</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> medo voltado ao futuro (predominante)</li>
+<li><em>Mensagem:</em> "Algo ruim pode acontecer e preciso me preparar."</li>
+<li><em>Função adaptativa:</em> antecipar riscos, mobilizar planejamento, ativar atenção para o que importa.</li>
+<li><em>Quando se torna disfuncional:</em> antecipação que paralisa, ruminação sobre cenários improváveis, evitação ampla, sintomas físicos cronificados (insônia, taquicardia, tensão muscular persistente), interferência no funcionamento diário.</li>
+<li><em>Necessidade subjacente:</em> contato com o presente, recursos de enfrentamento, reasseguramento realista, redução da sobrecarga.</li>
+</ul>
+<p><strong>Culpa</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> tristeza (por ter machucado ou falhado) e medo (das consequências)</li>
+<li><em>Mensagem:</em> "Fiz algo que feriu alguém ou meus valores, e preciso reparar."</li>
+<li><em>Função adaptativa:</em> manter coesão social, motivar reparação, sinalizar desalinhamento entre conduta e valores.</li>
+<li><em>Quando se torna disfuncional:</em> culpa por situações fora do próprio controle, culpa cronificada sem reparação possível, culpa por sentir emoções legítimas (culpa por sentir raiva, por descansar, por dizer não).</li>
+<li><em>Necessidade subjacente:</em> discriminação entre responsabilidade real e responsabilidade fantasiada, gesto concreto de reparação quando cabível, perdão quando o reparo não é mais possível.</li>
+</ul>
+<p><strong>Insegurança</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> medo e tristeza voltada ao self</li>
+<li><em>Mensagem:</em> "Não sei se sou suficiente para isto."</li>
+<li><em>Função adaptativa:</em> convidar à preparação, à busca de aprendizado, ao pedido de apoio.</li>
+<li><em>Quando se torna disfuncional:</em> insegurança crônica que impede a ação mesmo diante de evidências de competência, comparação constante, dependência de validação externa.</li>
+<li><em>Necessidade subjacente:</em> registro realista do próprio repertório, reconhecimento externo proporcional à realidade, prática gradual de ação na presença do desconforto.</li>
+</ul>
+<p><strong>Frustração</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> raiva e tristeza</li>
+<li><em>Mensagem:</em> "Esperava algo que não aconteceu, e isso dói e me irrita."</li>
+<li><em>Função adaptativa:</em> sinalizar discrepância entre expectativa e realidade, motivar revisão de estratégias ou de expectativas.</li>
+<li><em>Quando se torna disfuncional:</em> frustração explosiva, intolerância a qualquer obstáculo, abandono precoce de projetos, agressividade dirigida a si ou aos outros.</li>
+<li><em>Necessidade subjacente:</em> aceitação do que aconteceu, revisão honesta do que era possível, novo plano ou novo destino.</li>
+</ul>
+<p><strong>Vergonha</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> medo (de rejeição) e nojo de si</li>
+<li><em>Mensagem:</em> "Há algo em mim que, se for visto, pode me custar pertencer."</li>
+<li><em>Função adaptativa:</em> sinalizar possível desalinhamento entre quem sou e as normas do grupo que importa, convidar a revisar conduta ou contexto.</li>
+<li><em>Quando se torna disfuncional:</em> vergonha de características imutáveis (corpo, identidade, história), vergonha do próprio sentir, evitação social ampla, autocrítica destrutiva.</li>
+<li><em>Necessidade subjacente:</em> validação e reconhecimento, espaços em que possa me mostrar sem performar, sentir-me aceitável como sou.</li>
+</ul>
+<p><strong>Decepção</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> tristeza e frustração (raiva + tristeza)</li>
+<li><em>Mensagem:</em> "Algo ou alguém não correspondeu ao que eu esperava, e isso fere o vínculo."</li>
+<li><em>Função adaptativa:</em> revisar expectativas, recalibrar o lugar do outro na própria vida, proteger contra confianças mal investidas.</li>
+<li><em>Quando se torna disfuncional:</em> generalização ("ninguém presta"), cinismo cronificado, dificuldade de voltar a confiar, ressentimento que não se resolve.</li>
+<li><em>Necessidade subjacente:</em> nomear o que se esperava, dizer o que doeu, decidir o que continua valendo na relação.</li>
+</ul>
+<p><strong>Ressentimento</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> raiva e tristeza prolongadas no tempo</li>
+<li><em>Mensagem:</em> "Algo me feriu há tempos e ainda não foi reparado."</li>
+<li><em>Função adaptativa:</em> manter na memória ofensas não resolvidas, sinalizar que algo precisa de elaboração.</li>
+<li><em>Quando se torna disfuncional:</em> ruminação repetitiva, dificuldade de soltar mesmo após reparação, contaminação de outras relações pela mágoa antiga, identificação do self com a posição de quem foi ferido.</li>
+<li><em>Necessidade subjacente:</em> nomear a ofensa, expressar assertivamente o que ficou, decidir entre buscar reparação possível ou trabalhar o luto do que não será reparado.</li>
+</ul>
+<p><strong>Mágoa</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> tristeza e raiva, em contexto de vínculo afetivo</li>
+<li><em>Mensagem:</em> "Alguém de quem eu gosto me feriu."</li>
+<li><em>Função adaptativa:</em> proteger o vínculo da repetição da ofensa, sinalizar que algo precisa ser conversado.</li>
+<li><em>Quando se torna disfuncional:</em> afastamento silencioso sem nomeação do ocorrido, mágoas acumuladas que se transformam em ressentimento, retirada afetiva como punição implícita.</li>
+<li><em>Necessidade subjacente:</em> fala assertiva ao outro, escuta da parte do outro, reparação relacional ou clareza do limite.</li>
+</ul>
+<p><strong>Solidão</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> tristeza e amor frustrado ou ausente</li>
+<li><em>Mensagem:</em> "Sinto falta de conexão significativa com alguém."</li>
+<li><em>Função adaptativa:</em> motivar a busca por vínculos, sinalizar a importância da socialização.</li>
+<li><em>Quando se torna disfuncional:</em> isolamento que se realimenta, dificuldade de tolerar a presença mesmo de quem está disponível, sensação de que ninguém vai entender, solidão crônica mesmo cercado de pessoas.</li>
+<li><em>Necessidade subjacente:</em> contato genuíno, vínculo seguro, qualidade mais que quantidade.</li>
+</ul>
+<p><strong>Inveja</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> tristeza (por não ter), raiva (de quem tem) e amor desejante (pelo que se vê no outro)</li>
+<li><em>Mensagem:</em> "Quero algo que vejo na pessoa e me dói não ter."</li>
+<li><em>Função adaptativa:</em> sinalizar valores e desejos próprios, motivar busca por recursos pessoais.</li>
+<li><em>Quando se torna disfuncional:</em> desvalorização hostil do outro, autodepreciação, ações para sabotar quem se inveja, sofrimento crônico ao ver as conquistas alheias.</li>
+<li><em>Necessidade subjacente:</em> clareza sobre o que de fato se quer (não copiar o outro, traduzir o desejo), ação possível na direção do que se valoriza.</li>
+</ul>
+<p><strong>Ciúme</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> medo (de perder), raiva (do percebido rival) e amor (pelo vínculo)</li>
+<li><em>Mensagem:</em> "Sinto que posso perder algo ou alguém que me importa."</li>
+<li><em>Função adaptativa:</em> sinalizar a importância do vínculo, motivar diálogo, atenção a sinais reais.</li>
+<li><em>Quando se torna disfuncional:</em> desconfiança crônica sem evidência, controle, vigilância, agressividade contra parceiro ou rival imaginado, sofrimento que excede qualquer ameaça real.</li>
+<li><em>Necessidade subjacente:</em> fortalecimento da segurança interna, comunicação aberta no vínculo, revisão de crenças sobre merecimento e perda.</li>
+</ul>
+<p><strong>Desespero</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> medo e tristeza, ambos em alta intensidade</li>
+<li><em>Mensagem:</em> "Não vejo saída, e isso me esmaga."</li>
+<li><em>Função adaptativa:</em> comunicar necessidade urgente de apoio, mobilizar busca por ajuda.</li>
+<li><em>Quando se torna disfuncional:</em> paralisia diante de problemas com soluções possíveis, sensação cronificada de "sem saída", ideação de autolesão. Esta é uma emoção que pede acolhimento imediato em sessão.</li>
+<li><em>Necessidade subjacente:</em> presença, suporte ativo, redução do isolamento, intervenção profissional quando indicado.</li>
+</ul>
+<p><strong>Melancolia</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> tristeza e amor, com tonalidade existencial</li>
+<li><em>Mensagem:</em> "Há uma tristeza que toca algo profundo em mim, ligada ao tempo, à perda ou ao sentido."</li>
+<li><em>Função adaptativa:</em> convidar à contemplação, à elaboração de questões existenciais, à arte e à reflexão.</li>
+<li><em>Quando se torna disfuncional:</em> cronificação sem direção, substituição da vida pela ruminação contemplativa, confusão com depressão.</li>
+<li><em>Necessidade subjacente:</em> espaço para sentir sem precisar resolver, expressão (escrita, arte, conversa), conexão com o que dá sentido.</li>
+</ul>
+<p><strong>Desprezo</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> raiva e nojo</li>
+<li><em>Mensagem:</em> "Esta pessoa ou conduta fere meus valores de modo que rejeito por inteiro."</li>
+<li><em>Função adaptativa:</em> afastar de relações ou comportamentos que ferem ética pessoal, fortalecer valores próprios.</li>
+<li><em>Quando se torna disfuncional:</em> desprezo generalizado de grupos ou pessoas, arrogância, desumanização do outro, rigidez moral.</li>
+<li><em>Necessidade subjacente:</em> discriminação entre rejeitar conduta e desumanizar pessoa, clareza ética sem fechamento empático.</li>
+</ul>
+<h4>Bloco 2: Emoções secundárias de pausa e reorganização</h4>
+<p><strong>Confusão</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> medo e indecisão (combinação variável de medo, tristeza ou raiva, sem clareza)</li>
+<li><em>Mensagem:</em> "Não consigo ler o que está acontecendo, preciso pausar."</li>
+<li><em>Função adaptativa:</em> sinalizar que falta informação ou clareza, convidar a pausar decisões precipitadas.</li>
+<li><em>Quando se torna disfuncional:</em> confusão cronificada como evitação, paralisia decisória, sensação constante de "não saber o que sinto".</li>
+<li><em>Necessidade subjacente:</em> tempo, escuta, nomeação gradual do que aparece, conversa que ajude a ordenar.</li>
+</ul>
+<p><strong>Saudade</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> tristeza e amor</li>
+<li><em>Mensagem:</em> "Sinto falta de algo ou alguém que importou (ou importa) muito."</li>
+<li><em>Função adaptativa:</em> manter vivo o vínculo, motivar reaproximação quando possível, elaborar perdas.</li>
+<li><em>Quando se torna disfuncional:</em> saudade que paralisa o presente, idealização do passado, recusa do luto, dificuldade de viver o agora.</li>
+<li><em>Necessidade subjacente:</em> lugar para o vínculo na memória sem que ele invada o presente, reaproximação quando possível, luto quando não é.</li>
+</ul>
+<p><strong>Tédio</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> tristeza e leve nojo da monotonia</li>
+<li><em>Mensagem:</em> "Nada aqui está me alimentando."</li>
+<li><em>Função adaptativa:</em> sinalizar necessidade de novidade, sentido ou conexão, motivar mudança.</li>
+<li><em>Quando se torna disfuncional:</em> tédio crônico que se cristaliza como apatia, sensação de vazio constante, busca compulsiva por estimulação, anedonia mascarada.</li>
+<li><em>Necessidade subjacente:</em> sentido, contato com o que importa, repouso quando o tédio é sintoma de saturação, novidade quando é sintoma de estagnação.</li>
+</ul>
+<h4>Bloco 3: Emoções secundárias de aproximação e vinculação</h4>
+<p><strong>Gratidão</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> alegria, amor e reconhecimento</li>
+<li><em>Mensagem:</em> "Algo bom me alcançou e não veio só de mim."</li>
+<li><em>Função adaptativa:</em> fortalecer vínculos, ampliar percepção de suportes na vida, contrabalançar viés negativo de atenção.</li>
+<li><em>Quando se torna disfuncional:</em> gratidão performática que mascara raiva legítima, gratidão obrigatória que impede dizer o que dói, espiritualização que invalida sofrimento.</li>
+<li><em>Necessidade subjacente:</em> reciprocidade, expressão assertiva do que se recebeu, devolução possível.</li>
+</ul>
+<p><strong>Orgulho</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> alegria e amor por si mesmo</li>
+<li><em>Mensagem:</em> "Reconheço algo de valor no que fiz ou em quem sou."</li>
+<li><em>Função adaptativa:</em> reforçar autoestima realista, motivar continuidade do bom, sinalizar competências.</li>
+<li><em>Quando se torna disfuncional:</em> orgulho que se torna arrogância, identificação com conquistas como única medida do self, dificuldade de pedir ajuda.</li>
+<li><em>Necessidade subjacente:</em> reconhecimento merecido, partilha do que se conquistou, manutenção da empatia com quem não está no mesmo lugar.</li>
+</ul>
+<p><strong>Admiração</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> alegria e amor diante de algo ou alguém que se valoriza</li>
+<li><em>Mensagem:</em> "Vejo algo no outro que me inspira."</li>
+<li><em>Função adaptativa:</em> aprendizado por modelagem, abertura para o que se respeita, fortalecimento de vínculos com referências.</li>
+<li><em>Quando se torna disfuncional:</em> idealização que desumaniza o admirado, dependência emocional, perda da própria voz frente à figura admirada.</li>
+<li><em>Necessidade subjacente:</em> contato genuíno, possibilidade de aprender sem se anular, separação saudável entre admirar e fundir-se.</li>
+</ul>
+<p><strong>Compaixão</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> tristeza diante do sofrimento alheio e amor</li>
+<li><em>Mensagem:</em> "Vejo a dor do outro e me importo."</li>
+<li><em>Função adaptativa:</em> motivar cuidado, fortalecer o tecido social, expressar empatia.</li>
+<li><em>Quando se torna disfuncional:</em> compaixão sem limite que esgota, salvacionismo, dificuldade de discernir o que cabe a si e o que cabe ao outro.</li>
+<li><em>Necessidade subjacente:</em> cuidado de si junto com cuidado do outro, discernimento sobre o que se pode oferecer.</li>
+</ul>
+<p><strong>Paixão</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> alegria, amor e desejo, em intensidade elevada</li>
+<li><em>Mensagem:</em> "Quero aproximar-me intensamente disto ou desta pessoa."</li>
+<li><em>Função adaptativa:</em> mobilizar conexão profunda, energia, dedicação a vínculos ou projetos importantes.</li>
+<li><em>Quando se torna disfuncional:</em> paixão que apaga discernimento, idealização do objeto da paixão, perda de autonomia, dificuldade de sustentar quando a fase intensa passa.</li>
+<li><em>Necessidade subjacente:</em> tempo para o vínculo amadurecer, presença do real junto com o desejado, capacidade de discernir paixão e vínculo duradouro.</li>
+</ul>
+<p><strong>Euforia</strong></p>
+<ul>
+<li><em>Primárias envolvidas:</em> alegria em intensidade muito elevada</li>
+<li><em>Mensagem:</em> "Estou em um pico de bom, e isto está me elevando."</li>
+<li><em>Função adaptativa:</em> picos de motivação, conexão social ampliada, energia para realizações.</li>
+<li><em>Quando se torna disfuncional:</em> impulsividade, decisões que depois geram arrependimento, dificuldade de modular a intensidade, oscilações abruptas. Em casos extremos pode estar associada a episódios maníacos.</li>
+<li><em>Necessidade subjacente:</em> presença, contato com a realidade, eventualmente avaliação clínica quando há padrão de oscilação intensa.</li>
+</ul>
+<h3>Sinais de que uma emoção secundária está endurecida</h3>
+<p>Algumas pistas indicam que uma emoção secundária pode ter saído do funcional para o disfuncional:</p>
+<ul>
+<li>Quando aparece com muito mais frequência ou intensidade que o contexto justifica.</li>
+<li>Quando bloqueia o acesso à emoção primária por baixo.</li>
+<li>Quando paralisa decisões, vínculos ou ações importantes.</li>
+<li>Quando se torna um traço de identidade ("eu sou inseguro", "eu sou ressentido").</li>
+<li>Quando é vivida com sofrimento desproporcional ao gatilho.</li>
+</ul>
+<p>Reconhecer esses sinais não é diagnosticar. É observar. Tudo isso pode e deve ser discutido em sessão.</p>
+<hr />
+<h3>Exercícios do Capítulo 3</h3>
+<p><strong>Perceba em você</strong> Durante uma semana, escolha um momento em que uma emoção forte tenha aparecido. Faça três perguntas: que emoção mais óbvia estou sentindo? Há uma emoção primária por baixo? Que mensagem ou crença liga as duas? Anote em poucas linhas. Não busque conclusões. Busque o mapa.</p>
+<p><strong>Complete a frase</strong> Pense em três emoções secundárias do mapa que mais aparecem na sua vida. Para cada uma, complete: "Aprendi que sentir [emoção] significa que eu sou <strong><em>_</em></strong><strong><em>_." Em seguida, complete: "Hoje, depois de pensar nisso, eu posso entender que sentir [emoção] também significa </em></strong><strong><em>_</em></strong>_." A diferença entre as duas frases é o trabalho terapêutico.</p>
+<p><strong>Registre</strong> Em meia página, descreva como sua família de origem lidava com as três emoções secundárias que você mais sente hoje. O que era permitido? O que era proibido? O que era exigido? Esse exercício costuma trazer material importante para a sessão seguinte.</p>
+<hr />
+<blockquote><p><strong>Para retomar:</strong> emoções secundárias são aprendidas e podem ser revistas. Reconhecer a emoção primária por baixo é meio caminho andado.</p></blockquote>
+<hr />
+<h2 id="capitulo-4-regulacao-emocional-expressao-assertiva-e-reparacao">Capítulo 4: Regulação emocional, expressão assertiva e reparação</h2>
+<h3>O que é regulação emocional</h3>
+<p>Regulação emocional é a capacidade de sentir todas as emoções, em diferentes intensidades, e voltar ao bem-estar depois que a "onda" da emoção passa. Não é controlar, suprimir ou eliminar emoções. É circular por elas.</p>
+<p>Quem está regulado emocionalmente sente o mesmo cardápio emocional que todo mundo. A diferença está em três pontos. Tem acesso a todo o seu repertório, não fica restrito a uma ou duas emoções dominantes. Consegue expressar de forma assertiva o que sente. Consegue retornar ao bem-estar quando a emoção se acomoda.</p>
+<p>A desregulação, por outro lado, costuma aparecer de três formas. Pode ser a prevalência rígida de uma emoção que se torna identidade ("sou ansioso", "sou raivoso", "sou triste"). Pode ser a dificuldade em acessar certas emoções (alguém que não consegue sentir tristeza, ou que evita raiva a qualquer custo). Pode ser, ainda, a incapacidade de voltar ao bem-estar depois da ativação, ficando a pessoa "encharcada" na emoção por longos períodos.</p>
+<h3>Estado emocional e emoção ativada</h3>
+<p>Uma das confusões mais comuns na clínica é entre estado emocional e emoção ativada. Vale repetir, porque organiza muita coisa.</p>
+<p>Emoção ativada é a descarga fisiológica, dura em torno de 18 a 24 minutos em adultos quando não alimentada. Estado emocional é a propensão prolongada, formada pelos acontecimentos de um período da vida. Quem perdeu alguém querido há dois meses não está com a tristeza ativada o tempo todo. Está em estado emocional entristecido, o que torna a emoção tristeza mais fácil de ser ativada por pequenos gatilhos.</p>
+<p>Reconhecer essa distinção evita o pensamento "estou triste há semanas, algo está errado comigo". Não é a emoção que dura. É o estado que sustenta. O cuidado se dá em ambos os planos, com ferramentas diferentes.</p>
+<h3>A régua da assertividade</h3>
+<p>Uma ferramenta proposta pelos autores Caminha &amp; Caminha, que vale incorporar ao vocabulário cotidiano, é a régua da assertividade. Imagine uma linha horizontal com três pontos.</p>
+<ul>
+<li><strong>Passividade</strong> (extremo esquerdo): engulo o que sinto, não digo, deixo passar. Verbos comuns: aguentar, suportar, ceder.</li>
+<li><strong>Assertividade</strong> (meio da régua, zona verde): digo o que sinto de forma clara, sem agredir nem me desfazer. Reconheço meu sentimento, expresso minha necessidade, escuto o outro. Verbos comuns: nomear, pedir, propor.</li>
+<li><strong>Agressividade</strong> (extremo direito): expresso o que sinto atacando o outro. Verbos comuns: acusar, atacar, humilhar.</li>
+</ul>
+<p>A régua não é uma escolha binária. Há gradações. Próximo da passividade, mas não no extremo, há a acomodação amigável. Próximo da agressividade, mas não no extremo, há a firmeza incisiva. A zona assertiva, no meio, é onde a expressão emocional encontra sua função social, que é comunicar sem destruir.</p>
+<p>A maior parte dos sofrimentos relacionais que aparecem na terapia tem a ver com o trânsito entre os polos. Pessoas que oscilam entre engolir tudo e explodir, ou entre se calar para preservar o vínculo e atacar quando não suportam mais. A régua dá vocabulário para nomear onde estamos a cada momento.</p>
+<h3>Expressão assertiva e reparação emocional</h3>
+<p>Expressão assertiva é a fala que reconhece a emoção, nomeia a necessidade e propõe uma direção. Tem uma estrutura mais ou menos assim, embora não precise ser dita exatamente nestes termos:</p>
+<blockquote><p>"Quando aconteceu [situação], eu senti [emoção]. O que me ajudaria seria [necessidade ou pedido]."</p></blockquote>
+<p>Essa fala é, ao mesmo tempo, ferramenta de regulação emocional individual e instrumento de reparação relacional. Quando expressa de forma assertiva, a emoção encontra um caminho de saída e o vínculo pode se recompor.</p>
+<p>Reparação emocional (ou acomodação) é o processo pelo qual a emoção se completa. Para cada emoção desagradável, há um tipo de reparação que ajuda a acomodá-la:</p>
+<p>|Emoção|O que pede reparação|
+|---|---|
+|Medo|Proteção, alternativas, presença|
+|Raiva|Que a ofensa cesse, escuta, validação|
+|Tristeza|Acolhimento, presença, espaço para o luto|
+|Nojo|Afastamento adequado, sem reforçar excessos|</p>
+<p>Para as emoções agradáveis, a reparação é diferente. Elas não precisam ser "resolvidas". Pedem expressão. Quando alguém sente alegria ou amor e não pode dizer (por timidez, por inadequação social aprendida, por medo de não ser correspondido), a emoção fica encapsulada. A expressão assertiva, nesses casos, é o que mantém viva a teia social.</p>
+<h3>Cinco estratégias práticas de regulação</h3>
+<p>A literatura científica oferece várias estratégias validadas. Cinco delas têm aplicação direta no cotidiano adulto.</p>
+<p><strong>1. Nomear especificamente a emoção.</strong> Estudos mostram que rotular uma emoção com precisão ativa áreas do córtex pré-frontal que reduzem a intensidade da resposta da amígdala. Em vez de "estou mal", tentar "estou frustrado", "estou triste", "estou ansioso". Quanto mais específico, mais regulador.</p>
+<p><strong>2. Respirar de forma alongada.</strong> A respiração 4-7-8 (inspirar pelo nariz contando quatro tempos, segurar contando sete, expirar pela boca contando oito) ativa o sistema nervoso parassimpático e reduz a ativação simpática. Funciona em qualquer lugar, em poucos minutos.</p>
+<p><strong>3. Mover o corpo.</strong> Caminhada de dez minutos, alongamento, dança, qualquer movimento físico ajuda o corpo a metabolizar os hormônios da ativação emocional. Não precisa ser exercício longo. Precisa ser regular.</p>
+<p><strong>4. Conversar com alguém de confiança.</strong> Não para resolver. Para nomear. Compartilhar a emoção com alguém presente ativa sistemas de regulação social que estamos pré-equipados para usar desde bebês.</p>
+<p><strong>5. Escrever sem editar.</strong> Em situações de emoção intensa, escrever por dez ou quinze minutos sem se preocupar com correção, gramática ou clareza ajuda a externalizar a descarga e oferece distância para olhar depois.</p>
+<p>Essas estratégias funcionam melhor quando praticadas em momentos de baixa ativação. Treinar quando o mar está calmo torna mais fácil usar quando o mar está revolto.</p>
+<hr />
+<h3>Exercícios do Capítulo 4</h3>
+<p><strong>Respire e observe</strong> Escolha um momento do dia (manhã, almoço ou antes de dormir) e pratique a respiração 4-7-8 por três ciclos completos. Faça isso por sete dias seguidos. Note se há diferença na percepção do corpo antes e depois. Não há resposta certa. O exercício é em si o objetivo.</p>
+<p><strong>Experimente esta semana</strong> Identifique uma situação recente em que você esteve em um dos extremos da régua da assertividade (passividade ou agressividade). Em uma página, reescreva como teria sido a fala assertiva naquele momento, usando a estrutura "Quando aconteceu X, eu senti Y. O que me ajudaria seria Z." Não precisa usar essa fala com a pessoa envolvida. Treinar a formulação já tem efeito.</p>
+<p><strong>Registre</strong> Ao longo de uma semana, no fim do dia, registre uma emoção que apareceu com força no dia. Nomeie-a com a maior especificidade possível. Identifique o gatilho, o marcador somático, o sentimento que apareceu junto, e como você lidou com tudo isso (foi passivo, assertivo ou agressivo). No fim da semana, releia. Há padrão?</p>
+<hr />
+<blockquote><p><strong>Para retomar:</strong> regular não é controlar. É circular. A régua da assertividade dá nome ao espaço onde a emoção encontra saída sem destruir o vínculo nem o self.</p></blockquote>
+<hr />
+<h2 id="encerramento">Encerramento</h2>
+<p>Esta cartilha não acaba aqui. Os conceitos que percorremos (pré-emoção, emoção, sentimento, estado emocional, marcadores somáticos, campo semântico, invalidações sociais, régua da assertividade, expressão assertiva, reparação) são ferramentas que ganham vida no uso. Quanto mais forem aplicadas em situações reais, mais elas se integram.</p>
+<p>Vale lembrar três coisas. Primeira: o material aqui não substitui o encontro terapêutico. Ele acompanha, prepara, organiza. Mas o trabalho mesmo acontece na relação. Segunda: nenhum conceito precisa ser aceito sem questionamento. Se algo gerou dúvida, desconforto ou discordância, vale anotar e trazer. Terceira: a regulação emocional é processo, não destino. Recomeça-se a cada dia.</p>
+<p>Sentir é da natureza humana. Aprender a sentir bem é trabalho.</p>
+
+<div class="download-section">
+  <p>Você preencheu os exercícios deste material.<br>
+  Baixe um arquivo com todas as suas respostas para guardar ou levar à próxima sessão.</p>
+  <button class="btn-download" id="btn-download">Baixar minhas respostas</button>
+</div>
+
+</main>
+
+<footer class="doc-footer">
+  Material psicoeducativo de uso clínico &middot; Bruno Santana | Psicologia Clínica &middot; Destinado a pacientes em processo terapêutico
+</footer>
+
+<script>
+
+// Barra de progresso de leitura
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  const pct   = total > 0 ? (window.scrollY / total) * 100 : 0;
+  progressBar.style.width = pct + '%';
+});
+
+// Navegação de capítulos: marca o capítulo ativo
+const navLinks  = document.querySelectorAll('.chapter-nav a');
+const sections  = document.querySelectorAll('h2[id]');
+const observer  = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector('.chapter-nav a[href="#' + e.target.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// Download das respostas como TXT
+document.getElementById('btn-download').addEventListener('click', () => {
+  const fields = document.querySelectorAll('textarea.exercise-field');
+  let output   = '';
+  const title  = document.querySelector('.doc-title')?.textContent || 'Material';
+  const date   = new Date().toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
+
+  output += '='.repeat(60) + '\n';
+  output += title + '\n';
+  output += 'Respostas registradas em ' + date + '\n';
+  output += '='.repeat(60) + '\n\n';
+
+  fields.forEach((f, i) => {
+    const block    = f.closest('.exercise-block');
+    const exTitle  = block?.querySelector('.exercise-title')?.textContent || ('Exercício ' + (i+1));
+    const resp     = f.value.trim();
+    output += '[ ' + exTitle + ' ]\n';
+    output += (resp || '(sem resposta registrada)') + '\n\n';
+    output += '-'.repeat(40) + '\n\n';
+  });
+
+  const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = title.replace(/[^a-zA-Z0-9À-ú\s]/g, '').trim() + ' — Respostas.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+</script>
+
+</body>
+</html>
