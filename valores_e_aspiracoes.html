@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valores e Aspirações — Bruno Santana | Psicologia Clínica</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --sand:          #E8DFD3;
+  --sand-light:    #F2EDE6;
+  --cream:         #FAF8F5;
+  --linen:         #F5F0EB;
+  --amber:         #8B7340;
+  --amber-light:   #AA915A;
+  --amber-deep:    #6E5A32;
+  --forest:        #506B4A;
+  --forest-light:  #7A9472;
+  --forest-pale:   #D4DED0;
+  --deep-brown:    #3D2E22;
+  --walnut:        #5C4433;
+  --charcoal-warm: #4A4240;
+  --night-green:   #2C3B2E;
+  --stone:         #8C8078;
+  --stone-light:   #A69E96;
+  --fog:           #D4CCC4;
+  --white:         #FDFCFB;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Outfit', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--charcoal-warm);
+  line-height: 1.75;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── CABEÇALHO ── */
+.doc-header {
+  background: var(--night-green);
+  padding: 52px 40px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.doc-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light), var(--amber));
+}
+.doc-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber-light);
+  margin-bottom: 16px;
+}
+.doc-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 300;
+  color: var(--sand-light);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.doc-subtitle {
+  font-family: var(--serif);
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--forest-pale);
+}
+
+/* ── PROGRESSO ── */
+.progress-bar-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 3px;
+  background: var(--fog);
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light));
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ── NAVEGAÇÃO DE CAPÍTULOS ── */
+.chapter-nav {
+  background: rgba(250,248,245,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--fog);
+  padding: 0 40px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.chapter-nav::-webkit-scrollbar { display: none; }
+.chapter-nav a {
+  display: inline-block;
+  padding: 14px 0;
+  margin-right: 28px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--stone);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.25s, border-color 0.25s;
+}
+.chapter-nav a:hover,
+.chapter-nav a.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+/* ── CONTEÚDO ── */
+.doc-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 40px 80px;
+}
+
+/* ── METADADOS ── */
+.meta-block {
+  background: var(--linen);
+  border-left: 3px solid var(--amber-light);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  margin-bottom: 48px;
+  font-size: 13px;
+  color: var(--stone);
+  line-height: 1.8;
+}
+.meta-block strong { color: var(--walnut); font-weight: 500; }
+
+/* ── TÍTULOS ── */
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 300;
+  color: var(--deep-brown);
+  margin: 56px 0 20px;
+  line-height: 1.2;
+}
+h2 {
+  font-family: var(--serif);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin: 48px 0 16px;
+  line-height: 1.3;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--fog);
+}
+h3 {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--walnut);
+  margin: 36px 0 14px;
+}
+
+/* ── PARÁGRAFOS E LISTAS ── */
+p { font-size: 15px; margin-bottom: 18px; color: var(--charcoal-warm); }
+ul, ol { padding-left: 22px; margin-bottom: 18px; }
+li { font-size: 15px; margin-bottom: 6px; color: var(--charcoal-warm); }
+strong { font-weight: 500; color: var(--walnut); }
+em { font-style: italic; }
+hr { border: none; border-top: 1px solid var(--fog); margin: 40px 0; }
+.doc-body > hr:first-child { display: none; }
+h2:first-of-type { margin-top: 8px; }
+
+/* ── CITAÇÕES / CASOS CLÍNICOS ── */
+blockquote {
+  border-left: 3px solid var(--amber-light);
+  padding: 16px 20px;
+  margin: 28px 0;
+  background: var(--linen);
+  border-radius: 0 6px 6px 0;
+}
+blockquote p {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--walnut);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── FRASE DE ANCORAGEM ── */
+.anchor-phrase {
+  background: var(--night-green);
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin: 36px 0;
+}
+.anchor-phrase p {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--sand-light);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── BLOCOS DE EXERCÍCIO ── */
+.exercise-block {
+  background: var(--white);
+  border: 1px solid var(--fog);
+  border-top: 3px solid var(--amber);
+  border-radius: 0 0 10px 10px;
+  padding: 28px;
+  margin: 32px 0;
+}
+.exercise-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 10px;
+}
+.exercise-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin-bottom: 14px;
+}
+.exercise-block p {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block ul, .exercise-block ol {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block li { color: var(--stone); }
+
+textarea.exercise-field {
+  width: 100%;
+  min-height: 120px;
+  background: var(--cream);
+  border: 1px solid var(--fog);
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--charcoal-warm);
+  line-height: 1.7;
+  resize: vertical;
+  transition: border-color 0.2s;
+  margin-top: 10px;
+}
+textarea.exercise-field:focus {
+  outline: none;
+  border-color: var(--amber-light);
+  background: var(--white);
+}
+textarea.exercise-field::placeholder { color: var(--stone-light); }
+
+/* ── BOTÃO DE DOWNLOAD ── */
+.download-section {
+  background: var(--linen);
+  border-radius: 10px;
+  padding: 32px;
+  margin: 56px 0 0;
+  text-align: center;
+  border: 1px solid var(--fog);
+}
+.download-section p {
+  font-size: 13px;
+  color: var(--stone);
+  margin-bottom: 20px;
+}
+.btn-download {
+  display: inline-block;
+  padding: 13px 32px;
+  background: var(--amber);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+.btn-download:hover { background: var(--amber-deep); transform: translateY(-1px); }
+.btn-download:active { transform: translateY(0); }
+
+/* ── RODAPÉ ── */
+.doc-footer {
+  text-align: center;
+  padding: 32px 40px;
+  border-top: 1px solid var(--fog);
+  font-size: 11px;
+  color: var(--forest-pale);
+  letter-spacing: 0.5px;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 600px) {
+  .doc-header   { padding: 40px 24px 36px; }
+  .chapter-nav  { padding: 0 24px; }
+  .doc-body     { padding: 40px 24px 64px; }
+  .exercise-block { padding: 20px; }
+  .download-section { padding: 24px; }
+}
+
+/* ── ANIMAÇÃO DE ENTRADA ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.doc-body > * {
+  animation: fadeUp 0.5s ease both;
+}
+
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="doc-label">Material Psicoeducativo</div>
+  <h1 class="doc-title">Valores e Aspirações</h1>
+  
+</header>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<nav class="chapter-nav"><a href="#o-que-realmente-nos-move">O que realmente nos move</a><a href="#capitulo-1---mais-do-que-uma-meta-o-que-e-um-valor"></a><a href="#capitulo-2---o-mapa-das-direcoes-dominios-de-vida-e-clareza-valorosa"></a><a href="#capitulo-3---a-vida-dos-outros-dentro-de-nos-valores-genuinos-e-valores-absorvidos"></a><a href="#capitulo-4---a-voz-que-convence-a-nao-ir-evitacao-experiencial-e-o-custo-do-alivio-imediato"></a><a href="#capitulo-5---um-passo-mesmo-assim-acao-comprometida-e-a-arte-de-andar-em-direcao-ao-que-importa"></a><a href="#como-estou-vivendo-o-que-importa">Como estou vivendo o que importa?</a><a href="#parte-1-avaliacao-por-dominio">Parte 1 — Avaliação por domínio</a><a href="#parte-2-sintese-visual">Parte 2 — Síntese visual</a><a href="#parte-3-leitura-dos-resultados">Parte 3 — Leitura dos resultados</a><a href="#nota-ao-terapeuta">Nota ao terapeuta</a></nav>
+
+<main class="doc-body">
+
+<h2 id="o-que-realmente-nos-move">O que realmente nos move</h2>
+<hr />
+<h2 id="capitulo-1---mais-do-que-uma-meta-o-que-e-um-valor">Capítulo 1 - Mais do que uma meta: o que é um valor?</h2>
+<p>Há uma diferença entre saber o que queremos e saber o que importa. A primeira pergunta tem resposta relativamente fácil: queremos passar na seleção, terminar o curso, melhorar o relacionamento, ganhar mais, descansar mais. São objetivos claros, mensuráveis, com um ponto de chegada previsto. A segunda pergunta é mais difícil, mais incômoda, e em geral é a que ficamos mais tempo sem fazer.</p>
+<p>O que importa para você? Não o que você quer conquistar, mas o que você quer encarnar? Não o ponto de chegada, mas a direção que você quer dar à sua vida?</p>
+<hr />
+<h3>O que é um valor?</h3>
+<p>Um <strong>valor</strong>, no sentido que vamos explorar neste material, não é um objetivo. Objetivos têm fim. Você completa uma maratona e ela está feita. Você termina o curso e ele está terminado. Valores, por outro lado, são direções que não se esgotam: cuidar de quem se ama, ser honesto, contribuir com algo maior, aprender, estar presente. São qualidades de ação que você pode viver hoje, e também amanhã, e também daqui a dez anos.</p>
+<p>O psicólogo Steven Hayes, um dos criadores da Terapia de Aceitação e Compromisso (ACT), descreve valores como "<em>as qualidades que queremos trazer para as nossas ações ao longo do tempo</em>". A imagem que ele usa é parecida com a de uma bússola: ela aponta uma direção, mas não marca o fim da estrada. Você não "chega" a ser honesto. Você escolhe honestidade repetidamente, ao longo da vida.</p>
+<p>Essa distinção, aparentemente simples, tem consequências práticas e importantes. Quando confundimos valores com metas, ficamos vulneráveis a um ciclo específico de sofrimento: trabalhamos muito para alcançar algo, chegamos lá, sentimos uma euforia breve, e então vem o vazio. <em>"Era isso? Onde está a satisfação que deveria estar aqui?"</em> Esse vazio não é sinal de ingratidão nem de defeito de caráter. É sinal de que as metas serviam a uma direção que nunca foi nomeada com clareza, e agora, sem a próxima meta para perseguir, essa direção desaparece junto.</p>
+<p>Valores são diferentes porque permanecem vivos no processo, não apenas no resultado. Se um de seus valores é presença genuína, cada conversa verdadeira com alguém que importa já é viver esse valor, independentemente de qualquer conquista futura.</p>
+<hr />
+<h3>Valores e obrigações: uma distinção que importa</h3>
+<p>Existe uma segunda confusão bastante comum: a confusão entre <strong>valores</strong> e <strong>regras</strong> ou <strong>obrigações</strong>. Valores genuínos produzem uma sensação de expansão quando você age conforme eles. Há vitalidade ali, mesmo que haja dificuldade. Regras e obrigações, por outro lado, produzem peso, culpa ou medo quando você se desvia, mas raramente produzem vitalidade quando você as segue.</p>
+<p>Perguntar "o que eu deveria fazer?" é diferente de perguntar "o que importa para mim?". A primeira pergunta apela a uma autoridade externa, real ou internalizada. A segunda apela à sua experiência mais honesta de si mesmo. Vamos trabalhar essa distinção com mais profundidade no Capítulo 3. Por ora, vale guardar a pergunta.</p>
+<hr />
+<blockquote><p><em>Camila tem 34 anos e passou a última década construindo uma carreira que todos na família consideram admirável. Ela se esforça, é reconhecida, ganha bem. E ainda assim, uma vez por ano, em geral no seu aniversário, sente uma tristeza difusa e sem nome que demora dias para passar. Quando seu terapeuta pergunta o que ela gostaria que estivesse diferente, ela hesita. "Não sei. Acho que sinto que estou vivendo a vida que os outros esperavam de mim, não a que eu escolheria." Camila não tem clareza de quais são os seus valores. Mas ela sabe, com precisão, como é viver sem eles.</em></p></blockquote>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Complete a frase</div><p>Tente completar as frases abaixo sem pensar demais. Escreva a primeira resposta que surgir.</p>
+<ul>
+<li>Quando estou no fim da vida e olho para trás, quero ter sido alguém que...</li>
+<li>Quando me sinto mais vivo ou viva, estou geralmente...</li>
+<li>Aquilo que mais me incomoda ver sendo desrespeitado nos outros provavelmente diz algo sobre...</li>
+</ul>
+<p>Não há resposta certa. Essas frases são uma forma de iluminar o que já está em você, esperando ser reconhecido.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Experimente esta semana</div><p>Escolha uma situação do dia a dia que vai acontecer com certeza esta semana. Pode ser um jantar, uma reunião de trabalho, uma conversa com alguém próximo ou um momento sozinho. Antes de entrar nessa situação, faça uma pergunta simples para você mesmo: <em>"Que qualidade de presença eu quero trazer para isso?"</em> Não o resultado que você quer obter, mas o modo como você quer estar.</p>
+<p>Ao final da semana, anote o que percebeu. Você conseguiu trazer essa qualidade? O que facilitou? O que atrapalhou?</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<blockquote><p><strong>Valores não são o que você quer ter. São como você quer agir, sentir e se mover pelo mundo, hoje e em todos os dias que vierem.</strong></p></blockquote>
+<hr />
+<h2 id="capitulo-2---o-mapa-das-direcoes-dominios-de-vida-e-clareza-valorosa">Capítulo 2 - O mapa das direções: domínios de vida e clareza valorosa</h2>
+<p>A vida adulta é, entre outras coisas, um exercício de malabares. Tentamos equilibrar trabalho, relacionamentos, saúde, tempo próprio, responsabilidades, projetos… E às vezes, no meio dessa correria, paramos e notamos que algumas áreas estão vivas, cuidadas, presentes, e outras foram ficando para trás. Não por descaso, mas porque nunca paramos para olhá-las com atenção e intenção.</p>
+<p>A ideia de mapear os domínios da vida não é nova, mas ela ganha profundidade quando associada à pergunta sobre valores. O objetivo não é criar uma lista de coisas para fazer melhor. É perguntar, em cada área, o que realmente importa para você ali.</p>
+<hr />
+<h3>O mapa e seus domínios</h3>
+<p>Os pesquisadores Kelly Wilson e Troy Murrell, trabalhando dentro da tradição ACT, desenvolveram uma ferramenta chamada Questionário de Vida Valorosa. A ideia central é simples: nossa vida se distribui em domínios diferentes, e cada um deles pode ser vivido com mais ou menos alinhamento com o que de fato importa para nós.</p>
+<p>Os domínios mais usados são: família de origem (pais, irmãos), relacionamentos íntimos e afetivos, amizades, trabalho e carreira, formação e aprendizado, lazer e criatividade, saúde e cuidado do corpo, espiritualidade ou sentido de vida, e participação na comunidade.</p>
+<p>Em cada um desses domínios, há duas perguntas distintas e igualmente importantes. A primeira: "Qual a importância desta área para você?" A segunda: "Com que consistência você está vivendo seus valores nesta área, na prática?"</p>
+<p>Essas duas perguntas frequentemente têm respostas diferentes. Família pode ser imensamente importante para alguém que, na prática, mal fala com os pais há meses. Saúde pode ser um valor profundamente sentido por alguém que, ao mesmo tempo, está ignorando sinais claros do próprio corpo. Lazer pode ocupar o primeiro lugar na lista de prioridades declaradas de alguém que não faz nada por prazer há anos.</p>
+<p>Essa distância entre importância e consistência não é sinal de hipocrisia. Ela é um dado útil. Talvez o mais útil que temos: é onde o sofrimento mora, e é de onde podemos começar.</p>
+<hr />
+<h3>Nenhuma hierarquia universal</h3>
+<p>Importante ressaltar: não existe hierarquia universal entre os domínios. Nenhuma área é obrigatoriamente mais importante do que outra. Uma pessoa que dedica energia primordial ao trabalho criativo e à formação intelectual não está errada. Uma pessoa cuja vida gira em torno das relações íntimas e da família também não está errada. O que importa é que a distribuição de tempo, energia e atenção reflita os seus valores, não os valores que você herdou ou que alguém espera de você.</p>
+<p>O filósofo e psicólogo William James dizia que o maior esforço da existência não é o esforço físico, mas o esforço de atenção: o ato de virar o rosto para o que realmente importa. Mapear os domínios da vida é, em certo sentido, uma forma de virar o rosto.</p>
+<hr />
+<blockquote><p><em>Renato tem 42 anos, é arquiteto e tem uma vida que, olhando de fora, parece equilibrada. Quando seu terapeuta pediu que ele avaliasse cada domínio, ele ficou surpreso com o resultado: família de origem, importância alta, consistência baixíssima. Lazer e criatividade, importância alta, consistência quase zero. Trabalho, importância média, consistência altíssima. "Parece que estou investindo mais onde importa menos e ignorando o que mais me move." Era a primeira vez que Renato conseguia nomear, com precisão, a sensação que carregava há anos.</em></p></blockquote>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Perceba em você</div><p>Antes de responder no papel, vamos fazer uma pausa breve.</p>
+<p>Feche os olhos por um momento. Pense nos últimos três meses da sua vida. Deixe as cenas passarem, sem julgá-las. Onde você passou mais tempo? Com quem? Fazendo o quê?</p>
+<p>Agora pergunte internamente: onde você sente que algo ficou para trás? Qual área da sua vida você sabe, mentalmente, que precisa de atenção, mas segue adiando?</p>
+<p>Abra os olhos e anote o que surgiu.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Registre</div><p>No espaço abaixo, ou no seu diário, escreva os principais domínios da sua vida e, ao lado de cada um, responda duas perguntas:</p>
+<ol>
+<li>Qual a importância desta área para mim? (de 1 a 10)</li>
+<li>Com que consistência estou vivendo meus valores nesta área, na prática? (de 1 a 10)</li>
+</ol>
+<p>Não é necessário que os números coincidam. As distâncias que você perceber são informação valiosa para o processo.</p>
+<p>| Domínio | Importância | Consistência |
+| --- | --- | --- |
+| Família de origem |  |  |
+| Relacionamentos íntimos |  |  |
+| Amizades |  |  |
+| Trabalho e carreira |  |  |
+| Formação e aprendizado |  |  |
+| Lazer e criatividade |  |  |
+| Saúde e cuidado do corpo |  |  |
+| Sentido de vida |  |  |
+| Comunidade |  |  |</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<blockquote><p><strong>Antes de mudar qualquer coisa, é preciso ver com clareza o que está. O mapa não é a viagem, mas sem ele é difícil saber para onde ir.</strong></p></blockquote>
+<hr />
+<h2 id="capitulo-3---a-vida-dos-outros-dentro-de-nos-valores-genuinos-e-valores-absorvidos">Capítulo 3 - A vida dos outros dentro de nós: valores genuínos e valores absorvidos</h2>
+<p>Existe uma questão que raramente fazemos de forma direta, mas que permeia muito do sofrimento com o qual chegamos ao processo terapêutico. A questão é esta: o quanto do que acreditamos ser importante para nós foi, de fato, escolhido por nós?</p>
+<p>Crescemos dentro de famílias, culturas, religiões, grupos sociais… Absorvemos, antes mesmo de ter consciência disso, uma série de ideias sobre o que é uma boa vida, uma boa pessoa, um caminho correto a seguir. Algumas dessas ideias se tornaram genuinamente nossas com o tempo. Outras permanecem, silenciosamente, como hóspedes permanentes na nossa mente, vivendo às nossas custas.</p>
+<hr />
+<h3>Valores genuínos e valores absorvidos</h3>
+<p>A distinção entre <strong>valores genuínos</strong> e <strong>valores absorvidos</strong> não é simples nem binária. Raramente conseguimos separar de forma cirúrgica o que é nosso do que é herança. E nem precisamos! A questão não é rejeitar tudo o que veio de fora, porque muito do que veio de fora pode, após exame cuidadoso, ser reconhecido como verdadeiramente nosso também. A questão é se perguntar: <em>"Quando ajo conforme esse valor, me sinto expandido ou contraído? Sinto algo que se parece com escolha ou sinto algo que se parece com obrigação?"</em></p>
+<p>Caminha e Caminha, ao discutirem a formação das crenças e as invalidações sociais das emoções, apontam para um fenômeno relevante: as mensagens que recebemos sobre o que se pode e o que não se pode sentir, querer, ser, moldam não só nossos comportamentos, mas nossa percepção de quem somos. Uma criança que ouve repetidamente que ambição é perigosa pode chegar à vida adulta acreditando genuinamente que não quer crescer profissionalmente, quando na verdade tem medo de querer. Uma outra, que cresceu vendo o sucesso financeiro como sinônimo de valor pessoal, pode passar décadas perseguindo dinheiro como se fosse um valor seu, quando na verdade está perseguindo a aprovação que nunca recebeu.</p>
+<p>Não estamos falando de culpa parental nem de julgamento das influências que recebemos. Estamos falando de um processo natural de internalização que precisa, em algum momento, ser examinado. Esse exame é justamente um dos trabalhos da psicoterapia.</p>
+<hr />
+<h3>Alguns sinais úteis</h3>
+<p>Alguns sinais de que um valor pode ser mais absorvido do que genuíno:</p>
+<p>Você sente mais medo de não segui-lo do que satisfação em segui-lo. Você o formula principalmente como proibição ("não posso ser assim", "não devo querer isso") em vez de como direção ("quero ser uma pessoa que..."). Você sente alívio quando tem uma justificativa para quebrá-lo, e esse alívio tem uma qualidade de leveza, não de fracasso.</p>
+<p>Isso não significa que um valor absorvido seja necessariamente falso ou ruim. Muitos valores que recebemos da família, da cultura e da espiritualidade se tornam, após exame cuidadoso, profundamente nossos. O que muda é a relação com eles: ao invés de seguidos por medo de punição, interna ou externa, passam a ser vividos por escolha deliberada e consciente.</p>
+<hr />
+<blockquote><p><em>Patrícia tem 29 anos e sempre acreditou que queria ser mãe. Era algo que dizia com certeza quando perguntavam sobre o futuro. Em terapia, quando explorou essa certeza com mais calma, percebeu algo incômodo: ela não sabia distinguir se queria ser mãe ou se sentia que precisava querer. Sua família toda esperava isso dela. A ideia de não ter filhos lhe causava mais ansiedade sobre o que pensariam do que clareza sobre o que ela mesma sentia. "Nunca me perguntei de verdade se quero isso. Sempre assumi que queria porque todo mundo ao meu redor queria." Patrícia não chegou a nenhuma conclusão final naquela sessão. Mas pela primeira vez estava fazendo a pergunta certa.</em></p></blockquote>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Complete a frase</div><p>Para explorar a origem de alguns dos seus valores, tente completar estas frases com a primeira resposta que surgir:</p>
+<ul>
+<li>Uma coisa que sempre acreditei ser importante, mas nunca examinei de perto, é...</li>
+<li>Quando ajo conforme esse valor, geralmente me sinto... <em>(amplie: há leveza, há medo, há alívio, há orgulho?)</em></li>
+<li>Se as pessoas ao meu redor não soubessem que agi assim, eu ainda agiria da mesma forma?</li>
+</ul><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Experimente esta semana</div><p>Escolha um valor que você afirma ter. Pode ser honestidade, família, saúde, lealdade, qualquer um que venha primeiro. Durante esta semana, observe quantas vezes você age conforme esse valor e, para cada vez, registre mentalmente ou no papel: <em>"Estou fazendo isso porque escolho, ou porque sinto que devo?"</em></p>
+<p>Não há resposta certa. O exercício é de observação, não de julgamento.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<blockquote><p><strong>Valores genuínos produzem expansão. Regras absorvidas produzem vigilância. Aprender a distinguir uma coisa da outra é, em si, um ato de autoconhecimento.</strong></p></blockquote>
+<hr />
+<h2 id="capitulo-4---a-voz-que-convence-a-nao-ir-evitacao-experiencial-e-o-custo-do-alivio-imediato">Capítulo 4 - A voz que convence a não ir: evitação experiencial e o custo do alívio imediato</h2>
+<p>Há uma experiência muito específica que quase todos reconhecem, mesmo sem ter nome para ela. Você sabe o que quer fazer, sabe que faz sentido, sabe que está alinhado com o que importa para você... E então aparece um desconforto: medo, ansiedade, vergonha, cansaço, dúvida. E em vez de continuar na direção que havia escolhido, você recua. Não porque mudou de ideia, mas porque o desconforto parecia grande demais para ignorar.</p>
+<p>Esse movimento tem nome. E entendê-lo muda bastante coisa.</p>
+<hr />
+<h3>O que é a evitação experiencial</h3>
+<p>A <strong>evitação experiencial</strong> é, dentro da tradição ACT, um dos conceitos mais potentes para entender o sofrimento humano. Ela se refere à tendência de nos afastarmos de experiências internas desagradáveis, pensamentos, emoções, sensações, memórias, e de organizarmos nosso comportamento de forma a não entrar em contato com elas.</p>
+<p>O problema não é a evitação em si. Evitar um carro em alta velocidade é sabedoria, não patologia. O problema aparece quando a evitação se volta para dentro, para os próprios estados internos, e começa a dirigir as escolhas de vida. Quando deixamos de ir a uma festa porque a ansiedade diz que vai ser difícil. Quando adiamos uma conversa importante porque o desconforto de tê-la parece grande demais. Quando desistimos de um projeto logo que surgem as primeiras dúvidas sobre nossa capacidade.</p>
+<p>Hayes aponta para algo contraintuitivo e, ao mesmo tempo, profundamente reconhecível: a tentativa de controlar ou eliminar o desconforto interno frequentemente o amplifica! Não porque a mente seja perversa, mas porque toda tentativa de não pensar em algo exige que você pense nesse algo para saber o que não pensar. É como tentar não imaginar um elefante rosa: o elefante aparece.</p>
+<hr />
+<h3>O custo silencioso</h3>
+<p>Mais importante do que isso: a evitação experiencial tem um custo silencioso e cumulativo. Cada vez que recuamos de uma situação por causa do desconforto interno que ela evoca, ensinamos à mente que aquela situação é perigosa e que aquele desconforto é insuportável. O medo cresce. O repertório de vida se estreita. E os valores ficam, progressivamente, mais distantes.</p>
+<p>Caminha e Caminha descrevem as emoções desagradáveis de sentir não como inimigas, mas como mensageiras. Elas carregam informação, sinalizam algo que importa, apontam para algo que precisa de atenção. A raiva, o medo, a tristeza não são problemas a serem eliminados. São estados funcionais que, quando tratados com curiosidade em vez de urgência por alívio, podem ser atravessados.</p>
+<p>A pergunta que a evitação nunca nos deixa fazer é: <em>"O que aconteceria se eu sentisse isso e fosse mesmo assim?"</em></p>
+<hr />
+<blockquote><p><em>Juliana tem 26 anos e um talento genuíno para escrever. Em terapia, ela descreve um padrão repetitivo: toda vez que se senta para trabalhar em um texto que importa para ela, aparecem pensamentos como "não é bom o suficiente" e "vai decepcionar quem ler". Ela então fecha o documento e vai fazer outra coisa. A ansiedade diminui imediatamente. "Eu sei que estou evitando. Mas o alívio é tão bom que parece que valeu a pena." Juliana está certa: o alívio é real. O problema é o preço que ela paga a longo prazo. Cada vez que evita, o texto parece mais ameaçador, não menos. E o valor que ela tem pelo ato de criar vai sendo sufocado, devagar, pelo medo que ela nunca aprende a carregar.</em></p></blockquote>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Perceba em você</div><p>Pense em algo que você sabe ser importante e que você tem adiado ou evitado. Uma conversa, um projeto, um compromisso consigo mesmo.</p>
+<p>Agora vamos fazer uma pausa breve de atenção ao que está dentro.</p>
+<p>Feche os olhos por alguns instantes. Pense nessa situação que você está evitando. Onde você sente o desconforto no corpo? É no peito? Na garganta? No estômago? Que qualidade tem essa sensação: aperto, peso, agitação, vazio?</p>
+<p>Observe sem tentar mudar. Só observe. Quanto tempo você consegue ficar com essa sensação antes de querer se afastar dela?</p>
+<p>Abra os olhos. O que você notou?</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Respire e observe</div><p>Esta semana, quando perceber que está a ponto de evitar algo que importa para você, pause por 30 segundos antes de decidir o que fazer.</p>
+<p>Inspire lentamente pelo nariz contando até 4. Segure por 2 segundos. Expire pela boca contando até 6.</p>
+<p>Enquanto faz isso, observe o que está sentindo sem tentar resolver ou afastar. Apenas note: <em>"Há um desconforto aqui. Posso senti-lo e ainda assim escolher o que fazer."</em></p>
+<p>Você não precisa eliminar o desconforto para agir. Você só precisa escolher se vai deixar que ele decida por você.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<blockquote><p><strong>A evitação promete alívio e entrega estreitamento. Cada vez que escolhemos sentir em vez de fugir, estamos recuperando um pedaço de nós mesmos que o medo havia tomado emprestado.</strong></p></blockquote>
+<hr />
+<h2 id="capitulo-5---um-passo-mesmo-assim-acao-comprometida-e-a-arte-de-andar-em-direcao-ao-que-importa">Capítulo 5 - Um passo, mesmo assim: ação comprometida e a arte de andar em direção ao que importa</h2>
+<p>Existe um engano muito comum sobre como as mudanças acontecem. Acreditamos, em geral, que primeiro precisamos sentir vontade, motivação ou confiança, e só então agir. Esperamos o momento certo, o estado emocional adequado, a clareza suficiente. E enquanto esperamos, os dias passam e os valores ficam suspensos, como planos para depois.</p>
+<p>A experiência clínica e a pesquisa em psicologia sugerem o contrário: na maioria das vezes, a ação vem antes da motivação, não o inverso. Agimos, e o sentido aparece no ato. Caminhamos, e a clareza emerge no caminho.</p>
+<hr />
+<h3>O que é a ação comprometida</h3>
+<p>A <strong>ação comprometida</strong> é o conceito que amarra tudo o que vimos até aqui. Ela pode ser entendida, de forma simples, como a escolha de agir em direção aos seus valores mesmo na presença de pensamentos difíceis, emoções desagradáveis ou incerteza.</p>
+<p>O "mesmo assim" dessa definição é o elemento mais importante. Não estamos falando de heroísmo nem de ausência de medo. Estamos falando de algo mais humano e mais acessível: a disposição de carregar o desconforto como passageiro, não como motorista.</p>
+<p>Marsha Linehan, criadora da Terapia Comportamental Dialética (DBT), descreve um conceito que se aproxima disso de forma elegante: a <strong>ação oposta</strong>. Quando uma emoção está ativada e nos empurra para um comportamento que nos afasta do que importa, a ação oposta consiste em fazer justamente o que a emoção não quer. Não por negação da emoção, mas por comprometimento com a direção valorosa. A tristeza que pede isolamento: buscar conexão. O medo que pede fuga: aproximação gradual. A raiva que pede ataque: se retirar ou agir com serenidade quando isso for seguro e possível.</p>
+<hr />
+<h3>Ação comprometida não é força de vontade</h3>
+<p>É importante distinguir ação comprometida de força de vontade. Força de vontade é a tentativa de empurrar para longe o que está atrapalhando. Ação comprometida é a disposição de agir carregando o que está atrapalhando. Uma tenta eliminar o obstáculo. A outra o inclui na caminhada.</p>
+<p>Outro elemento fundamental é a gradualidade. Hayes enfatiza que ação comprometida não significa mudança radical imediata. Significa o próximo passo possível, por menor que seja. Uma ligação que você não está fazendo. Uma conversa que você está adiando. Vinte minutos dedicados a algo que importa. A pergunta não é "o que eu precisaria mudar na minha vida inteira?", mas "que ação pequena e concreta posso tomar hoje que aponte na direção do que é importante para mim?"</p>
+<p>A consistência ao longo do tempo é o que transforma ações isoladas em vida vivida com valores. Não a perfeição, não a grandiosidade, mas a repetição fiel de escolhas pequenas e alinhadas.</p>
+<hr />
+<blockquote><p><em>Marcos tem 38 anos e há dois anos sabe que quer retomar os estudos. O valor da aprendizagem e do crescimento intelectual sempre foi importante para ele, mas a vida foi ficando cheia e os estudos foram sendo adiados. Toda vez que pensa em se inscrever num curso, aparecem pensamentos como "não tenho tempo", "já estou velho demais para isso", "vou começar e não terminar". Em terapia, ele e o terapeuta identificaram que a ação comprometida, para ele, não era se matricular de imediato. Era passar 20 minutos por semana lendo sobre o assunto que o interessava. Sem pressão de inscrição, sem promessa de conclusão. Apenas 20 minutos de presença com algo que importava. Três meses depois, Marcos se inscreveu por conta própria.</em></p></blockquote>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Complete a frase</div><p>Vamos construir os seus próximos passos.</p>
+<ul>
+<li>Um valor meu que está recebendo pouca atenção agora é...</li>
+<li>A ação mais simples e concreta que eu poderia tomar esta semana em direção a esse valor é...</li>
+<li>O desconforto que provavelmente vou sentir ao tomar essa ação é... <em>(nomeie a emoção ou a sensação)</em></li>
+<li>Mesmo sentindo isso, posso escolher...</li>
+</ul><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Experimente esta semana</div><p>Escolha um valor e um único passo concreto em direção a ele para esta semana. O passo deve ser pequeno o suficiente para ser feito mesmo nos dias difíceis. Não o passo ideal nem o passo que você gostaria de dar num dia perfeito. O passo real, hoje, com os recursos que você tem agora.</p>
+<p>Registre ao final da semana: você deu o passo? Se sim, o que aconteceu com o desconforto ao longo do processo? Se não, o que surgiu que te impediu? Essa reflexão é tão importante quanto o ato em si.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<blockquote><p><strong>Não precisamos esperar estar prontos para começar a viver o que importa. Podemos carregar a dúvida, o medo e o cansaço como companhia, e caminhar mesmo assim na direção que escolhemos.</strong></p></blockquote>
+<hr />
+<h1>Inventário de Vida Valorosa</h1>
+<h2 id="como-estou-vivendo-o-que-importa">Como estou vivendo o que importa?</h2>
+<p><em>Apêndice da cartilha Valores e Aspirações</em></p>
+<hr />
+<h3>Antes de começar</h3>
+<p>Este inventário é uma adaptação do <em>Valued Living Questionnaire</em> (VLQ), desenvolvido pelo psicólogo Kelly Wilson e colaboradores dentro da Terapia de Aceitação e Compromisso (ACT). Ele foi traduzido e adaptado para uso clínico neste contexto, mantendo a estrutura original e os domínios de vida propostos pelos autores.</p>
+<p>O objetivo é simples e preciso: ajudar você a ver, com clareza e sem julgamento, onde seus valores estão sendo vividos e onde estão sendo adiados. Não é um teste com pontuação certa ou errada. Não existe resultado bom ou ruim. O que existe são dados úteis para o seu processo.</p>
+<p>Vamos trabalhar com duas perguntas para cada área da vida:</p>
+<p><strong>Importância:</strong> o quanto esta área é importante para você, considerando seus valores mais genuínos. Não o quanto ela deveria ser importante, nem o quanto os outros esperam que seja. O quanto ela de fato é, quando você é honesto consigo mesmo.</p>
+<p><strong>Consistência:</strong> o quanto suas ações nas últimas semanas têm refletido esses valores na prática. Não a intenção nem o desejo, mas o comportamento concreto e real.</p>
+<p>Use a escala de 1 a 10 para cada resposta:</p>
+<p>| 1 - 2 - 3 | 4 - 5 - 6 | 7 - 8 - 9 - 10 |
+| --- | --- | --- |
+| Pouco ou nada | Moderadamente | Muito ou completamente |</p>
+<hr />
+<h3>Uma observação antes</h3>
+<p>Você vai notar que importância e consistência frequentemente têm valores diferentes. Uma área pode ser muito importante e pouco vivida. Outra pode estar recebendo muita atenção sem ser especialmente significativa para você. Essas distâncias não são fracassos. São informação. São exatamente o que queremos ver.</p>
+<p>Responda o mais honestamente que conseguir. Quanto mais fiel à sua experiência real, mais útil será o resultado.</p>
+<hr />
+<h2 id="parte-1-avaliacao-por-dominio">Parte 1 — Avaliação por domínio</h2>
+<hr />
+<h3>Domínio 1 — Família de origem</h3>
+<p><em>Pais, irmãos, avós, tios e outros familiares com quem você cresceu ou que fazem parte da sua história.</em></p>
+<p>Como você quer se relacionar com sua família de origem? Que tipo de filho, filha, irmão, irmã, neto ou neta você quer ser? Quais qualidades de presença e cuidado você gostaria de trazer para esses vínculos?</p>
+<p><strong>Importância:</strong> ____ / 10</p>
+<p><strong>Consistência nas últimas semanas:</strong> ____ / 10</p>
+<p><strong>Observação livre</strong> <em>(opcional - o que veio à mente ao responder?)</em></p>
+<hr />
+<hr />
+<hr />
+<h3>Domínio 2 — Relacionamentos afetivos e íntimos</h3>
+<p><em>Parceiro ou parceira atual, ou o tipo de relação íntima que você deseja construir caso não esteja em um relacionamento agora.</em></p>
+<p>Como você quer se relacionar com a pessoa que ama ou com quem compartilha a vida? Que qualidades você quer trazer para esse vínculo: presença, honestidade, afeto, cuidado, leveza?</p>
+<p><strong>Importância:</strong> ____ / 10</p>
+<p><strong>Consistência nas últimas semanas:</strong> ____ / 10</p>
+<p><strong>Observação livre</strong> <em>(opcional)</em></p>
+<hr />
+<hr />
+<hr />
+<h3>Domínio 3 — Parentalidade</h3>
+<p><em>Se você tem filhos ou filhas, ou deseja tê-los. Caso este domínio não se aplique à sua vida agora, pule para o próximo.</em></p>
+<p>Que tipo de pai ou mãe você quer ser? Que qualidades de presença, atenção e cuidado você quer oferecer? Como você quer que seus filhos se sintam ao seu lado?</p>
+<p><strong>Importância:</strong> ____ / 10 <em>(ou N/A, se não se aplica)</em></p>
+<p><strong>Consistência nas últimas semanas:</strong> ____ / 10 <em>(ou N/A)</em></p>
+<p><strong>Observação livre</strong> <em>(opcional)</em></p>
+<hr />
+<hr />
+<hr />
+<h3>Domínio 4 — Amizades e vida social</h3>
+<p><em>As pessoas fora da família com quem você escolhe manter vínculos de afeto, confiança e companhia.</em></p>
+<p>Como você quer se comportar como amigo ou amiga? Que qualidades você quer trazer para essas relações: lealdade, presença, generosidade, reciprocidade?</p>
+<p><strong>Importância:</strong> ____ / 10</p>
+<p><strong>Consistência nas últimas semanas:</strong> ____ / 10</p>
+<p><strong>Observação livre</strong> <em>(opcional)</em></p>
+<hr />
+<hr />
+<hr />
+<h3>Domínio 5 — Trabalho e carreira</h3>
+<p><em>A atividade profissional que você exerce ou deseja exercer, incluindo empreendedorismo, trabalho autônomo e qualquer forma de contribuição remunerada.</em></p>
+<p>Como você quer se comportar no trabalho? Que qualidades você quer trazer para o que faz: dedicação, criatividade, integridade, colaboração, excelência? O que o trabalho representa para você além da remuneração?</p>
+<p><strong>Importância:</strong> ____ / 10</p>
+<p><strong>Consistência nas últimas semanas:</strong> ____ / 10</p>
+<p><strong>Observação livre</strong> <em>(opcional)</em></p>
+<hr />
+<hr />
+<hr />
+<h3>Domínio 6 — Formação e crescimento pessoal</h3>
+<p><em>Educação formal, aprendizado autodirigido, desenvolvimento de habilidades e qualquer forma de expansão intelectual ou pessoal.</em></p>
+<p>Que tipo de aprendiz você quer ser? Como você quer se relacionar com o crescimento, com o desconhecido, com o esforço de aprender? Que áreas ou habilidades têm chamado sua atenção?</p>
+<p><strong>Importância:</strong> ____ / 10</p>
+<p><strong>Consistência nas últimas semanas:</strong> ____ / 10</p>
+<p><strong>Observação livre</strong> <em>(opcional)</em></p>
+<hr />
+<hr />
+<hr />
+<h3>Domínio 7 — Lazer, criatividade e descanso</h3>
+<p><em>Hobbies, atividades de prazer, arte, esporte, jogos, descanso deliberado e qualquer forma de ocupação que você faça pelo que ela é, não pelo que ela produz.</em></p>
+<p>Como você quer se relacionar com o prazer e com o tempo livre? Que atividades você quer preservar ou retomar? O descanso e o lazer têm espaço na sua vida com a frequência que você gostaria?</p>
+<p><strong>Importância:</strong> ____ / 10</p>
+<p><strong>Consistência nas últimas semanas:</strong> ____ / 10</p>
+<p><strong>Observação livre</strong> <em>(opcional)</em></p>
+<hr />
+<hr />
+<hr />
+<h3>Domínio 8 — Espiritualidade e sentido de vida</h3>
+<p><em>Religião, espiritualidade, filosofia de vida, práticas contemplativas ou qualquer dimensão que conecte você a algo maior do que o cotidiano imediato. Este domínio não pressupõe crença religiosa. Diz respeito ao que dá sentido e direção à sua existência.</em></p>
+<p>Como você quer se relacionar com as perguntas mais amplas da vida: propósito, transcendência, legado, pertencimento a algo maior? Que práticas ou crenças sustentam o sentido do que você faz?</p>
+<p><strong>Importância:</strong> ____ / 10</p>
+<p><strong>Consistência nas últimas semanas:</strong> ____ / 10</p>
+<p><strong>Observação livre</strong> <em>(opcional)</em></p>
+<hr />
+<hr />
+<hr />
+<h3>Domínio 9 — Comunidade e cidadania</h3>
+<p><em>Engajamento com o bairro, a cidade, causas sociais, voluntariado, ativismo, participação coletiva ou qualquer forma de contribuição à vida pública e comunitária.</em></p>
+<p>Como você quer contribuir para o mundo além da sua vida privada? Que causas ou comunidades importam para você? Que tipo de cidadão ou cidadã você quer ser?</p>
+<p><strong>Importância:</strong> ____ / 10</p>
+<p><strong>Consistência nas últimas semanas:</strong> ____ / 10</p>
+<p><strong>Observação livre</strong> <em>(opcional)</em></p>
+<hr />
+<hr />
+<hr />
+<h3>Domínio 10 — Saúde e cuidado do corpo</h3>
+<p><em>Alimentação, sono, movimento, acompanhamento médico e qualquer prática relacionada ao cuidado físico e ao bem-estar corporal.</em></p>
+<p>Como você quer tratar o seu corpo? Que práticas de cuidado você quer manter ou desenvolver? O corpo tem recebido a atenção que você sente ser justa?</p>
+<p><strong>Importância:</strong> ____ / 10</p>
+<p><strong>Consistência nas últimas semanas:</strong> ____ / 10</p>
+<p><strong>Observação livre</strong> <em>(opcional)</em></p>
+<hr />
+<hr />
+<hr />
+<h2 id="parte-2-sintese-visual">Parte 2 — Síntese visual</h2>
+<p>Transfira suas notas para a tabela abaixo. Isso permite ver o conjunto de uma vez, o que é difícil de fazer quando os domínios estão espalhados.</p>
+<p>| Domínio | Importância | Consistência | Distância |
+| --- | --- | --- | --- |
+| 1. Família de origem |  |  |  |
+| 2. Relacionamentos afetivos |  |  |  |
+| 3. Parentalidade |  |  |  |
+| 4. Amizades |  |  |  |
+| 5. Trabalho e carreira |  |  |  |
+| 6. Formação e crescimento |  |  |  |
+| 7. Lazer e descanso |  |  |  |
+| 8. Espiritualidade e sentido |  |  |  |
+| 9. Comunidade e cidadania |  |  |  |
+| 10. Saúde e corpo |  |  |  |</p>
+<p><strong>Como calcular a distância:</strong> subtraia a consistência da importância. Um resultado positivo indica que a área é mais importante do que tem sido vivida. Quanto maior o número, maior a lacuna entre o que importa e o que está acontecendo na prática.</p>
+<p><em>Exemplo: importância 9, consistência 3. Distância = 6. Sinal de que esta área merece atenção.</em></p>
+<hr />
+<h2 id="parte-3-leitura-dos-resultados">Parte 3 — Leitura dos resultados</h2>
+<h3>O que os números dizem</h3>
+<p>Não existe padrão ideal de distribuição. Cada pessoa tem uma configuração valorosa própria, e essa configuração muda ao longo da vida. O que os números permitem ver é a relação entre o que importa e o que está sendo vivido, e é nessa relação que o trabalho acontece.</p>
+<p>Algumas leituras úteis:</p>
+<p><strong>Distância alta em área de alta importância.</strong> É aqui que costuma morar o sofrimento mais persistente. Não a dor aguda de um evento específico, mas aquela sensação difusa e duradoura de que algo fundamental está faltando. Vale perguntar: o que está impedindo que esta área receba mais presença? É falta de tempo real? É evitação? É uma crença de que não mereço ou não consigo?</p>
+<p><strong>Consistência alta em área de baixa importância.</strong> Pode indicar que você está investindo energia significativa em algo que não é especialmente valoroso para você. Às vezes isso é necessário por razões práticas. Às vezes é um sinal de que valores absorvidos estão dirigindo mais do que os seus.</p>
+<p><strong>Importância baixa em muitas áreas.</strong> Pode ser um momento genuíno de estreitamento e foco. Pode também ser um sinal de que o contato com o que importa está embotado, o que às vezes acontece em períodos de esgotamento intenso ou de sofrimento emocional prolongado. Vale conversar sobre isso em sessão.</p>
+<hr />
+<h3>Perguntas para levar à sessão</h3>
+<p>Ao terminar o inventário, escolha as duas ou três perguntas abaixo que mais ressoaram com você e anote suas respostas para compartilhar com seu terapeuta.</p>
+<ul>
+<li>Qual domínio me surpreendeu mais ao responder? Por quê?</li>
+<li>Qual a distância que mais me incomoda? O que essa área representa para mim?</li>
+<li>Há algum domínio que evitei responder com honestidade? O que estava presente nessa hesitação?</li>
+<li>Se eu fosse tomar um único passo concreto esta semana em direção a um valor subvivido, qual seria?</li>
+</ul>
+<hr />
+<h3>Para registrar</h3>
+<p><strong>O domínio com maior distância entre importância e consistência é:</strong></p>
+<hr />
+<p><strong>Uma coisa que noto ao olhar para o conjunto é:</strong></p>
+<hr />
+<hr />
+<p><strong>Um passo concreto que quero dar esta semana é:</strong></p>
+<hr />
+<hr />
+<blockquote><p><strong>Ver a própria vida com clareza não é confortável. Mas é o ponto de partida de qualquer mudança que valha a pena.</strong></p></blockquote>
+<hr />
+<h3>Nota técnica</h3>
+<p>Este instrumento é uma adaptação livre para uso clínico do <em>Valued Living Questionnaire</em> (VLQ), de Wilson, Murrell e colaboradores (2004), revisado em versão posterior (VLQ-2). A adaptação mantém a estrutura de dupla avaliação por domínio e os dez domínios originais com ajustes de linguagem para o contexto clínico brasileiro. Não se trata de versão validada para fins de pesquisa. Para uso em investigação científica, recomenda-se o instrumento original ou versão validada quando disponível.</p>
+<h2 id="nota-ao-terapeuta">Nota ao terapeuta</h2>
+<p>Este material foi desenvolvido para clientes em processo terapêutico que já tenham contato com o modelo cognitivo e com a lógica de automonitoramento. Os capítulos podem ser utilizados sequencialmente ao longo de cinco semanas ou selecionados de acordo com a demanda clínica de cada cliente.</p>
+<p>Recomenda-se que o Capítulo 4, sobre evitação experiencial, seja precedido por ao menos uma conversa em sessão sobre a função das emoções desagradáveis de sentir, para que o conceito não seja lido como invalidação do sofrimento. O Capítulo 3, sobre valores absorvidos, pode mobilizar material relacionado à família de origem e ao papel social esperado; esteja atento ao timing clínico antes de indicá-lo.</p>
+<p>Este material não abrange técnicas de desfusão cognitiva em profundidade nem a dimensão existencial do sentido de vida, que serão exploradas em materiais posteriores da biblioteca.</p>
+
+<div class="download-section">
+  <p>Você preencheu os exercícios deste material.<br>
+  Baixe um arquivo com todas as suas respostas para guardar ou levar à próxima sessão.</p>
+  <button class="btn-download" id="btn-download">Baixar minhas respostas</button>
+</div>
+
+</main>
+
+<footer class="doc-footer">
+  Material psicoeducativo de uso clínico &middot; Bruno Santana | Psicologia Clínica &middot; Destinado a pacientes em processo terapêutico
+</footer>
+
+<script>
+
+// Barra de progresso de leitura
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  const pct   = total > 0 ? (window.scrollY / total) * 100 : 0;
+  progressBar.style.width = pct + '%';
+});
+
+// Navegação de capítulos: marca o capítulo ativo
+const navLinks  = document.querySelectorAll('.chapter-nav a');
+const sections  = document.querySelectorAll('h2[id]');
+const observer  = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector('.chapter-nav a[href="#' + e.target.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// Download das respostas como TXT
+document.getElementById('btn-download').addEventListener('click', () => {
+  const fields = document.querySelectorAll('textarea.exercise-field');
+  let output   = '';
+  const title  = document.querySelector('.doc-title')?.textContent || 'Material';
+  const date   = new Date().toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
+
+  output += '='.repeat(60) + '\n';
+  output += title + '\n';
+  output += 'Respostas registradas em ' + date + '\n';
+  output += '='.repeat(60) + '\n\n';
+
+  fields.forEach((f, i) => {
+    const block    = f.closest('.exercise-block');
+    const exTitle  = block?.querySelector('.exercise-title')?.textContent || ('Exercício ' + (i+1));
+    const resp     = f.value.trim();
+    output += '[ ' + exTitle + ' ]\n';
+    output += (resp || '(sem resposta registrada)') + '\n\n';
+    output += '-'.repeat(40) + '\n\n';
+  });
+
+  const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = title.replace(/[^a-zA-Z0-9À-ú\s]/g, '').trim() + ' — Respostas.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+</script>
+
+</body>
+</html>
