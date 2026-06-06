@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untitled — Bruno Santana | Psicologia Clínica</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --sand:          #E8DFD3;
+  --sand-light:    #F2EDE6;
+  --cream:         #FAF8F5;
+  --linen:         #F5F0EB;
+  --amber:         #8B7340;
+  --amber-light:   #AA915A;
+  --amber-deep:    #6E5A32;
+  --forest:        #506B4A;
+  --forest-light:  #7A9472;
+  --forest-pale:   #D4DED0;
+  --deep-brown:    #3D2E22;
+  --walnut:        #5C4433;
+  --charcoal-warm: #4A4240;
+  --night-green:   #2C3B2E;
+  --stone:         #8C8078;
+  --stone-light:   #A69E96;
+  --fog:           #D4CCC4;
+  --white:         #FDFCFB;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Outfit', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--charcoal-warm);
+  line-height: 1.75;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── CABEÇALHO ── */
+.doc-header {
+  background: var(--night-green);
+  padding: 52px 40px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.doc-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light), var(--amber));
+}
+.doc-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber-light);
+  margin-bottom: 16px;
+}
+.doc-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 300;
+  color: var(--sand-light);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.doc-subtitle {
+  font-family: var(--serif);
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--forest-pale);
+}
+
+/* ── PROGRESSO ── */
+.progress-bar-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 3px;
+  background: var(--fog);
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light));
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ── NAVEGAÇÃO DE CAPÍTULOS ── */
+.chapter-nav {
+  background: rgba(250,248,245,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--fog);
+  padding: 0 40px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.chapter-nav::-webkit-scrollbar { display: none; }
+.chapter-nav a {
+  display: inline-block;
+  padding: 14px 0;
+  margin-right: 28px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--stone);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.25s, border-color 0.25s;
+}
+.chapter-nav a:hover,
+.chapter-nav a.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+/* ── CONTEÚDO ── */
+.doc-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 40px 80px;
+}
+
+/* ── METADADOS ── */
+.meta-block {
+  background: var(--linen);
+  border-left: 3px solid var(--amber-light);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  margin-bottom: 48px;
+  font-size: 13px;
+  color: var(--stone);
+  line-height: 1.8;
+}
+.meta-block strong { color: var(--walnut); font-weight: 500; }
+
+/* ── TÍTULOS ── */
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 300;
+  color: var(--deep-brown);
+  margin: 56px 0 20px;
+  line-height: 1.2;
+}
+h2 {
+  font-family: var(--serif);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin: 48px 0 16px;
+  line-height: 1.3;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--fog);
+}
+h3 {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--walnut);
+  margin: 36px 0 14px;
+}
+
+/* ── PARÁGRAFOS E LISTAS ── */
+p { font-size: 15px; margin-bottom: 18px; color: var(--charcoal-warm); }
+ul, ol { padding-left: 22px; margin-bottom: 18px; }
+li { font-size: 15px; margin-bottom: 6px; color: var(--charcoal-warm); }
+strong { font-weight: 500; color: var(--walnut); }
+em { font-style: italic; }
+hr { border: none; border-top: 1px solid var(--fog); margin: 40px 0; }
+.doc-body > hr:first-child { display: none; }
+h2:first-of-type { margin-top: 8px; }
+
+/* ── CITAÇÕES / CASOS CLÍNICOS ── */
+blockquote {
+  border-left: 3px solid var(--amber-light);
+  padding: 16px 20px;
+  margin: 28px 0;
+  background: var(--linen);
+  border-radius: 0 6px 6px 0;
+}
+blockquote p {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--walnut);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── FRASE DE ANCORAGEM ── */
+.anchor-phrase {
+  background: var(--night-green);
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin: 36px 0;
+}
+.anchor-phrase p {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--sand-light);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── BLOCOS DE EXERCÍCIO ── */
+.exercise-block {
+  background: var(--white);
+  border: 1px solid var(--fog);
+  border-top: 3px solid var(--amber);
+  border-radius: 0 0 10px 10px;
+  padding: 28px;
+  margin: 32px 0;
+}
+.exercise-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 10px;
+}
+.exercise-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin-bottom: 14px;
+}
+.exercise-block p {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block ul, .exercise-block ol {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block li { color: var(--stone); }
+
+textarea.exercise-field {
+  width: 100%;
+  min-height: 120px;
+  background: var(--cream);
+  border: 1px solid var(--fog);
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--charcoal-warm);
+  line-height: 1.7;
+  resize: vertical;
+  transition: border-color 0.2s;
+  margin-top: 10px;
+}
+textarea.exercise-field:focus {
+  outline: none;
+  border-color: var(--amber-light);
+  background: var(--white);
+}
+textarea.exercise-field::placeholder { color: var(--stone-light); }
+
+/* ── BOTÃO DE DOWNLOAD ── */
+.download-section {
+  background: var(--linen);
+  border-radius: 10px;
+  padding: 32px;
+  margin: 56px 0 0;
+  text-align: center;
+  border: 1px solid var(--fog);
+}
+.download-section p {
+  font-size: 13px;
+  color: var(--stone);
+  margin-bottom: 20px;
+}
+.btn-download {
+  display: inline-block;
+  padding: 13px 32px;
+  background: var(--amber);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+.btn-download:hover { background: var(--amber-deep); transform: translateY(-1px); }
+.btn-download:active { transform: translateY(0); }
+
+/* ── RODAPÉ ── */
+.doc-footer {
+  text-align: center;
+  padding: 32px 40px;
+  border-top: 1px solid var(--fog);
+  font-size: 11px;
+  color: var(--forest-pale);
+  letter-spacing: 0.5px;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 600px) {
+  .doc-header   { padding: 40px 24px 36px; }
+  .chapter-nav  { padding: 0 24px; }
+  .doc-body     { padding: 40px 24px 64px; }
+  .exercise-block { padding: 20px; }
+  .download-section { padding: 24px; }
+}
+
+/* ── ANIMAÇÃO DE ENTRADA ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.doc-body > * {
+  animation: fadeUp 0.5s ease both;
+}
+
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="doc-label">Material Psicoeducativo</div>
+  <h1 class="doc-title">Untitled</h1>
+  
+</header>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<nav class="chapter-nav"><a href="#cartilha-psicoeducativa">Cartilha Psicoeducativa</a><a href="#introducao---uma-pergunta-que-nao-some">Introdução</a><a href="#capitulo-1---sentido-nao-e-o-mesmo-que-felicidade"></a><a href="#capitulo-2---tres-caminhos-para-construir-sentido"></a><a href="#capitulo-3---quando-o-sentido-some"></a><a href="#capitulo-4---o-fio-que-conecta-sentido-e-valores"></a><a href="#capitulo-5---construir-sentido-e-um-habito"></a><a href="#consideracoes-finais">Considerações finais</a><a href="#parte-1-presenca-de-sentido">Parte 1 — Presença de sentido</a><a href="#parte-2-busca-de-sentido">Parte 2 — Busca de sentido</a><a href="#como-ler-os-resultados">Como ler os resultados</a><a href="#para-levar-a-sessao">Para levar à sessão</a></nav>
+
+<main class="doc-body">
+
+<h2 id="cartilha-psicoeducativa">Cartilha Psicoeducativa</h2>
+<h2 id="introducao---uma-pergunta-que-nao-some">Introdução - Uma pergunta que não some</h2>
+<p>Há uma pergunta que a terapia não elimina.</p>
+<p>Ela pode nos ajudar a sofrer menos, a pensar com mais clareza, a agir de formas mais coerentes com o que valorizamos. Mas existe uma pergunta que sobrevive a tudo isso. Que reaparece nos momentos de silêncio, nos intervalos entre uma tarefa e outra, nos fins de tarde que chegam sem nada especial para preencher o espaço.</p>
+<p>A pergunta é simples, e talvez você já a conheça bem: por que vale a pena?</p>
+<p>Não é necessariamente uma pergunta triste. Às vezes ela surge em pessoas que estão bem, que conquistaram o que queriam, que têm relacionamentos estáveis e uma vida razoavelmente organizada. E mesmo assim algo persiste: uma sensação difusa de que falta alguma coisa, de que o movimento do dia a dia não aponta para lugar nenhum.</p>
+<p>Esta cartilha é sobre essa pergunta. Não para respondê-la de uma vez por todas, porque esse não é o trabalho da psicoeducação. Mas para ajudar você a se aproximar dela com curiosidade e com ferramentas práticas, e para descobrir que construir sentido é algo ativo e possível.</p>
+<hr />
+<h2 id="capitulo-1---sentido-nao-e-o-mesmo-que-felicidade">Capítulo 1 - Sentido não é o mesmo que felicidade</h2>
+<p>A terapia muitas vezes comunica, de forma implícita, que o objetivo é sentir-se melhor. Menos ansiedade, menos tristeza, menos dor. E isso importa: ninguém nega o valor de reduzir o sofrimento. Mas há um risco real quando o alívio se torna o único horizonte.</p>
+<p>Quando o alívio vira a meta, começamos a medir cada experiência pelo que ela nos faz sentir. Conversas difíceis se tornam algo a evitar. Escolhas desconfortáveis ficam indefinidamente adiadas. A própria vida começa a parecer um gerenciamento constante de estados internos…</p>
+<p><strong>Sentido</strong> opera de uma forma diferente, e mais profunda.</p>
+<hr />
+<h3>Uma orientação, não um estado emocional</h3>
+<p>Sentido não é um estado emocional. É uma <strong>orientação</strong>. É a percepção de que o que estamos fazendo, escolhendo e vivendo se conecta a algo maior do que o momento imediato.</p>
+<p>Podemos ter sentido e ainda sentir dor, incerteza ou cansaço. E podemos nos sentir alegres, bem descansados, sem nenhum sofrimento aparente, e ao mesmo tempo perceber que o que estamos fazendo não nos conecta a nada mais profundo. Sentir-se bem e ter sentido são experiências distintas, e confundi-las custa caro.</p>
+<p>O pesquisador Michael Steger, que dedicou décadas ao estudo do tema, descreve sentido de vida como a percepção de que a existência é compreensível, direcionada e valiosa. Não é euforia. É algo mais próximo de uma bússola interna que nos permite dizer, mesmo nos dias difíceis: "Isso faz parte de algo que importa."</p>
+<hr />
+<h3>A diferença na prática</h3>
+<blockquote><p>Beatriz cuida da mãe há dois anos. O cansaço é real e persistente. A alegria não está garantida em nenhuma tarde específica. Mas há algo que sustenta sua presença ali: um senso de que essa entrega importa, de que ela é expressão de algo que vai além do conforto imediato. Nas noites em que dorme exausta, não sente que perdeu o dia. Sente que o viveu.</p></blockquote>
+<p>A felicidade e o sentido não são opostos. Eles se cruzam com frequência, e quando isso acontece a experiência é especialmente rica. Mas são trajetos diferentes. A felicidade nos faz querer repetir o que foi agradável. O sentido nos faz seguir em frente mesmo quando não há nada agradável à vista.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Complete a frase</div><p>Reserve um momento e, sem pensar demais, complete as frases abaixo. Não há resposta certa ou errada. O objetivo é notar o que emerge naturalmente.</p>
+<ul>
+<li><em>"Quando estou fazendo <strong><em>_</em></strong><strong><em>_</em></strong>___, sinto que o tempo vale alguma coisa."</em></li>
+<li><em>"Mesmo que ninguém soubesse, eu continuaria fazendo <strong><em>_</em></strong><strong><em>_</em></strong>___ porque importa para mim."</em></li>
+<li><em>"Há dias em que me sinto apenas executando tarefas. Nesses dias, o que está ausente é <strong><em>_</em></strong><strong><em>_</em></strong>___."</em></li>
+</ul>
+<p>Olhe para o que escreveu. O que esses fragmentos revelam sobre onde o sentido já está presente na sua vida, mesmo que discretamente?</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Escolha uma atividade que você faz regularmente e que parece automática ou vazia. Pode ser o trajeto para o trabalho, o almoço que você faz sozinho, o tempo entre uma reunião e outra.</p>
+<p>Durante essa atividade, faça uma pergunta simples a si mesmo: "Se eu precisasse explicar para alguém por que isso importa na minha vida, o que eu diria?"</p>
+<p>Não é preciso encontrar uma resposta elaborada. A pergunta em si já é o exercício. Anote o que surgiu, mesmo que seja confuso ou incompleto.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Sentido não é o que nos faz sentir bem. É o que nos faz continuar quando sentir bem não está disponível.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-2---tres-caminhos-para-construir-sentido">Capítulo 2 - Três caminhos para construir sentido</h2>
+<p>Viktor Frankl era psiquiatra em Viena quando foi deportado para campos de concentração nazistas durante a Segunda Guerra Mundial. Ele perdeu quase tudo: a esposa, os pais, o irmão, o manuscrito de uma obra que levava anos escrevendo. O que observou, dentro de condições de sofrimento extremo e inimaginável, é que algumas pessoas encontravam uma forma de continuar. E que essa forma tinha a ver com algo que chamou de sentido.</p>
+<p>Frankl não descobriu o sentido de vida de ninguém. Ele identificou que havia <strong>vias</strong>, ou seja, caminhos pelos quais os seres humanos constroem e acessam o sentido mesmo em circunstâncias adversas.</p>
+<p>Não precisamos de condições extremas para que essas vias sejam relevantes. Elas permeiam a existência cotidiana de uma forma surpreendentemente acessível.</p>
+<hr />
+<h3>A via da criação - o que oferecemos ao mundo</h3>
+<p>A primeira via diz respeito ao que produzimos, construímos, cuidamos, ensinamos e fazemos existir. Não se trata de grandes obras ou contribuições históricas. Uma refeição preparada com cuidado para alguém que amamos é um ato criativo. Uma conversa honesta é um ato criativo. Uma solução encontrada para um problema que ninguém havia resolvido antes, por menor que seja, também. A criação é tudo aquilo que, sem nós, não existiria.</p>
+<hr />
+<h3>A via da experiência - o que recebemos do mundo</h3>
+<p>A segunda via diz respeito ao que recebemos. Um pôr do sol que nos para por um segundo, uma conversa que vai fundo, uma música que toca em algo que não sabíamos que precisava ser tocado! O amor por outra pessoa é talvez a experiência de sentido mais intensa e reconhecível que existe. A via da experiência nos lembra que sentido não exige ação: às vezes, basta estar presente o suficiente para receber o que está sendo oferecido.</p>
+<hr />
+<h3>A via da atitude - como nos posicionamos diante do que não podemos mudar</h3>
+<p>A terceira via é, talvez, a mais difícil e a mais poderosa. Diz respeito ao modo como nos posicionamos diante daquilo que não podemos mudar. Uma perda, uma doença, uma limitação permanente. Essa via não romantiza o sofrimento nem afirma que tudo tem um propósito oculto. Ela diz outra coisa: que, mesmo quando a situação não pode ser alterada, a postura interna diante dela ainda pertence a nós. E que essa postura pode, ela mesma, ser uma forma de sentido.</p>
+<p>As três vias não são excludentes. Elas coexistem e se entrelaçam, e em muitos momentos duas ou três delas estão ativas ao mesmo tempo.</p>
+<blockquote><p>Rafael perdeu a capacidade de trabalhar como músico depois de uma lesão no pulso. Durante meses, sentiu que havia perdido a si mesmo. Com o tempo, começou a dar aulas para crianças de uma escola pública próxima. A música que fazia mudou de forma e de lugar, mas não de sentido. Sua postura diante do que não pôde mudar construiu algo novo, que talvez não existisse de outra forma.</p></blockquote>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Perceba em você</div><p>Feche os olhos por um momento e pense nos últimos sete dias.</p>
+<ol>
+<li>Houve algum momento em que você criou algo, por menor que fosse? Uma solução, um cuidado oferecido, uma palavra dita que não existiria sem você?</li>
+<li>Houve algum momento em que você recebeu algo do mundo - uma conversa, uma imagem, um gesto - que tocou em algo mais fundo?</li>
+<li>Houve algum momento em que você escolheu como se posicionar diante de algo difícil, mesmo sem poder mudar a situação?</li>
+</ol>
+<p>O exercício é treinar o olho para perceber onde o sentido já estava. Às vezes ele está ali, discreto e esquecido, esperando ser reconhecido.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Crie um espaço de registro simples (num caderno, no celular, num app de notas) e, durante esta semana, anote pelo menos um exemplo para cada via:</p>
+<ul>
+<li>Uma coisa que criei.</li>
+<li>Uma coisa que recebi ou experimentei.</li>
+<li>Uma postura que escolhi, mesmo diante de algo que não pude mudar.</li>
+</ul>
+<p>No final da semana, releia o que escreveu. Qual das três vias parece mais natural para você? Qual parece mais distante ou mais difícil de acessar? O que isso revela?</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Sentido não precisa ser encontrado. Ele pode ser construído, por caminhos que já estão disponíveis na vida que temos agora.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-3---quando-o-sentido-some">Capítulo 3 - Quando o sentido some</h2>
+<p>Existe uma forma de sofrimento que não dói da maneira que estamos acostumados a reconhecer.</p>
+<p>Não há uma crise aguda, um episódio identificável, uma causa clara. É um sofrimento mais silencioso, mais difuso, mais difícil de nomear. Ele se parece com tédio crônico. Com a sensação de que os dias passam sem deixar marca. Com um automatismo suave e persistente, como se você fosse mais espectador da sua própria vida do que seu protagonista ativo.</p>
+<p>Frankl chamou isso de <strong>vazio existencial</strong>. E era claro ao dizer que não se trata de fraqueza, de falta de força de vontade ou de ingratidão. É uma experiência humana genuína, que pode atingir qualquer pessoa, independentemente de suas circunstâncias externas.</p>
+<hr />
+<h3>O vazio existencial não é depressão</h3>
+<p>O vazio existencial não é depressão, necessariamente. Embora os dois possam coexistir, eles têm qualidades distintas e merecem ser distinguidos. A depressão costuma trazer dor emocional intensa, pensamentos persistentes sobre si mesmo e sobre o futuro, dificuldade de funcionar no dia a dia. O vazio existencial pode estar presente sem nada disso: a pessoa funciona, cumpre suas obrigações, às vezes até parece bem para quem está de fora.</p>
+<p>O que está ausente é a direção. O senso de que o que estou fazendo agora se conecta a algo maior. De que existe um "para quê" que justifica o esforço.</p>
+<blockquote><p>Leandro tem 34 anos, uma carreira estável, amigos próximos, saúde. Não há nada objetivamente errado. Mas há dias em que percebe que está apenas passando pelo dia, respondendo e-mails, indo a reuniões, jantando, dormindo… Como se estivesse dentro de uma rotina que funciona para todos os propósitos práticos, mas que não o pertence de nenhuma forma mais profunda.</p></blockquote>
+<hr />
+<h3>O anestesiamento como resposta</h3>
+<p>Uma das respostas mais comuns ao vazio existencial é o <strong>anestesiamento</strong>. Não é uma estratégia consciente, raramente é uma escolha deliberada. É mais uma deriva: o celular que ocupa cada intervalo livre, o consumo compulsivo de séries, a agenda superpreenchida que não deixa espaço para a pergunta aparecer.</p>
+<p>O anestesiamento não preenche o vazio. Ele apenas torna o vazio menos visível, ao custo de tornar a vida menos perceptível.</p>
+<p>Isso não é um julgamento. Anestesiar faz sentido como resposta a um desconforto que não sabemos como manejar. Mas quando essa é a única resposta disponível, algo importante fica represado.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Complete a frase</div><p>Leia cada afirmação abaixo e avalie com honestidade o quanto ela ressoa com você agora, ou ressoa com frequência:</p>
+<ul>
+<li><em>"Faço muitas coisas durante o dia, mas ao final sinto que não foi para nada."</em></li>
+<li><em>"Às vezes me pego consumindo conteúdo, rolando a tela, sem saber bem o que estou buscando."</em></li>
+<li><em>"Existe uma sensação de que estou esperando começar a viver de verdade."</em></li>
+<li><em>"Quando paro o movimento, aparece um incômodo que prefiro não encarar."</em></li>
+</ul>
+<p>Observe sem julgamento. Esses sinais não indicam que algo está errado com você. Indicam que uma camada mais profunda da sua experiência está pedindo atenção.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Escolha um dia desta semana e reserve 10 minutos deliberadamente sem estímulo. Sem celular, sem música, sem série, sem tarefa. Sente-se num lugar tranquilo e simplesmente fique ali.</p>
+<p>Não é uma prática de <em>mindfulness</em>, não há técnica. É apenas o exercício de tolerar o silêncio e observar o que emerge nele.</p>
+<ul>
+<li>O que aparece? Ansiedade? Tédio? Clareza? Uma pergunta?</li>
+<li>O que esse silêncio revela sobre o que está sendo evitado?</li>
+</ul>
+<p>Anote o que surgiu. Não é preciso fazer nada com isso agora. Só notar já é suficiente.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>O vazio existencial não é um defeito. É um sinal de que algo mais profundo está pedindo para ser reconhecido.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-4---o-fio-que-conecta-sentido-e-valores">Capítulo 4 - O fio que conecta sentido e valores</h2>
+<p>Se você leu a cartilha sobre Valores e Aspirações, provavelmente se lembra de uma distinção importante: valores não são objetivos. Eles não se completam, não se alcançam uma vez e se arquivam. São direções vivas, que precisam ser escolhidas repetidamente.</p>
+<p>O que conecta esta cartilha àquela é uma pergunta que vale a pena explorar: o que sustenta essa escolha repetida, especialmente nos momentos em que agir de acordo com o que valorizamos é difícil, cansativo ou incerto?</p>
+<p>A resposta tem a ver com sentido.</p>
+<hr />
+<h3>Sentido como âncora dos valores</h3>
+<p>Valores dizem o que importa para nós. Sentido é o horizonte que explica por que importa. São camadas diferentes da mesma experiência, e cada uma sustenta a outra de um modo específico.</p>
+<p>Pense assim: uma pessoa pode ter o valor da conexão, da presença genuína com as pessoas que ama. Mas haverá dias em que estar presente será exaustivo. Dias em que será mais fácil se isolar, adiar, diminuir o ritmo. Nesses momentos, o que mantém a escolha viva não é apenas a clareza do valor. É o sentido por trás dele: a compreensão de que essas conexões constroem algo real e duradouro, de que elas nos transformam e transformam quem está ao nosso lado, de que existe uma vida maior sendo tecida por cada vez que escolhemos aparecer.</p>
+<p>O psicoterapeuta existencial Irvin Yalom costuma dizer que o sofrimento humano se intensifica quando perdemos contato com o que nos ancora. Não uma âncora que imobiliza, mas uma âncora que permite que o barco suporte as tempestades sem se perder.</p>
+<p>Sentido é essa âncora para os valores. Sem ela, os valores ficam soltos no ar: coisas que achamos que deveríamos querer, mas que não conseguimos sustentar quando a vida empurra na direção contrária.</p>
+<blockquote><p>Fernanda trabalha com educação em contexto de vulnerabilidade social. Há semanas em que os avanços parecem inexistentes, a burocracia pesa e os recursos são escassos. Nos momentos mais difíceis, não é o valor da educação que a mantém presente. É o sentido que ela vislumbra por trás: a ideia de que cada pessoa que aprende a ler o mundo com mais recursos muda algo que vai além dela mesma.</p></blockquote>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Perceba em você</div><p>Pense num valor que você identificou na cartilha anterior, ou num valor que claramente importa para você agora.</p>
+<p>Pergunte a si mesmo: por que esse valor importa? Não no sentido de como ele se traduz em ações. No sentido mais fundo: o que estaria perdido, em você, nas suas relações, no mundo à sua volta, se esse valor sumisse completamente da sua vida?</p>
+<p>Deixe a pergunta pousar. O que ela acende?</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Escolha um momento desta semana em que você precisou (ou precisará) agir de acordo com um valor importante, especialmente se for um momento difícil.</p>
+<p>Antes de agir, faça uma pausa breve e lembre-se de por que esse valor importa para você. Não o objetivo que ele persegue. O sentido que ele carrega.</p>
+<p>Depois, observe:</p>
+<ul>
+<li>Essa lembrança mudou algo na qualidade da ação?</li>
+<li>Houve diferença na presença, na disposição, no próprio gesto?</li>
+</ul><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Valores nos dizem o que queremos construir. Sentido nos lembra por que vale a pena construir. Os dois juntos formam algo difícil de abalar.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-5---construir-sentido-e-um-habito">Capítulo 5 - Construir sentido é um hábito</h2>
+<p>Sentido não é algo que se descobre numa grande revelação, num retiro espiritual, numa crise que finalmente nos obriga a parar e pensar. Pode acontecer assim, claro! Mas, na maioria das vezes, sentido é algo que se constrói devagar, em gestos pequenos e repetidos, em escolhas que vamos fazendo sem alarde.</p>
+<p>A boa notícia é que isso está ao alcance de qualquer pessoa, independentemente do momento da vida ou das circunstâncias externas.</p>
+<hr />
+<h3>Presença e busca - dois movimentos distintos</h3>
+<p>Pesquisas conduzidas por Michael Steger e colaboradores identificaram dois movimentos distintos na relação das pessoas com o sentido de vida: a <strong>presença de sentido</strong> e a <strong>busca de sentido</strong>.</p>
+<p>Presença de sentido é a percepção de que a vida já tem uma direção, um propósito reconhecível, algo que vale a pena. Busca de sentido é o impulso ativo de questionar, explorar e aprofundar essa compreensão.</p>
+<p>Os dois movimentos coexistem de formas diferentes em momentos diferentes da vida. Há períodos em que a presença é forte e clara. Há períodos em que a busca se intensifica, especialmente em transições importantes, em perdas, ou em momentos em que a vida que tínhamos deixou de fazer sentido e a nova ainda não tomou forma.</p>
+<p>O que as pesquisas também mostram é que sentido se consolida por meio de práticas cotidianas. Não por grandes decisões isoladas, mas por atos repetidos de reconhecimento e conexão.</p>
+<hr />
+<h3>Três práticas de construção ativa</h3>
+<p><strong>Reconhecer o sentido que já está presente.</strong> Muitas vezes o sentido não está ausente: está invisível. Desenvolver o hábito de notar, ainda que brevemente, o que hoje conectou você a algo que importa é uma forma de fortalecer a presença de sentido ao longo do tempo.</p>
+<p><strong>Aproximar a vida dos valores.</strong> Quando percebemos que nossas ações cotidianas estão muito distantes do que valorizamos, o vazio existencial se aprofunda. Pequenos movimentos de realinhamento têm efeito real e cumulativo: alocar tempo para o que importa, priorizar uma conversa genuína sobre uma distração automática, contribuir de alguma forma para alguém próximo.</p>
+<p><strong>Sustentar a busca.</strong> Nos momentos em que o sentido não está claro, a busca em si é uma postura de sentido. Não é preciso ter respostas para perguntar. E perguntar com seriedade "por que vale a pena?" já é, em si, um ato de comprometimento com a própria vida.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Complete a frase</div><p>Antes de encerrar esta cartilha, reserve alguns minutos para responder às perguntas abaixo com honestidade e sem pressa:</p>
+<ul>
+<li><em>"Se eu olhasse para os últimos três meses da minha vida, o que teria sido mais cheio de sentido para mim?"</em></li>
+<li><em>"Existe algo que venho adiando que, no fundo, sinto que importa. O que está me impedindo?"</em></li>
+<li><em>"Se eu pudesse oferecer algo de real valor ao mundo, mesmo que pequeno, o que seria?"</em></li>
+</ul><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Durante as próximas duas semanas, reserve 3 a 5 minutos ao final de cada dia para responder a uma única pergunta:</p>
+<p><em>"O que hoje, por menor que fosse, me conectou a algo que importa?"</em></p>
+<p>Pode ser uma resposta de uma linha. Pode ser um silêncio que você anotou. Pode ser a ausência de uma resposta, que também é informação.</p>
+<p>Ao final das duas semanas, releia tudo:</p>
+<ul>
+<li>O que aparece com frequência?</li>
+<li>O que está ausente?</li>
+<li>O que isso sugere sobre onde o sentido está pedindo mais espaço na sua vida?</li>
+</ul><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Sentido não precisa ser grandioso para ser real. Ele se constrói em camadas finas e sobrepostas, em cada escolha que fazemos de aparecer para o que importa.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="consideracoes-finais">Considerações finais</h2>
+<p>Esta cartilha não encerrou a pergunta. Ela não poderia.</p>
+<p>Mas, se você chegou até aqui, já percorreu um caminho importante: a distinção entre sentido e felicidade, as três vias de construção de sentido, o reconhecimento do vazio existencial e do anestesiamento, a conexão entre sentido e valores, e as práticas concretas que permitem construir sentido no cotidiano.</p>
+<p>O trabalho continua nas sessões. Esta cartilha é um apoio para o que acontece no espaço terapêutico, não um substituto. Mas o que você explorou aqui pertence a você, e pode ser revisitado sempre que a pergunta central reaparecer.</p>
+<p>E ela vai reaparecer. Isso é, em si, uma boa notícia: significa que a pergunta ainda está viva. E uma pergunta viva é o começo de tudo.</p>
+<hr />
+<p><em>Material psicoeducativo produzido para uso em contexto terapêutico. Indicado para leitura autônoma entre sessões, como parte de um processo terapêutico em andamento.</em></p>
+<hr />
+<h1>Apêndice — O que o sentido ocupa na sua vida agora?</h1>
+<p><em>Instrumento de autoavaliação inspirado no Meaning in Life Questionnaire (MLQ) de Michael Steger.</em></p>
+<hr />
+<p>Este instrumento retoma os dois movimentos explorados na cartilha: a <strong>presença de sentido</strong> (a percepção de que a vida já tem uma direção reconhecível) e a <strong>busca de sentido</strong> (o impulso ativo de questionar e aprofundar essa compreensão).</p>
+<p>Não é um teste com resultado certo ou errado. É um mapa. Ele ajuda a nomear onde você está agora em relação ao sentido de vida, e oferece material concreto para explorar nas sessões.</p>
+<p>Responda com base em como você tem se sentido nas <strong>últimas duas semanas</strong>.</p>
+<hr />
+<h2 id="parte-1-presenca-de-sentido">Parte 1 — Presença de sentido</h2>
+<p>Para cada afirmação abaixo, indique o quanto ela é verdadeira para você usando a escala:</p>
+<p>| 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Nada verdadeiro |  | Pouco verdadeiro |  | Moderadamente verdadeiro |  | Completamente verdadeiro |</p>
+<hr />
+<p><strong>1.</strong> Tenho clareza sobre o que dá direção à minha vida.</p>
+<p><code>1 — 2 — 3 — 4 — 5 — 6 — 7</code></p>
+<hr />
+<p><strong>2.</strong> Sinto que o que faço no dia a dia se conecta a algo que importa para mim.</p>
+<p><code>1 — 2 — 3 — 4 — 5 — 6 — 7</code></p>
+<hr />
+<p><strong>3.</strong> Consigo identificar fontes de sentido na minha vida atual.</p>
+<p><code>1 — 2 — 3 — 4 — 5 — 6 — 7</code></p>
+<hr />
+<p><strong>4.</strong> Quando olho para o que vivo, consigo perceber um fio que conecta as coisas.</p>
+<p><code>1 — 2 — 3 — 4 — 5 — 6 — 7</code></p>
+<hr />
+<p><strong>5.</strong> Minha vida não tem um propósito claro que eu reconheça. <em>(item invertido)</em></p>
+<p><code>1 — 2 — 3 — 4 — 5 — 6 — 7</code></p>
+<hr />
+<p><strong>Pontuação — Presença de sentido</strong></p>
+<p>Some os pontos dos itens 1, 2, 3 e 4. No item 5, <strong>inverta o valor antes de somar</strong> (se marcou 1, conte 7; se marcou 2, conte 6; e assim por diante).</p>
+<p><strong>Total Parte 1:</strong> <strong><em>_</em></strong> / 35</p>
+<hr />
+<h2 id="parte-2-busca-de-sentido">Parte 2 — Busca de sentido</h2>
+<p>Usando a mesma escala, responda:</p>
+<p>| 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Nada verdadeiro |  | Pouco verdadeiro |  | Moderadamente verdadeiro |  | Completamente verdadeiro |</p>
+<hr />
+<p><strong>6.</strong> Estou ativamente buscando aquilo que tornaria minha vida mais significativa.</p>
+<p><code>1 — 2 — 3 — 4 — 5 — 6 — 7</code></p>
+<hr />
+<p><strong>7.</strong> Sinto que ainda preciso descobrir o que realmente dá sentido à minha vida.</p>
+<p><code>1 — 2 — 3 — 4 — 5 — 6 — 7</code></p>
+<hr />
+<p><strong>8.</strong> A pergunta "por que vale a pena?" ocupa minha mente com frequência.</p>
+<p><code>1 — 2 — 3 — 4 — 5 — 6 — 7</code></p>
+<hr />
+<p><strong>9.</strong> Estou à procura de uma direção ou propósito que valha a pena seguir.</p>
+<p><code>1 — 2 — 3 — 4 — 5 — 6 — 7</code></p>
+<hr />
+<p><strong>10.</strong> Sinto a necessidade de encontrar algo que faça minha vida parecer mais cheia de sentido.</p>
+<p><code>1 — 2 — 3 — 4 — 5 — 6 — 7</code></p>
+<hr />
+<p><strong>Pontuação — Busca de sentido</strong></p>
+<p>Some os pontos dos itens 6 a 10 diretamente, sem inversão.</p>
+<p><strong>Total Parte 2:</strong> <strong><em>_</em></strong> / 35</p>
+<hr />
+<h2 id="como-ler-os-resultados">Como ler os resultados</h2>
+<p>Os dois totais não se cancelam e não competem entre si. Eles revelam um padrão, e qualquer padrão tem valor clínico.</p>
+<hr />
+<h3>Presença alta + Busca baixa</h3>
+<p>Você tem um senso razoavelmente estável de direção. O sentido está presente de forma reconhecível. Isso não significa que não há o que aprofundar, mas o movimento predominante agora é de consolidação, e não de descoberta.</p>
+<hr />
+<h3>Presença baixa + Busca alta</h3>
+<p>Você sente com clareza que algo está faltando, e esse incômodo já se traduziu em movimento interno. A busca ativa é, em si, uma postura de sentido. O trabalho aqui é canalizar essa busca para práticas e reflexões concretas, em vez de deixá-la circular como inquietação difusa.</p>
+<hr />
+<h3>Presença baixa + Busca baixa</h3>
+<p>Esse padrão costuma aparecer em momentos de esgotamento, anestesiamento ou desânimo prolongado. Não é ausência de sentido: é ausência de contato com ele. O primeiro movimento não é encontrar sentido, é recuperar a capacidade de percebê-lo onde já existe.</p>
+<hr />
+<h3>Presença alta + Busca alta</h3>
+<p>Você tem um senso de direção estabelecido e, ao mesmo tempo, um impulso genuíno de aprofundamento. Esse padrão é comum em pessoas que estão em transições importantes ou que têm uma relação ativa e questionadora com a própria vida. A busca, aqui, não é sintoma de vazio: é expressão de vitalidade.</p>
+<hr />
+<h2 id="para-levar-a-sessao">Para levar à sessão</h2>
+<p>Depois de calcular os totais, reflita sobre as perguntas abaixo. Não é necessário ter respostas prontas: elas são material para o trabalho terapêutico.</p>
+<ol>
+<li>Algum item surpreendeu você pela pontuação que recebeu? Alto ou baixo?</li>
+<li>Há itens que você respondeu de formas muito diferentes entre si? O que essa variação revela?</li>
+<li>Se você repetisse esse instrumento daqui a seis meses, o que gostaria que tivesse mudado?</li>
+</ol>
+<hr />
+<p><em>Este instrumento é de uso psicoeducativo e não substitui avaliação clínica formal. Foi adaptado para uso interno neste processo terapêutico, com base no Meaning in Life Questionnaire (MLQ) de Michael Steger et al. (2006).</em></p>
+
+<div class="download-section">
+  <p>Você preencheu os exercícios deste material.<br>
+  Baixe um arquivo com todas as suas respostas para guardar ou levar à próxima sessão.</p>
+  <button class="btn-download" id="btn-download">Baixar minhas respostas</button>
+</div>
+
+</main>
+
+<footer class="doc-footer">
+  Material psicoeducativo de uso clínico &middot; Bruno Santana | Psicologia Clínica &middot; Destinado a pacientes em processo terapêutico
+</footer>
+
+<script>
+
+// Barra de progresso de leitura
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  const pct   = total > 0 ? (window.scrollY / total) * 100 : 0;
+  progressBar.style.width = pct + '%';
+});
+
+// Navegação de capítulos: marca o capítulo ativo
+const navLinks  = document.querySelectorAll('.chapter-nav a');
+const sections  = document.querySelectorAll('h2[id]');
+const observer  = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector('.chapter-nav a[href="#' + e.target.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// Download das respostas como TXT
+document.getElementById('btn-download').addEventListener('click', () => {
+  const fields = document.querySelectorAll('textarea.exercise-field');
+  let output   = '';
+  const title  = document.querySelector('.doc-title')?.textContent || 'Material';
+  const date   = new Date().toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
+
+  output += '='.repeat(60) + '\n';
+  output += title + '\n';
+  output += 'Respostas registradas em ' + date + '\n';
+  output += '='.repeat(60) + '\n\n';
+
+  fields.forEach((f, i) => {
+    const block    = f.closest('.exercise-block');
+    const exTitle  = block?.querySelector('.exercise-title')?.textContent || ('Exercício ' + (i+1));
+    const resp     = f.value.trim();
+    output += '[ ' + exTitle + ' ]\n';
+    output += (resp || '(sem resposta registrada)') + '\n\n';
+    output += '-'.repeat(40) + '\n\n';
+  });
+
+  const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = title.replace(/[^a-zA-Z0-9À-ú\s]/g, '').trim() + ' — Respostas.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+</script>
+
+</body>
+</html>
