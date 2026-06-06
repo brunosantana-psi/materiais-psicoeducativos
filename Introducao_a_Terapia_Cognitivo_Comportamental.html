@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introdução à Terapia Cognitivo-Comportamental — Bruno Santana | Psicologia Clínica</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --sand:          #E8DFD3;
+  --sand-light:    #F2EDE6;
+  --cream:         #FAF8F5;
+  --linen:         #F5F0EB;
+  --amber:         #8B7340;
+  --amber-light:   #AA915A;
+  --amber-deep:    #6E5A32;
+  --forest:        #506B4A;
+  --forest-light:  #7A9472;
+  --forest-pale:   #D4DED0;
+  --deep-brown:    #3D2E22;
+  --walnut:        #5C4433;
+  --charcoal-warm: #4A4240;
+  --night-green:   #2C3B2E;
+  --stone:         #8C8078;
+  --stone-light:   #A69E96;
+  --fog:           #D4CCC4;
+  --white:         #FDFCFB;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Outfit', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--charcoal-warm);
+  line-height: 1.75;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── CABEÇALHO ── */
+.doc-header {
+  background: var(--night-green);
+  padding: 52px 40px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.doc-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light), var(--amber));
+}
+.doc-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber-light);
+  margin-bottom: 16px;
+}
+.doc-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 300;
+  color: var(--sand-light);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.doc-subtitle {
+  font-family: var(--serif);
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--forest-pale);
+}
+
+/* ── PROGRESSO ── */
+.progress-bar-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 3px;
+  background: var(--fog);
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light));
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ── NAVEGAÇÃO DE CAPÍTULOS ── */
+.chapter-nav {
+  background: rgba(250,248,245,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--fog);
+  padding: 0 40px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.chapter-nav::-webkit-scrollbar { display: none; }
+.chapter-nav a {
+  display: inline-block;
+  padding: 14px 0;
+  margin-right: 28px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--stone);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.25s, border-color 0.25s;
+}
+.chapter-nav a:hover,
+.chapter-nav a.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+/* ── CONTEÚDO ── */
+.doc-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 40px 80px;
+}
+
+/* ── METADADOS ── */
+.meta-block {
+  background: var(--linen);
+  border-left: 3px solid var(--amber-light);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  margin-bottom: 48px;
+  font-size: 13px;
+  color: var(--stone);
+  line-height: 1.8;
+}
+.meta-block strong { color: var(--walnut); font-weight: 500; }
+
+/* ── TÍTULOS ── */
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 300;
+  color: var(--deep-brown);
+  margin: 56px 0 20px;
+  line-height: 1.2;
+}
+h2 {
+  font-family: var(--serif);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin: 48px 0 16px;
+  line-height: 1.3;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--fog);
+}
+h3 {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--walnut);
+  margin: 36px 0 14px;
+}
+
+/* ── PARÁGRAFOS E LISTAS ── */
+p { font-size: 15px; margin-bottom: 18px; color: var(--charcoal-warm); }
+ul, ol { padding-left: 22px; margin-bottom: 18px; }
+li { font-size: 15px; margin-bottom: 6px; color: var(--charcoal-warm); }
+strong { font-weight: 500; color: var(--walnut); }
+em { font-style: italic; }
+hr { border: none; border-top: 1px solid var(--fog); margin: 40px 0; }
+.doc-body > hr:first-child { display: none; }
+h2:first-of-type { margin-top: 8px; }
+
+/* ── CITAÇÕES / CASOS CLÍNICOS ── */
+blockquote {
+  border-left: 3px solid var(--amber-light);
+  padding: 16px 20px;
+  margin: 28px 0;
+  background: var(--linen);
+  border-radius: 0 6px 6px 0;
+}
+blockquote p {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--walnut);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── FRASE DE ANCORAGEM ── */
+.anchor-phrase {
+  background: var(--night-green);
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin: 36px 0;
+}
+.anchor-phrase p {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--sand-light);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── BLOCOS DE EXERCÍCIO ── */
+.exercise-block {
+  background: var(--white);
+  border: 1px solid var(--fog);
+  border-top: 3px solid var(--amber);
+  border-radius: 0 0 10px 10px;
+  padding: 28px;
+  margin: 32px 0;
+}
+.exercise-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 10px;
+}
+.exercise-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin-bottom: 14px;
+}
+.exercise-block p {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block ul, .exercise-block ol {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block li { color: var(--stone); }
+
+textarea.exercise-field {
+  width: 100%;
+  min-height: 120px;
+  background: var(--cream);
+  border: 1px solid var(--fog);
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--charcoal-warm);
+  line-height: 1.7;
+  resize: vertical;
+  transition: border-color 0.2s;
+  margin-top: 10px;
+}
+textarea.exercise-field:focus {
+  outline: none;
+  border-color: var(--amber-light);
+  background: var(--white);
+}
+textarea.exercise-field::placeholder { color: var(--stone-light); }
+
+/* ── BOTÃO DE DOWNLOAD ── */
+.download-section {
+  background: var(--linen);
+  border-radius: 10px;
+  padding: 32px;
+  margin: 56px 0 0;
+  text-align: center;
+  border: 1px solid var(--fog);
+}
+.download-section p {
+  font-size: 13px;
+  color: var(--stone);
+  margin-bottom: 20px;
+}
+.btn-download {
+  display: inline-block;
+  padding: 13px 32px;
+  background: var(--amber);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+.btn-download:hover { background: var(--amber-deep); transform: translateY(-1px); }
+.btn-download:active { transform: translateY(0); }
+
+/* ── RODAPÉ ── */
+.doc-footer {
+  text-align: center;
+  padding: 32px 40px;
+  border-top: 1px solid var(--fog);
+  font-size: 11px;
+  color: var(--forest-pale);
+  letter-spacing: 0.5px;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 600px) {
+  .doc-header   { padding: 40px 24px 36px; }
+  .chapter-nav  { padding: 0 24px; }
+  .doc-body     { padding: 40px 24px 64px; }
+  .exercise-block { padding: 20px; }
+  .download-section { padding: 24px; }
+}
+
+/* ── ANIMAÇÃO DE ENTRADA ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.doc-body > * {
+  animation: fadeUp 0.5s ease both;
+}
+
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="doc-label">Material Psicoeducativo</div>
+  <h1 class="doc-title">Introdução à Terapia Cognitivo-Comportamental</h1>
+  <p class='doc-subtitle'>O que é, como funciona e o que esperar do processo terapêutico</p>
+</header>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<nav class="chapter-nav"><a href="#sobre-este-material">Sobre este material</a><a href="#capitulo-1---antes-de-comecar-o-que-a-terapia-nao-e"></a><a href="#capitulo-2---o-modelo-cognitivo-como-a-tcc-entende-o-sofrimento"></a><a href="#capitulo-3---o-que-e-o-processo-terapeutico-na-pratica"></a><a href="#capitulo-4---o-papel-do-paciente-o-que-fazemos-entre-as-sessoes"></a><a href="#capitulo-5---a-alianca-terapeutica-o-que-nos-une-nesse-trabalho"></a><a href="#para-levar">Para levar</a></nav>
+
+<main class="doc-body">
+
+<hr />
+<h2 id="sobre-este-material">Sobre este material</h2>
+<p>Este é o primeiro material que você recebe como parte do nosso trabalho juntos. Ele não precisa ser lido de uma vez, de forma apressada, como quem cumpre uma tarefa. Pode ser lido com calma, em partes, com pausas para reflexão.</p>
+<p>O objetivo aqui é simples: que você chegue ao nosso encontro sabendo um pouco mais sobre o que é a Terapia Cognitivo-Comportamental, como ela funciona na prática e o que vai ser pedido de você ao longo do processo. Transparência é parte do método. Quanto mais você compreender o que estamos fazendo e por quê, mais o processo vai render.</p>
+<hr />
+<h2 id="capitulo-1---antes-de-comecar-o-que-a-terapia-nao-e">Capítulo 1 - Antes de começar: o que a terapia não é</h2>
+<p>Existe uma imagem bastante difundida do que acontece no consultório de um psicólogo. Alguém deitado num divã, falando livremente sobre a infância, enquanto o terapeuta faz anotações em silêncio e, de tempos em tempos, devolve uma pergunta enigmática. Essa imagem tem origem real - ela descreve razoavelmente bem uma abordagem específica, a psicanálise clássica. Mas não é o que acontece aqui.</p>
+<p>A TCC é outra coisa. Não necessariamente melhor ou pior do que outras abordagens - é diferente, em propósito, em método e em ritmo.</p>
+<p><strong>O que não é a TCC:</strong></p>
+<p>Não é apenas conversa. As sessões têm estrutura, objetivos e direção. Vamos explorar o que você está vivendo, sim, mas com o propósito de compreender padrões e experimentar formas diferentes de lidar com eles.</p>
+<p>Não é espaço de conselho. Você não vai receber instruções sobre o que fazer com sua vida. O que vai acontecer é diferente: vamos investigar juntos o que está na base das suas dificuldades e construir, passo a passo, recursos que fazem sentido para a sua realidade.</p>
+<p>Não é rápido por natureza. A TCC costuma ser mais breve do que outras abordagens, mas brevidade não é o mesmo que instantaneidade. Mudanças reais levam tempo. O que muda com o tempo - e isso é apoiado por décadas de pesquisa - é duradouro.</p>
+<p>Não é passiva. Este talvez seja o ponto mais importante. A terapia não acontece apenas dentro do consultório. O que você faz entre as sessões importa tanto quanto o que discutimos durante elas.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Perceba em você</div><p>Antes de continuar, vale um momento de honestidade consigo mesmo.</p>
+<p>Que imagem você tinha da terapia antes de começar? O que você esperava encontrar aqui?</p>
+<p>Não há resposta certa. Mas reconhecer as próprias expectativas é o primeiro passo para trabalhar com elas de forma realista e produtiva.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<h2 id="capitulo-2---o-modelo-cognitivo-como-a-tcc-entende-o-sofrimento">Capítulo 2 - O modelo cognitivo: como a TCC entende o sofrimento</h2>
+<p>O modelo que orienta o nosso trabalho foi desenvolvido pelo psiquiatra Aaron Beck nos anos 1960, a partir de uma observação aparentemente simples, mas de consequências enormes: o sofrimento emocional não é causado apenas pelos eventos que vivemos. Ele é moldado, de forma decisiva, pelo modo como interpretamos esses eventos.</p>
+<p>Parece óbvio quando dito assim. Mas as implicações são profundas.</p>
+<p>Pense numa situação concreta: você envia uma mensagem para alguém próximo e não recebe resposta por horas. Duas pessoas diferentes podem viver essa mesma situação de formas radicalmente distintas. Uma pensa "deve estar ocupada" e segue com o dia sem maiores perturbações. A outra pensa "fiz algo errado" ou "ela está me evitando" e passa as horas seguintes em ruminação ansiosa. O evento foi idêntico. O sofrimento, não.</p>
+<p>A TCC chama esses processos de pensamentos automáticos - interpretações rápidas, quase instantâneas, que surgem diante de situações e moldam o que sentimos e como agimos. Eles não são escolhidos conscientemente. Eles simplesmente acontecem. E, com frequência, acontecem fora do nosso campo de atenção.</p>
+<p>O que fazemos no processo terapêutico é tornar esses pensamentos visíveis. Identificar o que está sendo dito internamente em momentos de sofrimento, examinar se essa interpretação é a mais precisa e, quando não é, encontrar formas mais equilibradas e realistas de ver a situação.</p>
+<p>Isso não é pensamento positivo. Não estamos substituindo pensamentos ruins por pensamentos cor-de-rosa. Estamos desenvolvendo a capacidade de pensar com mais precisão - o que, no médio prazo, muda como você se sente e como age.</p>
+<p>O sistema funciona assim:</p>
+<p><code>Situação  →  Pensamento  →  Emoção  →  Comportamento</code></p>
+<p>Cada elemento influencia os outros. Um pensamento diferente gera uma emoção diferente. Uma emoção diferente tende a gerar um comportamento diferente. E um comportamento diferente frequentemente muda a situação. É um ciclo - e podemos intervir nele.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Complete a frase</div><p>Escolha uma situação recente que gerou desconforto emocional - não precisa ser grave, pode ser algo pequeno do cotidiano. Tente completar:</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<blockquote><p>"Quando aconteceu <strong><em>_</em></strong><strong><em>_</em>_, eu pensei </strong><strong><em>_</em></strong><strong><em>_. Me senti </em></strong><strong><em>_</em></strong><strong><em> e então </em></strong><strong><em>_</em></strong>___."</p></blockquote>
+<p>Não se preocupe em fazer isso de forma perfeita. O objetivo é apenas começar a perceber a conexão entre o que aconteceu, o que você pensou e o que sentiu.</p>
+<hr />
+<h2 id="capitulo-3---o-que-e-o-processo-terapeutico-na-pratica">Capítulo 3 - O que é o processo terapêutico na prática</h2>
+<p>A TCC tem uma estrutura. Isso pode soar frio ou mecânico à primeira vista, mas a estrutura serve a um propósito: ela torna o processo mais transparente, mais previsível e, portanto, mais seguro para quem está nele.</p>
+<p><strong>As fases do processo</strong></p>
+<p>No início, dedicamos tempo a entender o que te trouxe até aqui. Quais são as dificuldades centrais? Em que situações elas aparecem? O que você já tentou fazer para lidar com elas? Esse mapeamento não é burocrático - é o fundamento de todo o trabalho que vem depois. Sem ele, corremos o risco de trabalhar em cima dos galhos enquanto as raízes permanecem intactas.</p>
+<p>Com base nesse entendimento, construímos juntos uma formulação: uma espécie de mapa que conecta sua história, seus padrões de pensamento, suas emoções e seus comportamentos. Esse mapa é compartilhado com você. Você não está sendo analisado por alguém que guarda conclusões para si. Você participa ativamente da sua própria compreensão.</p>
+<p>A partir desse mapa, desenvolvemos estratégias. Algumas técnicas são voltadas para os pensamentos, outras para os comportamentos, outras para a regulação emocional. O que usamos depende do que você traz e do que faz sentido para o seu momento.</p>
+<p>Ao longo do processo, revisamos o que está funcionando e o que precisa ser ajustado. A TCC é colaborativa também nesse sentido: o terapeuta não é o único que sabe o que é bom para o paciente.</p>
+<p><strong>A frequência das sessões</strong></p>
+<p>As sessões costumam ser semanais, especialmente no início. Essa frequência não é arbitrária. Mudanças de padrões - de pensamento, de comportamento, de resposta emocional - exigem repetição e acompanhamento próximo. Com o tempo, à medida que o processo avança, a frequência pode diminuir gradualmente.</p>
+<p><strong>O tempo de duração</strong></p>
+<p>A TCC tende a ser mais focal do que outras abordagens. Isso significa que trabalhamos com objetivos definidos, não com uma jornada indefinida. O tempo varia conforme a complexidade do que estamos trabalhando e conforme seu ritmo. Mas, em geral, há um horizonte.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Registre</div><p>Escreva, em poucas linhas, o que você espera alcançar com este processo. Não se trata de uma meta clínica formal - é apenas um ponto de partida honesto.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<blockquote><p>O que mudaria na sua vida se o que te trouxe até aqui deixasse de ser um peso tão grande?</p></blockquote>
+<p>Guarde esse registro. Vamos retornar a ele.</p>
+<hr />
+<h2 id="capitulo-4---o-papel-do-paciente-o-que-fazemos-entre-as-sessoes">Capítulo 4 - O papel do paciente: o que fazemos entre as sessões</h2>
+<p>Este é, provavelmente, o ponto que mais surpreende quem começa a terapia: o trabalho não termina quando a sessão termina.</p>
+<p>Na TCC, o que acontece entre as sessões é considerado parte central do método, não um complemento opcional. As tarefas e experimentos que levamos para a semana são o espaço onde a mudança real se consolida. A sessão cria condições. A semana é onde a mudança acontece.</p>
+<p>Isso não significa sobrecarga. As tarefas são construídas com você, considerando sua rotina e seu momento. Não são exercícios genéricos tirados de um manual - são propostas desenvolvidas a partir do que discutimos juntos, calibradas para o que faz sentido agora.</p>
+<p><strong>O que costuma aparecer como tarefa:</strong></p>
+<p>Registros de pensamentos - anotar situações que geraram desconforto, o que foi pensado, o que foi sentido e como você reagiu. Esses registros são o principal instrumento de trabalho da TCC. Eles transformam experiências difusas em material concreto com o qual podemos trabalhar.</p>
+<p>Experimentos comportamentais - ações específicas testadas na vida real para verificar se certas crenças se confirmam ou não. Por exemplo: alguém que acredita que vai ser julgado se expressar uma opinião pode testar isso numa situação de baixo risco. Os resultados, sejam eles quais forem, viram material de reflexão.</p>
+<p>Leitura de materiais psicoeducativos - como este. A compreensão do que está acontecendo internamente é, ela mesma, terapêutica. Não como substituto do processo, mas como parte dele.</p>
+<p>Práticas de atenção e observação - pequenos exercícios que desenvolvem a capacidade de notar o que está acontecendo emocionalmente antes de reagir automaticamente.</p>
+<p>O que fazemos quando não conseguimos realizar a tarefa? Conversamos sobre isso. A dificuldade de fazer uma tarefa carrega, com frequência, informação relevante sobre o que está em jogo. Não há julgamento aqui - há curiosidade.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Experimente esta semana</div><p>Nos próximos dias, escolha um momento de desconforto - pode ser pequeno - e tente fazer o seguinte:</p>
+<ol>
+<li>Identifique a situação: o que aconteceu?</li>
+<li>Observe o pensamento: o que passou pela sua cabeça naquele momento?</li>
+<li>Note a emoção: o que você sentiu? Com que intensidade, de 0 a 10?</li>
+<li>Observe o comportamento: o que você fez (ou deixou de fazer) em seguida?</li>
+</ol>
+<p>Não é necessário resolver nada. Apenas observar. Esse gesto simples, repetido com regularidade, é o começo de uma habilidade que muda muita coisa.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<h2 id="capitulo-5---a-alianca-terapeutica-o-que-nos-une-nesse-trabalho">Capítulo 5 - A aliança terapêutica: o que nos une nesse trabalho</h2>
+<p>Há um elemento que, segundo a pesquisa em psicoterapia, está consistentemente associado a bons resultados terapêuticos. Não é a técnica mais sofisticada, nem o modelo teórico mais elaborado. É a qualidade da relação entre o paciente e o terapeuta.</p>
+<p>O psicólogo Edward Bordin, um dos pesquisadores que mais se dedicou a estudar esse fenômeno, identificou três componentes que formam o que ele chamou de aliança terapêutica: o vínculo emocional entre as duas partes, o acordo sobre os objetivos do trabalho e o acordo sobre as tarefas que vamos usar para chegar lá.</p>
+<p>Esses três elementos precisam ser construídos. Não surgem automaticamente.</p>
+<p>O vínculo se constrói com o tempo, com consistência e com honestidade. Você não precisa gostar de tudo que acontece nas sessões. Pode - e deve - dizer quando algo não faz sentido, quando uma tarefa pareceu impossível, quando você se sentiu incompreendido. Esse tipo de conversa não atrapalha o processo. Ela é o processo.</p>
+<p>O acordo sobre objetivos significa que vamos trabalhar em direção a metas que fazem sentido para você. Não para mim, não para um protocolo. Para você. Se algo que estamos perseguindo não parece relevante para a sua vida, é importante que isso seja dito.</p>
+<p>O acordo sobre as tarefas significa que as estratégias que usamos precisam ser negociadas, não impostas. Você tem o direito de dizer que determinada abordagem não faz sentido para você, e nós encontraremos outra.</p>
+<p>Tudo isso pode parecer óbvio. Mas vale dizer de forma explícita porque muitas pessoas chegam à terapia com a ideia de que o terapeuta sabe o que é melhor para elas e que cabe a elas simplesmente seguir o que é proposto. Não é assim que funciona aqui. Você é o especialista na sua vida. Eu sou especialista no método. O trabalho bom acontece no encontro dessas duas competências.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Respire e observe</div><p>Reserve dois minutos agora.</p>
+<p>Feche os olhos, se isso for confortável. Respire algumas vezes, sem forçar nenhum ritmo específico. Apenas observe o que está acontecendo em você neste momento: o que você está sentindo? Há algo no corpo - tensão, leveza, inquietação, cansaço? Há algum pensamento recorrente?</p>
+<p>Não precisa fazer nada com o que aparecer. Apenas observe. Depois, se quiser, anote uma frase sobre o que percebeu.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<h2 id="para-levar">Para levar</h2>
+<p>Este material cobriu os fundamentos do que vamos construir juntos. Não é necessário memorizar nada. O que importa é que você chegue ao nosso próximo encontro com uma noção clara de que a TCC é um processo colaborativo, baseado em evidências, que exige participação ativa - e que essa participação vale a pena.</p>
+<p>Uma última coisa antes de fechar: é comum que as primeiras semanas de terapia despertem tanto alívio quanto desconforto. Alívio porque finalmente há um espaço estruturado para trabalhar com o que você está carregando. Desconforto porque olhar de perto para padrões que, muitas vezes, funcionaram como proteção por anos pode gerar alguma resistência. Os dois são esperados. Os dois fazem parte.</p>
+<p>O que vamos aprender juntos não é uma série de técnicas para aplicar mecanicamente. É uma forma diferente de se relacionar com o que acontece internamente - com os próprios pensamentos, as próprias emoções, os próprios impulsos. Essa habilidade, uma vez desenvolvida, não desaparece quando a terapia termina.</p>
+<hr />
+<p><em>Material psicoeducativo de uso clínico. Destinado a pacientes em processo terapêutico. Não substitui a avaliação e o acompanhamento profissional.</em></p>
+
+<div class="download-section">
+  <p>Você preencheu os exercícios deste material.<br>
+  Baixe um arquivo com todas as suas respostas para guardar ou levar à próxima sessão.</p>
+  <button class="btn-download" id="btn-download">Baixar minhas respostas</button>
+</div>
+
+</main>
+
+<footer class="doc-footer">
+  Material psicoeducativo de uso clínico &middot; Bruno Santana | Psicologia Clínica &middot; Destinado a pacientes em processo terapêutico
+</footer>
+
+<script>
+
+// Barra de progresso de leitura
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  const pct   = total > 0 ? (window.scrollY / total) * 100 : 0;
+  progressBar.style.width = pct + '%';
+});
+
+// Navegação de capítulos: marca o capítulo ativo
+const navLinks  = document.querySelectorAll('.chapter-nav a');
+const sections  = document.querySelectorAll('h2[id]');
+const observer  = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector('.chapter-nav a[href="#' + e.target.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// Download das respostas como TXT
+document.getElementById('btn-download').addEventListener('click', () => {
+  const fields = document.querySelectorAll('textarea.exercise-field');
+  let output   = '';
+  const title  = document.querySelector('.doc-title')?.textContent || 'Material';
+  const date   = new Date().toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
+
+  output += '='.repeat(60) + '\n';
+  output += title + '\n';
+  output += 'Respostas registradas em ' + date + '\n';
+  output += '='.repeat(60) + '\n\n';
+
+  fields.forEach((f, i) => {
+    const block    = f.closest('.exercise-block');
+    const exTitle  = block?.querySelector('.exercise-title')?.textContent || ('Exercício ' + (i+1));
+    const resp     = f.value.trim();
+    output += '[ ' + exTitle + ' ]\n';
+    output += (resp || '(sem resposta registrada)') + '\n\n';
+    output += '-'.repeat(40) + '\n\n';
+  });
+
+  const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = title.replace(/[^a-zA-Z0-9À-ú\s]/g, '').trim() + ' — Respostas.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+</script>
+
+</body>
+</html>
