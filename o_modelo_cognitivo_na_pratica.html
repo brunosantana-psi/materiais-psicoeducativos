@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Modelo Cognitivo na Prática — Bruno Santana | Psicologia Clínica</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --sand:          #E8DFD3;
+  --sand-light:    #F2EDE6;
+  --cream:         #FAF8F5;
+  --linen:         #F5F0EB;
+  --amber:         #8B7340;
+  --amber-light:   #AA915A;
+  --amber-deep:    #6E5A32;
+  --forest:        #506B4A;
+  --forest-light:  #7A9472;
+  --forest-pale:   #D4DED0;
+  --deep-brown:    #3D2E22;
+  --walnut:        #5C4433;
+  --charcoal-warm: #4A4240;
+  --night-green:   #2C3B2E;
+  --stone:         #8C8078;
+  --stone-light:   #A69E96;
+  --fog:           #D4CCC4;
+  --white:         #FDFCFB;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Outfit', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--charcoal-warm);
+  line-height: 1.75;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── CABEÇALHO ── */
+.doc-header {
+  background: var(--night-green);
+  padding: 52px 40px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.doc-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light), var(--amber));
+}
+.doc-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber-light);
+  margin-bottom: 16px;
+}
+.doc-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 300;
+  color: var(--sand-light);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.doc-subtitle {
+  font-family: var(--serif);
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--forest-pale);
+}
+
+/* ── PROGRESSO ── */
+.progress-bar-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 3px;
+  background: var(--fog);
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light));
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ── NAVEGAÇÃO DE CAPÍTULOS ── */
+.chapter-nav {
+  background: rgba(250,248,245,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--fog);
+  padding: 0 40px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.chapter-nav::-webkit-scrollbar { display: none; }
+.chapter-nav a {
+  display: inline-block;
+  padding: 14px 0;
+  margin-right: 28px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--stone);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.25s, border-color 0.25s;
+}
+.chapter-nav a:hover,
+.chapter-nav a.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+/* ── CONTEÚDO ── */
+.doc-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 40px 80px;
+}
+
+/* ── METADADOS ── */
+.meta-block {
+  background: var(--linen);
+  border-left: 3px solid var(--amber-light);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  margin-bottom: 48px;
+  font-size: 13px;
+  color: var(--stone);
+  line-height: 1.8;
+}
+.meta-block strong { color: var(--walnut); font-weight: 500; }
+
+/* ── TÍTULOS ── */
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 300;
+  color: var(--deep-brown);
+  margin: 56px 0 20px;
+  line-height: 1.2;
+}
+h2 {
+  font-family: var(--serif);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin: 48px 0 16px;
+  line-height: 1.3;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--fog);
+}
+h3 {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--walnut);
+  margin: 36px 0 14px;
+}
+
+/* ── PARÁGRAFOS E LISTAS ── */
+p { font-size: 15px; margin-bottom: 18px; color: var(--charcoal-warm); }
+ul, ol { padding-left: 22px; margin-bottom: 18px; }
+li { font-size: 15px; margin-bottom: 6px; color: var(--charcoal-warm); }
+strong { font-weight: 500; color: var(--walnut); }
+em { font-style: italic; }
+hr { border: none; border-top: 1px solid var(--fog); margin: 40px 0; }
+.doc-body > hr:first-child { display: none; }
+h2:first-of-type { margin-top: 8px; }
+
+/* ── CITAÇÕES / CASOS CLÍNICOS ── */
+blockquote {
+  border-left: 3px solid var(--amber-light);
+  padding: 16px 20px;
+  margin: 28px 0;
+  background: var(--linen);
+  border-radius: 0 6px 6px 0;
+}
+blockquote p {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--walnut);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── FRASE DE ANCORAGEM ── */
+.anchor-phrase {
+  background: var(--night-green);
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin: 36px 0;
+}
+.anchor-phrase p {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--sand-light);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── BLOCOS DE EXERCÍCIO ── */
+.exercise-block {
+  background: var(--white);
+  border: 1px solid var(--fog);
+  border-top: 3px solid var(--amber);
+  border-radius: 0 0 10px 10px;
+  padding: 28px;
+  margin: 32px 0;
+}
+.exercise-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 10px;
+}
+.exercise-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin-bottom: 14px;
+}
+.exercise-block p {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block ul, .exercise-block ol {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block li { color: var(--stone); }
+
+textarea.exercise-field {
+  width: 100%;
+  min-height: 120px;
+  background: var(--cream);
+  border: 1px solid var(--fog);
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--charcoal-warm);
+  line-height: 1.7;
+  resize: vertical;
+  transition: border-color 0.2s;
+  margin-top: 10px;
+}
+textarea.exercise-field:focus {
+  outline: none;
+  border-color: var(--amber-light);
+  background: var(--white);
+}
+textarea.exercise-field::placeholder { color: var(--stone-light); }
+
+/* ── BOTÃO DE DOWNLOAD ── */
+.download-section {
+  background: var(--linen);
+  border-radius: 10px;
+  padding: 32px;
+  margin: 56px 0 0;
+  text-align: center;
+  border: 1px solid var(--fog);
+}
+.download-section p {
+  font-size: 13px;
+  color: var(--stone);
+  margin-bottom: 20px;
+}
+.btn-download {
+  display: inline-block;
+  padding: 13px 32px;
+  background: var(--amber);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+.btn-download:hover { background: var(--amber-deep); transform: translateY(-1px); }
+.btn-download:active { transform: translateY(0); }
+
+/* ── RODAPÉ ── */
+.doc-footer {
+  text-align: center;
+  padding: 32px 40px;
+  border-top: 1px solid var(--fog);
+  font-size: 11px;
+  color: var(--forest-pale);
+  letter-spacing: 0.5px;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 600px) {
+  .doc-header   { padding: 40px 24px 36px; }
+  .chapter-nav  { padding: 0 24px; }
+  .doc-body     { padding: 40px 24px 64px; }
+  .exercise-block { padding: 20px; }
+  .download-section { padding: 24px; }
+}
+
+/* ── ANIMAÇÃO DE ENTRADA ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.doc-body > * {
+  animation: fadeUp 0.5s ease both;
+}
+
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="doc-label">Material Psicoeducativo</div>
+  <h1 class="doc-title">O Modelo Cognitivo na Prática</h1>
+  <p class='doc-subtitle'>Metadados</p>
+</header>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<nav class="chapter-nav"><a href="#capitulo-1---o-que-esta-por-tras-das-suas-reacoes"></a><a href="#capitulo-2---como-os-pensamentos-se-organizam"></a><a href="#capitulo-3---como-voce-enxerga-a-si-mesmo-os-outros-e-o-futuro"></a><a href="#capitulo-4---o-sistema-funciona-nos-dois-sentidos"></a><a href="#consideracoes-finais">Considerações finais</a></nav>
+
+<main class="doc-body">
+
+<h2 id="capitulo-1---o-que-esta-por-tras-das-suas-reacoes">Capítulo 1 - O que está por trás das suas reações?</h2>
+<p>Já aconteceu de você reagir a uma situação de um jeito que, mais tarde, pareceu desproporcional? Ou perceber que duas pessoas viveram o mesmo evento e saíram dele com sensações completamente diferentes? Esse fenômeno não é acaso, nem fraqueza. É o funcionamento natural da mente humana, e entendê-lo é um dos passos mais importantes do processo terapêutico.</p>
+<p>A Terapia Cognitivo-Comportamental parte de uma premissa simples e poderosa: não são os eventos que determinam como nos sentimos. O que determina é a interpretação que fazemos deles.</p>
+<hr />
+<h3>O sistema em três partes</h3>
+<p>A TCC trabalha com três elementos que estão em constante interação: <strong>pensamentos</strong>, <strong>emoções</strong> e <strong>comportamentos</strong>. Nenhum deles age de forma isolada. Eles formam um sistema vivo, onde cada parte influencia as outras.</p>
+<p>Pense numa situação do dia a dia:</p>
+<blockquote><p>Lucas envia uma mensagem para um amigo próximo e não recebe resposta. Automaticamente, o pensamento que aparece é: <em>"Fiz algo errado. Ele deve estar bravo comigo."</em> Esse pensamento aciona uma sensação de desconforto e ansiedade. Lucas, então, evita mandar outra mensagem, com medo de piorar a situação. O amigo, que simplesmente estava em uma reunião, só responde horas depois. Mas Lucas já passou a tarde inteira ruminando.</p></blockquote>
+<p>Agora a mesma situação, com outra interpretação:</p>
+<blockquote><p>Fernanda envia uma mensagem para a mesma pessoa e não recebe resposta. O pensamento que surge é: <em>"Deve estar ocupado."</em> Ela segue o dia normalmente. Quando o amigo responde, a conversa continua de onde parou.</p></blockquote>
+<p>O evento foi idêntico. O que diferiu foi o pensamento - e tudo o que veio depois.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Perceba em você</div><p>Pense em uma situação recente em que você teve uma reação emocional forte. Pode ter sido uma conversa difícil, uma notícia inesperada, um silêncio que pesou.</p>
+<p>Tente responder:</p>
+<ol>
+<li>O que aconteceu, objetivamente? (Apenas os fatos.)</li>
+<li>O que você pensou no momento, logo de início?</li>
+<li>O que você sentiu no corpo e nas emoções?</li>
+<li>Como você reagiu ou o que quis fazer?</li>
+</ol>
+<p>Não existe resposta certa. O exercício é apenas observar. Às vezes, a sequência pensamento-emoção-comportamento acontece em frações de segundo, e só com prática começamos a percebê-la.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Durante os próximos sete dias, escolha uma situação por dia em que você perceber uma emoção mais intensa - agradável ou desagradável de sentir. Anote rapidamente:</p>
+<ul>
+<li>O que aconteceu</li>
+<li>O primeiro pensamento que veio</li>
+<li>O que você sentiu</li>
+<li>O que fez (ou evitou fazer)</li>
+</ul>
+<p>Não é necessário analisar. Só registrar. A percepção já é, por si mesma, um ato terapêutico.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Não são os eventos que moldam como nos sentimos, mas sim o que fazemos com eles na nossa mente.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-2---como-os-pensamentos-se-organizam">Capítulo 2 - Como os pensamentos se organizam</h2>
+<p>Se os pensamentos fossem apenas flashes passageiros, seria simples lidar com eles. Mas a mente humana tem uma arquitetura mais complexa: os pensamentos se organizam em camadas, cada uma com um nível diferente de profundidade e resistência à mudança.</p>
+<p>Compreender essa estrutura não é uma curiosidade teórica. É um mapa. E mapas nos ajudam a saber onde estamos e para onde queremos ir.</p>
+<hr />
+<h3>A primeira camada: pensamentos automáticos</h3>
+<p>Os <strong>pensamentos automáticos</strong> são os mais visíveis. Quando nos damos ao trabalho de notar. Eles surgem de forma rápida, involuntária, como se alguém cochichasse algo ao fundo da cena. São os primeiros a aparecer diante de uma situação e, na maioria das vezes, passam despercebidos.</p>
+<p>O que torna os pensamentos automáticos tão influentes é que eles parecem completamente verdadeiros no momento em que surgem. Não chegam como hipóteses. Mas já chegam como fatos!</p>
+<p>Exemplos do cotidiano:</p>
+<ul>
+<li>Em uma reunião de trabalho: <em>"Todo mundo percebeu que eu não sabia responder."</em></li>
+<li>Após um silêncio numa conversa: <em>"Eu disse algo errado."</em></li>
+<li>Ao olhar para uma lista de tarefas acumuladas: <em>"Não sou capaz de dar conta de nada."</em></li>
+</ul>
+<p>Esses pensamentos não são inventados. Eles emergem de algo mais fundo, das camadas seguintes.</p>
+<hr />
+<h3>A segunda camada: crenças intermediárias</h3>
+<p>Abaixo dos pensamentos automáticos, existem regras e suposições que construímos ao longo da vida. As chamamos de <strong>crenças intermediárias</strong> - premissas sobre como as coisas funcionam, sobre o que é necessário para sermos aceitos, valorizados ou seguros.</p>
+<p>Elas costumam aparecer em formato de condição:</p>
+<ul>
+<li><em>"Se eu cometer um erro, as pessoas vão me julgar."</em></li>
+<li><em>"Para ser amado, preciso ser sempre útil."</em></li>
+<li><em>"Se eu pedir ajuda, vou parecer fraco."</em></li>
+</ul>
+<p>Essas crenças não estão escritas em nenhum lugar. A maioria de nós nunca as formulou em palavras. Mas elas orientam nosso comportamento com uma precisão surpreendente! Como regras não ditas que aprendemos tão bem que esquecemos de questionar.</p>
+<hr />
+<h3>A terceira camada: crenças centrais</h3>
+<p>No nível mais profundo, existem as <strong>crenças centrais</strong>. Estas são ideias absolutas sobre nós mesmos, sobre os outros e o mundo, e sobre o futuro. Elas se formaram bem cedo, a partir de experiências repetidas, e funcionam como lentes: filtram tudo o que nós percebemos.</p>
+<p>Crenças centrais têm uma característica marcante: são generalizadas e rígidas. Não admitem exceções.</p>
+<p>Exemplos:</p>
+<ul>
+<li><em>"Sou incompetente."</em></li>
+<li><em>"Não mereço ser amado."</em></li>
+<li><em>"As pessoas sempre abandonam."</em></li>
+<li><em>"O mundo é perigoso."</em></li>
+<li><em>“As coisas nunca vão mudar”</em></li>
+<li><em>“Vou morrer sozinho”</em></li>
+</ul>
+<p>Uma crença central não precisa ser consciente para agir. Ela age de baixo para cima: alimenta as crenças intermediárias, que alimentam os pensamentos automáticos, que aparecem como reações emocionais espontâneas diante de qualquer situação com alguma semelhança com o que formou tal crença.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Complete a frase</div><p>Este exercício ajuda a acessar crenças que raramente colocamos em palavras. Responda de forma rápida e espontânea, sem pensar demais:</p>
+<ul>
+<li><em>"Quando eu erro, acredito que..."</em></li>
+<li><em>"Para que as pessoas gostem de mim, eu preciso..."</em></li>
+<li><em>"No fundo, acho que eu sou..."</em></li>
+<li><em>"Quando as coisas não saem como planejei, fico com a sensação de que..."</em></li>
+<li><em>“As pessoas sempre são…”</em></li>
+<li><em>“Para mim o futuro é…”</em></li>
+</ul>
+<p>Não existe resposta certa ou errada. O objetivo não é se julgar, é se conhecer. O que aparece nesses espaços em branco costuma dizer mais do que semanas de reflexão consciente.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Escolha um pensamento automático que você registrou no exercício anterior (ou que apareça essa semana). Tente traçar sua origem:</p>
+<ol>
+<li>Qual a regra por trás desse pensamento? (A crença intermediária.)</li>
+<li>O que esse pensamento diz sobre quem você acredita ser? (A crença central.)</li>
+</ol>
+<p>É normal que essa exploração traga algum desconforto. Leve o que encontrar para a sessão, esse material é valioso!</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Os pensamentos que surgem na superfície carregam, nas camadas mais fundas, histórias que aprendemos sobre nós mesmos, sobre o mundo e sobre o futuro.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-3---como-voce-enxerga-a-si-mesmo-os-outros-e-o-futuro">Capítulo 3 - Como você enxerga a si mesmo, os outros e o futuro</h2>
+<p>Existe uma diferença entre ver uma situação e interpretar uma situação. A mente humana quase nunca faz a primeira coisa. Quase sempre faz a segunda - e faz isso tão rapidamente que percebemos apenas o resultado: a sensação que a situação nos provocou.</p>
+<p>Aaron Beck, o psiquiatra que desenvolveu as bases da TCC, identificou que essa interpretação tende a se organizar em torno de três eixos. Ele chamou esse conjunto de tríade cognitiva.</p>
+<hr />
+<h3>Os três eixos da percepção</h3>
+<p><strong>Visão de si</strong> é a forma como nos percebemos. Inclui o que achamos que valemos, o que somos capazes de fazer, o quanto merecemos ser amados ou respeitados. Quando esse eixo está distorcido, é comum pensar: <em>"Sou um fracasso"</em>, <em>"Sou inferior"</em>, <em>"Não tenho nada a oferecer"</em>.</p>
+<p>Quando está calibrado, é possível pensar: <em>"Tenho qualidades e limitações, como qualquer pessoa. Posso crescer."</em></p>
+<p><strong>Visão do outro e do mundo</strong> é a forma como interpretamos o ambiente e as pessoas ao redor. O mundo é percebido como seguro ou ameaçador? As pessoas são vistas como confiáveis em geral, ou a desconfiança é o ponto de partida? Quando esse eixo está distorcido: <em>"Ninguém se importa comigo"</em>, <em>"As pessoas sempre decepcionam"</em>, <em>"O mundo é hostil"</em>. Quando está calibrado: <em>"Existem pessoas confiáveis, mesmo que nem todas o sejam. Posso construir vínculos seguros."</em></p>
+<p><strong>Visão do futuro</strong> diz respeito ao que esperamos que esteja por vir. Quando essa lente está distorcida, o futuro parece fechado: <em>"Nada vai melhorar"</em>, <em>"Não adianta tentar"</em>, <em>"Vai ser a mesma coisa de sempre."</em> Quando está mais equilibrada: <em>"Não sei exatamente o que vem, mas posso influenciar o que faço agora."</em></p>
+<hr />
+<h3>Por que isso importa na prática?</h3>
+<p>A <strong>tríade cognitiva</strong> não é apenas uma teoria sobre como pensamos. Ela explica por que duas pessoas podem viver situações parecidas e desenvolver respostas emocionais e trajetórias completamente diferentes.</p>
+<p>Alguém com uma visão de si muito crítica, uma visão do mundo como ameaçador e uma visão do futuro como fechada vai interpretar um <em>feedback</em> no trabalho de um jeito. Alguém com uma visão de si mais compassiva, uma visão do mundo como relativamente seguro e uma perspectiva de futuro aberta vai interpretar o mesmo <em>feedback</em> de outro jeito - sentindo e agindo de outro modo!</p>
+<p>Não é força de vontade. É a arquitetura das crenças funcionando.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Perceba em você</div><p>Observe como cada eixo tende a operar em você. Para cada afirmação abaixo, note qual ressoa mais com sua experiência habitual:</p>
+<p><strong>Sobre você mesmo:</strong></p>
+<ul>
+<li><em>"Quando erro, costumo pensar que sou incapaz ou que qualquer um erra às vezes?"</em></li>
+</ul>
+<p><strong>Sobre os outros:</strong></p>
+<ul>
+<li><em>"Meu ponto de partida ao conhecer alguém novo é a abertura ou a desconfiança?"</em></li>
+</ul>
+<p><strong>Sobre o futuro:</strong></p>
+<ul>
+<li><em>"Quando enfrento um problema difícil, a sensação predominante é de que vai passar ou de que é para sempre?"</em></li>
+</ul>
+<p>Essas respostas não são julgamentos. São dados. E dados úteis para o processo terapêutico.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Escolha um dos três eixos, aquele que pareceu mais carregado para você. Durante a semana, observe uma situação em que ele apareça em ação. Anote:</p>
+<ul>
+<li>A situação</li>
+<li>O pensamento que surgiu sobre você, os outros ou o futuro</li>
+<li>Como esse pensamento influenciou o que você sentiu e o que fez</li>
+</ul><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>A forma como interpretamos a nós mesmos, ao mundo e ao futuro é uma lente , e lentes podem ser ajustadas.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-4---o-sistema-funciona-nos-dois-sentidos">Capítulo 4 - O sistema funciona nos dois sentidos</h2>
+<p>Até aqui, exploramos como pensamentos influenciam emoções e comportamentos. Mas há algo importante que precisa ser dito: esse sistema não é uma via de mão única.</p>
+<p>As emoções também influenciam os pensamentos. E os comportamentos também influenciam tudo o mais.</p>
+<hr />
+<h3>Quando a emoção chega primeiro</h3>
+<p>Imagine que você acorda de manhã com aquela sensação de peso, sem razão aparente. Ainda antes de qualquer evento do dia, algo no corpo já está diferente. E, quando a mente começa a funcionar, os pensamentos que surgem têm uma cor específica: <em>"Hoje vai ser difícil"</em>, <em>"Não estou preparado para esse dia"</em>, <em>"Por que tudo parece tão pesado?"</em></p>
+<p>Não foi um pensamento que criou a emoção. Foi a emoção que coloriu os pensamentos.</p>
+<p>Esse é um ponto fundamental. Quando estamos sob o efeito de uma emoção intensa - seja ela medo, tristeza, raiva ou euforia - nosso sistema cognitivo passa a operar de dentro dessa emoção. Os pensamentos que surgem tendem a ser consistentes com o estado emocional em que estamos.</p>
+<p>A emoção funciona, em muitos casos, como um filtro: ela seleciona e amplifica informações que confirmam o que o corpo já está sentindo.</p>
+<hr />
+<h3>O papel do comportamento</h3>
+<p>Os comportamentos também retroalimentam o sistema. Quando evitamos uma situação que nos gera ansiedade, por exemplo, conseguimos um alívio imediato. Mas esse alívio tem um custo: a crença de que a situação era ameaçadora sai reforçada. Na próxima vez, a ansiedade tende a ser ainda maior.</p>
+<p>Da mesma forma, quando agimos de acordo com nossos valores mesmo sem estar nos sentindo bem, isso pode começar a mudar gradualmente o estado emocional. O comportamento não espera a emoção mudar para agir, às vezes, ele é o que inicia a mudança.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Respire e observe</div><p>Esse exercício é para ser feito num momento em que você perceber uma emoção desagradável de sentir. Não necessariamente intensa, mas presente.</p>
+<p>Pause por 30 segundos. Respire devagar. Então, observe:</p>
+<ol>
+<li>Onde essa emoção aparece no corpo? (Aperto no peito? Tensão nos ombros? Nó na garganta?)</li>
+<li>Que pensamentos estão surgindo enquanto você sente isso?</li>
+<li>O que você sente vontade de fazer ou evitar?</li>
+</ol>
+<p>Não é necessário mudar nada. A observação, por si mesma, já cria uma pequena distância entre você e o que está sentindo. E distância é, em terapia, o início da liberdade.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Observe o sistema em ação na sua própria experiência. Durante a semana, tente identificar ao menos uma situação onde:</p>
+<ul>
+<li>Uma emoção coloriu os seus pensamentos antes de qualquer evento externo</li>
+<li>Um comportamento (de aproximação ou evitação) mudou - ou manteve - o que você estava sentindo</li>
+</ul>
+<p>Anote o que percebeu. Não precisa ter conclusões. Só a observação já vale.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Pensamentos, emoções e comportamentos se influenciam mutuamente, e qualquer um dos três pode ser o ponto de entrada para a mudança.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="consideracoes-finais">Considerações finais</h2>
+<p>Compreender o modelo cognitivo não é o fim de nada. É um ponto de partida.</p>
+<p>O que esse material oferece é uma linguagem, uma forma de nomear o que acontece internamente com mais precisão. E nomear é um ato poderoso. Quando conseguimos identificar o pensamento por trás da emoção, o comportamento que mantém o padrão, a crença que dá origem a tudo isso, ganhamos algo que antes não tínhamos: a possibilidade de escolha.</p>
+<p>Não se trata de controlar a mente ou eliminar o sofrimento. Trata-se de ampliar o espaço entre o estímulo e a resposta e, nesse espaço, encontrar mais de uma opção.</p>
+<p>Leve o que encontrou nestes capítulos para as suas sessões. O que incomodou, o que surpreendeu, o que pareceu familiar demais. Tudo isso é material de trabalho. E é exatamente por isso que você está aqui.</p>
+
+<div class="download-section">
+  <p>Você preencheu os exercícios deste material.<br>
+  Baixe um arquivo com todas as suas respostas para guardar ou levar à próxima sessão.</p>
+  <button class="btn-download" id="btn-download">Baixar minhas respostas</button>
+</div>
+
+</main>
+
+<footer class="doc-footer">
+  Material psicoeducativo de uso clínico &middot; Bruno Santana | Psicologia Clínica &middot; Destinado a pacientes em processo terapêutico
+</footer>
+
+<script>
+
+// Barra de progresso de leitura
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  const pct   = total > 0 ? (window.scrollY / total) * 100 : 0;
+  progressBar.style.width = pct + '%';
+});
+
+// Navegação de capítulos: marca o capítulo ativo
+const navLinks  = document.querySelectorAll('.chapter-nav a');
+const sections  = document.querySelectorAll('h2[id]');
+const observer  = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector('.chapter-nav a[href="#' + e.target.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// Download das respostas como TXT
+document.getElementById('btn-download').addEventListener('click', () => {
+  const fields = document.querySelectorAll('textarea.exercise-field');
+  let output   = '';
+  const title  = document.querySelector('.doc-title')?.textContent || 'Material';
+  const date   = new Date().toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
+
+  output += '='.repeat(60) + '\n';
+  output += title + '\n';
+  output += 'Respostas registradas em ' + date + '\n';
+  output += '='.repeat(60) + '\n\n';
+
+  fields.forEach((f, i) => {
+    const block    = f.closest('.exercise-block');
+    const exTitle  = block?.querySelector('.exercise-title')?.textContent || ('Exercício ' + (i+1));
+    const resp     = f.value.trim();
+    output += '[ ' + exTitle + ' ]\n';
+    output += (resp || '(sem resposta registrada)') + '\n\n';
+    output += '-'.repeat(40) + '\n\n';
+  });
+
+  const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = title.replace(/[^a-zA-Z0-9À-ú\s]/g, '').trim() + ' — Respostas.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+</script>
+
+</body>
+</html>
