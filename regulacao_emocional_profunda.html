@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untitled — Bruno Santana | Psicologia Clínica</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --sand:          #E8DFD3;
+  --sand-light:    #F2EDE6;
+  --cream:         #FAF8F5;
+  --linen:         #F5F0EB;
+  --amber:         #8B7340;
+  --amber-light:   #AA915A;
+  --amber-deep:    #6E5A32;
+  --forest:        #506B4A;
+  --forest-light:  #7A9472;
+  --forest-pale:   #D4DED0;
+  --deep-brown:    #3D2E22;
+  --walnut:        #5C4433;
+  --charcoal-warm: #4A4240;
+  --night-green:   #2C3B2E;
+  --stone:         #8C8078;
+  --stone-light:   #A69E96;
+  --fog:           #D4CCC4;
+  --white:         #FDFCFB;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Outfit', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--charcoal-warm);
+  line-height: 1.75;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── CABEÇALHO ── */
+.doc-header {
+  background: var(--night-green);
+  padding: 52px 40px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.doc-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light), var(--amber));
+}
+.doc-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber-light);
+  margin-bottom: 16px;
+}
+.doc-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 300;
+  color: var(--sand-light);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.doc-subtitle {
+  font-family: var(--serif);
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--forest-pale);
+}
+
+/* ── PROGRESSO ── */
+.progress-bar-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 3px;
+  background: var(--fog);
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light));
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ── NAVEGAÇÃO DE CAPÍTULOS ── */
+.chapter-nav {
+  background: rgba(250,248,245,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--fog);
+  padding: 0 40px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.chapter-nav::-webkit-scrollbar { display: none; }
+.chapter-nav a {
+  display: inline-block;
+  padding: 14px 0;
+  margin-right: 28px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--stone);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.25s, border-color 0.25s;
+}
+.chapter-nav a:hover,
+.chapter-nav a.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+/* ── CONTEÚDO ── */
+.doc-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 40px 80px;
+}
+
+/* ── METADADOS ── */
+.meta-block {
+  background: var(--linen);
+  border-left: 3px solid var(--amber-light);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  margin-bottom: 48px;
+  font-size: 13px;
+  color: var(--stone);
+  line-height: 1.8;
+}
+.meta-block strong { color: var(--walnut); font-weight: 500; }
+
+/* ── TÍTULOS ── */
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 300;
+  color: var(--deep-brown);
+  margin: 56px 0 20px;
+  line-height: 1.2;
+}
+h2 {
+  font-family: var(--serif);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin: 48px 0 16px;
+  line-height: 1.3;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--fog);
+}
+h3 {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--walnut);
+  margin: 36px 0 14px;
+}
+
+/* ── PARÁGRAFOS E LISTAS ── */
+p { font-size: 15px; margin-bottom: 18px; color: var(--charcoal-warm); }
+ul, ol { padding-left: 22px; margin-bottom: 18px; }
+li { font-size: 15px; margin-bottom: 6px; color: var(--charcoal-warm); }
+strong { font-weight: 500; color: var(--walnut); }
+em { font-style: italic; }
+hr { border: none; border-top: 1px solid var(--fog); margin: 40px 0; }
+.doc-body > hr:first-child { display: none; }
+h2:first-of-type { margin-top: 8px; }
+
+/* ── CITAÇÕES / CASOS CLÍNICOS ── */
+blockquote {
+  border-left: 3px solid var(--amber-light);
+  padding: 16px 20px;
+  margin: 28px 0;
+  background: var(--linen);
+  border-radius: 0 6px 6px 0;
+}
+blockquote p {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--walnut);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── FRASE DE ANCORAGEM ── */
+.anchor-phrase {
+  background: var(--night-green);
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin: 36px 0;
+}
+.anchor-phrase p {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--sand-light);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── BLOCOS DE EXERCÍCIO ── */
+.exercise-block {
+  background: var(--white);
+  border: 1px solid var(--fog);
+  border-top: 3px solid var(--amber);
+  border-radius: 0 0 10px 10px;
+  padding: 28px;
+  margin: 32px 0;
+}
+.exercise-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 10px;
+}
+.exercise-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin-bottom: 14px;
+}
+.exercise-block p {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block ul, .exercise-block ol {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block li { color: var(--stone); }
+
+textarea.exercise-field {
+  width: 100%;
+  min-height: 120px;
+  background: var(--cream);
+  border: 1px solid var(--fog);
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--charcoal-warm);
+  line-height: 1.7;
+  resize: vertical;
+  transition: border-color 0.2s;
+  margin-top: 10px;
+}
+textarea.exercise-field:focus {
+  outline: none;
+  border-color: var(--amber-light);
+  background: var(--white);
+}
+textarea.exercise-field::placeholder { color: var(--stone-light); }
+
+/* ── BOTÃO DE DOWNLOAD ── */
+.download-section {
+  background: var(--linen);
+  border-radius: 10px;
+  padding: 32px;
+  margin: 56px 0 0;
+  text-align: center;
+  border: 1px solid var(--fog);
+}
+.download-section p {
+  font-size: 13px;
+  color: var(--stone);
+  margin-bottom: 20px;
+}
+.btn-download {
+  display: inline-block;
+  padding: 13px 32px;
+  background: var(--amber);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+.btn-download:hover { background: var(--amber-deep); transform: translateY(-1px); }
+.btn-download:active { transform: translateY(0); }
+
+/* ── RODAPÉ ── */
+.doc-footer {
+  text-align: center;
+  padding: 32px 40px;
+  border-top: 1px solid var(--fog);
+  font-size: 11px;
+  color: var(--forest-pale);
+  letter-spacing: 0.5px;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 600px) {
+  .doc-header   { padding: 40px 24px 36px; }
+  .chapter-nav  { padding: 0 24px; }
+  .doc-body     { padding: 40px 24px 64px; }
+  .exercise-block { padding: 20px; }
+  .download-section { padding: 24px; }
+}
+
+/* ── ANIMAÇÃO DE ENTRADA ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.doc-body > * {
+  animation: fadeUp 0.5s ease both;
+}
+
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="doc-label">Material Psicoeducativo</div>
+  <h1 class="doc-title">Untitled</h1>
+  
+</header>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<nav class="chapter-nav"><a href="#capitulo-1---regular-nao-e-controlar"></a><a href="#capitulo-2---alta-ativacao-quando-o-corpo-esta-no-limite"></a><a href="#capitulo-3---ativacao-moderada-quando-a-mente-ainda-pode-trabalhar"></a><a href="#capitulo-4---baixa-ativacao-quando-o-sistema-precisa-de-impulso"></a><a href="#capitulo-5---sobre-o-sofrimento-que-nao-passa"></a><a href="#capitulo-6---construindo-o-habito-regulatorio"></a><a href="#consideracoes-finais">Considerações finais</a></nav>
+
+<main class="doc-body">
+
+<h2 id="capitulo-1---regular-nao-e-controlar">Capítulo 1 - Regular não é controlar</h2>
+<p>Quando pensamos em regular emoções, a imagem que costuma vir primeiro é a de uma torneira: abrir um pouco, fechar um pouco, manter o fluxo sob controle. É uma metáfora sedutora e, ao mesmo tempo, enganosa. As emoções não obedecem à pressão. E quanto mais tentamos fechá-las à força, mais elas encontram outras saídas, em momentos que não escolhemos e de formas que não planejamos.</p>
+<p><strong>Regulação emocional</strong> não é controle. É a capacidade de circular pelas emoções e retornar ao bem-estar.</p>
+<p>Isso significa que o objetivo não é não sentir. É sentir o que precisa ser sentido, sem ficar preso ali indefinidamente. Medo pode ser vivido e, depois, dissipado. Tristeza pode ser acolhida e, com tempo e cuidado, metabolizada. Raiva pode ser reconhecida sem precisar ser atuada. Esse movimento de ida e volta é o que chamamos de regulação: não a ausência das emoções desagradáveis de sentir, mas a capacidade de transitar por elas com alguma intencionalidade.</p>
+<h3>Por que algumas estratégias funcionam e outras não</h3>
+<p>O pesquisador James Gross, um dos principais estudiosos da regulação emocional contemporânea, observou que as estratégias regulatórias funcionam de formas muito diferentes dependendo do momento em que são aplicadas. Uma intervenção que age sobre o pensamento pode ser eficaz num estado de ativação moderada e completamente inútil no pico de uma crise, quando a cognição já está comprometida.</p>
+<p>Existe um dado que muda tudo: o sistema nervoso opera de maneiras distintas e radicalmente diferentes dependendo da intensidade emocional do momento. Pense numa situação simples: tente memorizar um número de telefone enquanto alguém está gritando do seu lado. A cognição, nesse contexto, está parcialmente fora de campo. O mesmo ocorre com as emoções. Quando a ativação é muito alta, a parte do cérebro responsável pelo raciocínio elaborado, pela perspectiva e pela reestruturação de pensamentos praticamente sai de cena. Não por fraqueza. Por arquitetura.</p>
+<p>É por isso que este material está organizado em torno de um conceito central: o <strong>nível de ativação emocional</strong>. Antes de escolher qualquer estratégia, o primeiro passo é ler o estado em que você se encontra.</p>
+<h3>Três faixas, três repertórios</h3>
+<p>Marsha Linehan, ao desenvolver a <strong>Terapia Comportamental Dialética (DBT)</strong>, observou que as habilidades de regulação precisam ser calibradas à intensidade do que a pessoa está vivendo. Não existe estratégia universal. Existe estratégia adequada ao momento.</p>
+<p>Vamos trabalhar com três faixas:</p>
+<p><strong>Alta ativação</strong> é quando o corpo está em modo de urgência. O coração acelera, o pensamento dispersa, a sensação de perigo ou colapso permeia tudo. Nesse estado, o sistema nervoso precisa ser estabilizado antes que qualquer reflexão seja possível.</p>
+<p><strong>Ativação moderada</strong> é quando ainda há desconforto, mas a mente consegue trabalhar. É possível nomear o que se sente, questionar um pensamento, respirar com intenção. As estratégias cognitivas e corporais mais elaboradas têm espaço aqui.</p>
+<p><strong>Baixa ativação</strong> é quando o sistema está embotado ou desligado. Não há necessariamente sofrimento intenso, mas há distância, inércia ou vazio. Paradoxalmente, esse estado também é desregulação, e pede estratégias específicas para reativar o fluxo.</p>
+<p>O primeiro passo em qualquer situação é identificar em qual faixa você está. Antes de escolher a estratégia, leia o seu estado.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Perceba em você</div><p>Pense em três momentos recentes em que você sentiu uma emoção de intensidade diferente: uma situação que te perturbou levemente, outra que trouxe um desconforto moderado e uma terceira que foi realmente intensa.</p>
+<p>Para cada uma, observe:</p>
+<ol>
+<li>Onde o corpo foi primeiro? Que sensação apareceu e onde?</li>
+<li>Você conseguia pensar com clareza, ou o pensamento ficou disperso e acelerado?</li>
+<li>O que você fez, ou quis fazer, naquele momento?</li>
+</ol>
+<p>Não existe resposta certa. O objetivo é começar a reconhecer os sinais que o seu sistema manda em cada faixa, porque esse reconhecimento precoce é, ele mesmo, uma habilidade regulatória.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Durante os próximos sete dias, antes de reagir a qualquer situação que traga algum desconforto, pause por 10 segundos e faça uma única pergunta: "Em qual faixa estou agora?"</p>
+<p>Não é necessário ter uma resposta precisa. Só o ato de perguntar já cria uma distância mínima entre o estímulo e a resposta. E essa distância, pequena que pareça, é onde a regulação começa a existir.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Antes de escolher como agir sobre uma emoção, precisamos aprender a ler o estado em que ela nos coloca.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-2---alta-ativacao-quando-o-corpo-esta-no-limite">Capítulo 2 - Alta ativação: quando o corpo está no limite</h2>
+<p>Há momentos em que a emoção chega de uma vez, sem aviso e sem gradação. Um confronto inesperado, uma notícia que desorganiza, um pensamento que aparece de madrugada e não larga… O corpo vai para o limite! Batimento cardíaco acelerado, respiração curta, tensão muscular generalizada, a sensação de que algo vai estourar ou desmoronar.</p>
+<p>Nesse estado, qualquer estratégia que dependa de reflexão encontra resistência. O córtex pré-frontal, a parte do cérebro que nos permite pensar com perspectiva, avaliar consequências e tomar decisões elaboradas, opera em modo reduzido quando a amígdala está em alarme. Tentar se convencer racionalmente de que "está tudo bem" no pico de uma crise não funciona! E não funcionar não é falha pessoal. É fisiologia.</p>
+<p>O que o sistema precisa, nesse momento, não é raciocínio. É regulação somática: intervenções diretas no corpo que comuniquem ao sistema nervoso que o perigo passou, ou que o corpo pode suportar o que está sentindo.</p>
+<h3>TIPP: o kit de estabilização fisiológica</h3>
+<p>A DBT oferece um conjunto de habilidades desenhadas exatamente para esse estado. A sigla <strong>TIPP</strong> organiza quatro intervenções fisiológicas diretas, eficazes e acessíveis.</p>
+<p><strong>T - Temperatura (<em>Temperature</em>).</strong> Mergulhar o rosto em água fria por alguns segundos ou segurar gelo nas mãos ativa o reflexo de mergulho dos mamíferos, um mecanismo evolutivo que desacelera o batimento cardíaco de forma rápida e involuntária. Funciona não porque seja sofisticado, mas porque o sistema nervoso responde à temperatura de forma quase automática.</p>
+<p><strong>I - Exercício intenso (<em>Intense exercise</em>).</strong> Uma atividade física breve e intensa, como subir e descer escadas rapidamente, fazer polichinelos por dois minutos ou apertar um objeto com força, consome a adrenalina e o cortisol em circulação. O estado de urgência tem base hormonal, e o movimento é uma das formas mais eficientes de processá-lo.</p>
+<p><strong>P - Respiração compassada (<em>Paced breathing</em>).</strong> Prolongar a expiração além da inspiração ativa o sistema nervoso parassimpático. Uma proporção simples: inspire por 4 tempos, expire por 7 ou 8. Não é relaxamento superficial. É uma intervenção direta no sistema autônomo.</p>
+<p><strong>P - Relaxamento muscular progressivo (<em>Progressive muscle relaxation</em>).</strong> Tensionar e soltar grupos musculares em sequência, começando pelos pés e subindo até o rosto, desativa o estado de contração que a ativação intensa provoca. Cinco a dez minutos são suficientes para perceber uma diferença real.</p>
+<h3>Ancoragem sensorial</h3>
+<p>Quando o estado emocional intenso vem acompanhado de sensação de irrealidade, dissociação ou de que "a mente está fugindo", a <strong>ancoragem sensorial</strong> pode ajudar a restaurar o contato com o presente.</p>
+<p>A técnica 5-4-3-2-1 é simples e direta: nomear mentalmente cinco coisas que se pode ver, quatro que se pode tocar (e realmente tocar), três que se pode ouvir, duas que se pode cheirar e uma que se pode saborear. O objetivo não é distração, mas reengajamento com o momento presente, devolvendo ao sistema nervoso a informação de que existe um aqui e um agora concretos e estáveis.</p>
+<h3>Distração consciente</h3>
+<p>Existe uma diferença importante entre evitar uma emoção e fazer uma pausa estratégica para se estabilizar antes de retornar a ela. A <strong>distração consciente</strong> é a segunda coisa.</p>
+<p>Escolher se engajar com algo absorvente, uma conversa, uma atividade manual, um conteúdo que capture totalmente a atenção, por um período delimitado, não é fuga. É manejo. O sistema precisa de uma janela de recuperação antes de conseguir processar o que aconteceu. Negar essa janela por princípio, acreditando que "é preciso sentir tudo agora", costuma resultar em mais desregulação, não menos.</p>
+<p>A distinção que vale guardar: distração como pausa temporária e intencional é uma habilidade. Distração como padrão habitual de evitação é um problema diferente, que pertence a outra conversa.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Perceba em você</div><p>Pense nos sinais que aparecem no seu corpo quando você está em alta ativação. Cada pessoa tem um padrão próprio, e reconhecê-lo precocemente é uma vantagem real.</p>
+<p>Observe:</p>
+<ol>
+<li>Onde você sente primeiro? (Peito? Garganta? Estômago? Mandíbula?)</li>
+<li>Seu pensamento acelera, trava ou fica em branco?</li>
+<li>O que você costuma fazer instintivamente nesse estado? (Falar demais, calar, movimentar, paralisar?)</li>
+</ol>
+<p>Esse é o seu mapa de alta ativação. Quanto mais nítido ele for, mais cedo você pode intervir, e mais eficaz a intervenção tende a ser.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Escolha apenas uma das intervenções do TIPP e pratique-a esta semana em algum momento de desconforto moderado, antes de chegar ao pico. Não espere a crise. Treine em situações de intensidade média para que o recurso esteja disponível quando for realmente necessário.</p>
+<p>Anote o que percebeu: a intensidade caiu? O tempo de recuperação foi diferente do habitual?</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Em alta ativação, o corpo precisa de resposta antes que a mente possa pensar. Estabilizar o sistema nervoso não é evitar a emoção: é criar as condições para processá-la.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-3---ativacao-moderada-quando-a-mente-ainda-pode-trabalhar">Capítulo 3 - Ativação moderada: quando a mente ainda pode trabalhar</h2>
+<p>Existe uma zona intermediária que muitas pessoas não reconhecem como tal. Não é crise, mas tampouco é calma. É o estado em que algo pesa, incomoda ou tensiona, mas ainda é possível pensar. O desconforto está presente e acessível, e isso é, na verdade, uma janela de oportunidade.</p>
+<p>É nessa faixa que as estratégias mais ricas de regulação emocional funcionam melhor. O sistema nervoso está suficientemente ativado para que a emoção seja real e viva, mas não tão saturado que a cognição fique comprometida. É quando vale a pena trabalhar, com atenção e com as ferramentas certas.</p>
+<h3>Nomear com precisão</h3>
+<p>O primeiro passo, e talvez o mais subestimado, é nomear a emoção com precisão. Não "estou mal". Não "estou estressado". Mas: estou ansioso, ou com raiva, ou envergonhado, ou com medo de decepcionar, ou sobrecarregado e ressentido.</p>
+<p>A pesquisadora Lisa Feldman Barrett chama esse grau de especificidade de <strong>granularidade emocional</strong>. Os dados são consistentes e reveladores: pessoas com maior granularidade emocional, ou seja, que conseguem distinguir com precisão entre emoções parecidas, regulam melhor seus estados do que aquelas que operam com categorias amplas e genéricas.</p>
+<p>Nomear com precisão não é apenas descritivo. É um ato regulatório em si mesmo. Quando o cérebro encontra uma categoria para o que está sendo sentido, a intensidade da experiência tende a diminuir. É como se o sistema nervoso pudesse organizar a experiência, em vez de deixá-la em aberto como uma ameaça sem nome.</p>
+<p>Aqui, o vocabulário emocional que você já explorou na Psicoeducação das Emoções se torna uma ferramenta direta. Qual emoção está ativa? Qual a intensidade, numa escala de zero a dez? Qual o pensamento que a acompanha? A precisão dessas respostas já é, em si, uma intervenção.</p>
+<h3>Respiração regulatória</h3>
+<p>A respiração é um dos poucos processos fisiológicos que são, ao mesmo tempo, involuntários e voluntários. Isso a torna uma ferramenta regulatória poderosa e sempre disponível.</p>
+<p>A <strong>respiração regulatória</strong> não é simplesmente respirar fundo. É manipular conscientemente a proporção entre inspiração e expiração para influenciar o sistema nervoso autônomo.</p>
+<p>A lógica é direta: a inspiração está associada à ativação simpática (alerta, ação). A expiração está associada à ativação parassimpática (descanso, recuperação). Prolongar a expiração é sinalizar ao sistema nervoso que pode desacelerar.</p>
+<p>Uma prática eficaz e acessível: inspire por quatro tempos, segure por quatro, expire por seis ou oito tempos. Repita por três a cinco minutos. O efeito não é imediato no primeiro ciclo, mas cumulativo ao longo da prática. Essa regularidade é o que constrói a habilidade.</p>
+<h3>Reestruturação cognitiva breve</h3>
+<p>Em ativação moderada, já é possível questionar o pensamento que está alimentando a emoção. Não para eliminá-lo, mas para examiná-lo.</p>
+<p>A <strong>reestruturação cognitiva</strong> não é convencer a si mesmo de que está tudo bem. É perguntar, com honestidade: esse pensamento é um fato ou uma interpretação? Existem outras formas de ler essa situação? O que eu diria a um amigo que estivesse pensando exatamente isso?</p>
+<p>Três perguntas que funcionam bem como ponto de entrada:</p>
+<p>Qual a evidência real que sustenta esse pensamento?</p>
+<p>Qual a interpretação alternativa mais realista - não a mais otimista, mas a mais equilibrada?</p>
+<p>O que esse pensamento está me pedindo para fazer, e isso serve ao que eu realmente quero?</p>
+<p>Não é necessário resolver tudo numa só vez. Às vezes, basta criar uma fresta de dúvida no pensamento que parecia absolutamente certo para que a emoção perca um pouco da sua urgência.</p>
+<h3>Movimento como regulação</h3>
+<p>O corpo não é um recipiente passivo das emoções. É um participante ativo do estado emocional, e intervenções físicas moderadas têm efeito documentado sobre o humor e a regulação emocional.</p>
+<p>Uma caminhada de dez minutos, um alongamento breve, a mudança consciente de postura ou de ambiente podem ser suficientes para alterar um estado que parecia fixo e permanente. O que importa não é a intensidade do movimento, mas a intencionalidade: mover o corpo como forma de regular o sistema, não para escapar do que está sentindo.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Complete a frase</div><p>Responda de forma rápida e honesta, sem filtrar em excesso:</p>
+<ul>
+<li>"A emoção que tenho mais dificuldade de nomear com precisão é..."</li>
+<li>"Quando estou em desconforto moderado, o primeiro pensamento que aparece costuma ser..."</li>
+<li>"O que costumo fazer com esse pensamento é..."</li>
+<li>"A leitura alternativa que eu nunca considero, mas que talvez fosse possível, seria..."</li>
+</ul>
+<p>O que aparece aqui costuma revelar padrões que operam abaixo da consciência habitual. Leve para a sessão.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Escolha um momento desta semana em que você notar um desconforto moderado. Antes de fazer qualquer coisa, faça as três perguntas da reestruturação cognitiva breve:</p>
+<ol>
+<li>Isso é fato ou interpretação?</li>
+<li>Qual a leitura mais realista?</li>
+<li>O que esse pensamento está me pedindo para fazer?</li>
+</ol>
+<p>Não precisa de resposta completa. Só a pausa e as perguntas já interrompem o piloto automático, e isso já é regulação.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Nomear com precisão, respirar com intenção e questionar com honestidade: três gestos que, praticados em ativação moderada, constroem o repertório disponível quando a intensidade for maior.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-4---baixa-ativacao-quando-o-sistema-precisa-de-impulso">Capítulo 4 - Baixa ativação: quando o sistema precisa de impulso</h2>
+<p>Existe um estado que não costuma ser reconhecido como desregulação emocional, justamente porque não dói da forma que estamos acostumados a reconhecer. Não há urgência, nem choro, nem angústia palpável. Há, em vez disso, uma espécie de espessura no ar: o dia passa, as coisas acontecem, mas nada parece alcançar realmente. Uma distância silenciosa entre o que acontece lá fora e a capacidade de ser tocado por isso.</p>
+<p>Esse estado, que a clínica reconhece como <strong>baixa ativação</strong> ou embotamento emocional, também é uma forma de desregulação. O sistema nervoso, quando submetido a estresse prolongado ou exaustão acumulada, pode entrar num modo de conservação que, de fora, parece calma, mas que, por dentro, é falta de contato com a própria experiência.</p>
+<p>Reconhecer isso importa porque as estratégias para baixa ativação são, em muitos aspectos, o oposto das estratégias para alta ativação. Em vez de desacelerar, o objetivo é reativar. Em vez de conter, o objetivo é mover.</p>
+<h3>Ativação comportamental</h3>
+<p>A <strong>ativação comportamental</strong> é uma das intervenções mais bem sustentadas pela pesquisa em TCC para estados de baixa energia, retraimento e desmotivação. A lógica que a sustenta é direta e vai contra a intuição habitual: em estados de baixa ativação, esperamos sentir vontade para agir. Mas a vontade, nesses estados, raramente precede a ação. Ela costuma seguir.</p>
+<p>Isso significa que agir antes de se sentir pronto não é forçar algo artificial. É criar as condições para que o estado mude. Pequenas ações, escolhidas com atenção, podem gerar micro-momentos de prazer, competência ou conexão que começam a mover o sistema de dentro para fora.</p>
+<p>A escolha das ações importa. Não se trata de fazer muito, mas de fazer algo que tenha algum significado ou que gere algum senso de conquista. Terminar uma tarefa e ver o resultado tem um efeito regulatório real. Sair de casa por vinte minutos, mesmo sem destino específico, pode ser o suficiente para interromper a inércia que parecia inabalável.</p>
+<h3>Autocompaixão como regulador</h3>
+<p>Paul Gilbert, o psicólogo que desenvolveu a <strong>Terapia Focada na Compaixão (CFT)</strong>, propõe que o sistema de ameaça e o sistema de calmante do cérebro são parcialmente independentes. Isso significa que reduzir o sofrimento não é apenas questão de parar de se criticar. Envolve também ativar, de forma intencional, o sistema de cuidado.</p>
+<p>A <strong>autocompaixão</strong> não é autoindulgência. Não é dizer "está tudo bem" quando não está. É reconhecer que o sofrimento que você está vivendo é real, que é humano estar assim, e que você merece cuidado, o mesmo tipo de cuidado que você provavelmente ofereceria, sem hesitar, a alguém que você ama.</p>
+<p>Kristin Neff, pesquisadora de referência no tema, identifica três componentes da autocompaixão: reconhecer o próprio sofrimento sem dramatizá-lo nem minimizá-lo, reconhecer que o sofrimento faz parte da experiência humana compartilhada, e oferecer a si mesmo a mesma gentileza que se ofereceria a outro.</p>
+<p>Uma prática simples e eficaz: quando perceber baixa ativação, coloque uma mão no peito, respire com atenção e diga mentalmente - "Isso é difícil. É humano que isso seja difícil. Posso cuidar de mim nesse momento.". Parece simples demais para funcionar. Mas o que é simples não é trivial.</p>
+<h3>Conexão com valores</h3>
+<p>Steven Hayes, criador da <strong>Terapia de Aceitação e Compromisso (ACT)</strong>, propõe que os valores, entendidos como direções de vida livremente escolhidas, são uma das âncoras mais estáveis em períodos de baixa ativação ou desconexão.</p>
+<p>Quando nada parece importar, uma pergunta pode funcionar como bússola: o que, mesmo agora, ainda tem algum peso para você? Não o que você deveria sentir, mas o que, na sua experiência mais honesta, ainda conta.</p>
+<p>Valores não são metas. Metas têm um fim, um ponto de chegada onde se pode declarar vitória. Valores são direções que podemos seguir em qualquer grau de intensidade emocional. Mesmo que não haja motivação para fazer algo grande, talvez exista impulso para fazer algo pequeno que aponte na direção do que importa. E esse gesto pequeno, feito com intenção, pode ser o início do movimento de retorno.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Perceba em você</div><p>Pense num período recente em que você se sentiu distante de si mesmo, ou sem energia para se engajar com o que normalmente te interessa.</p>
+<p>Observe:</p>
+<ol>
+<li>O que você costuma fazer nesses estados? (Isolar? Procrastinar? Distrair com telas?)</li>
+<li>Existe algo pequeno que, quando você consegue fazer, costuma devolver um pouco do contato com você mesmo?</li>
+<li>O que ainda importa para você nesse estado, mesmo que em tom baixo?</li>
+</ol>
+<p>Essas respostas apontam para o seu repertório de ativação pessoal, e ele é mais valioso do que qualquer lista genérica de estratégias.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Escolha uma ação pequena e intencional que aponte na direção de algo que importa para você. Não precisa ser impressionante. Precisa ser real e concreta.</p>
+<p>Depois de fazer, anote: o estado mudou? Mesmo que ligeiramente?</p>
+<p>A mudança não precisa ser dramática para ser regulação.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Em baixa ativação, a regulação começa com movimento: uma ação pequena, um gesto de cuidado, uma direção escolhida - mesmo quando nada parece urgente o suficiente para justificá-los.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-5---sobre-o-sofrimento-que-nao-passa">Capítulo 5 - Sobre o sofrimento que não passa</h2>
+<p>Existe uma distinção que a DBT tornou central e que transforma a forma como entendemos o trabalho com emoções difíceis. É a diferença entre <strong>sofrimento evitável</strong> e <strong>sofrimento inevitável</strong>.</p>
+<p>O sofrimento evitável é aquele que criamos ou amplificamos pelos nossos próprios padrões de resposta. Evitar sistematicamente algo que nos gera ansiedade aumenta a ansiedade no longo prazo. Ruminar sobre um evento passado que não pode ser mudado prolonga a tristeza indefinidamente. Reagir com explosão a toda situação percebida como injustiça gera consequências que, por sua vez, produzem mais sofrimento. Parte do trabalho terapêutico é justamente reduzir esse tipo de sofrimento construído.</p>
+<p>Mas existe também um sofrimento que não é evitável. Perda, luto, adoecimento, decepção, fracasso, os limites da existência… Esses sofrimentos não são sinais de que algo está errado com você. São sinais de que você é humano, e de que algumas coisas importam o suficiente para doerem quando não acontecem como desejado.</p>
+<h3>O que a resistência faz ao sofrimento</h3>
+<p>Há uma observação da prática contemplativa que a psicoterapia contemporânea encontrou por caminhos independentes: sofrimento somado à resistência ao sofrimento produz mais sofrimento.</p>
+<p>Lutar contra uma emoção inevitável, tentar eliminá-la, convencer-se de que não deveria sentir o que sente, costuma amplificar a intensidade e prolongar a duração da experiência emocional. A energia gasta na resistência é real. E ela não está disponível para o processamento.</p>
+<p>A <strong>aceitação</strong>, tal como a ACT a define, não é resignação passiva. Não é "está tudo bem" ou "não me afeta". É algo mais próximo de: "isso está acontecendo, e eu posso lidar com isso sem ser destruído por isso." É uma postura ativa de abertura ao que é, sem perder o contato com o que importa.</p>
+<p>É possível vislumbrar, ao longo do processo terapêutico, uma mudança sutil e profunda na relação com o sofrimento: de adversário a ser combatido para experiência a ser atravessada. Esse giro não elimina a dor. Mas muda o que fazemos com ela.</p>
+<h3>Habilidades de sobrevivência em crise</h3>
+<p>Quando o sofrimento é intenso e inevitável, o objetivo não é resolvê-lo imediatamente. O objetivo é atravessá-lo sem piorar a situação.</p>
+<p>A DBT chama esse conjunto de habilidades de <strong>tolerância ao mal-estar</strong>. Não são estratégias para eliminar o sofrimento, mas para sobreviver a ele com dignidade, sem agravar as consequências no longo prazo.</p>
+<p>Algumas delas merecem atenção aqui:</p>
+<p><strong>Prós e contras.</strong> Antes de agir impulsivamente em resposta a um sofrimento intenso, listar mentalmente os prós e contras da ação impulsiva versus os prós e contras de tolerar o momento. Não para decidir racionalmente tudo agora, mas para criar uma pausa entre o impulso e a ação. Uma pausa de segundos pode mudar o que vem depois.</p>
+<p><strong>Melhoria do momento.</strong> Introduzir algo que alivie ligeiramente o estado sem resolver o problema subjacente: uma música, uma imagem mental reconfortante, um chá, um banho quente. Não como fuga permanente, mas como intervenção pontual que torna o momento imediato mais suportável. A crise pode ser atendida depois, quando o sistema tiver se estabilizado.</p>
+<p><strong>Significado.</strong> Encontrar algum sentido, mesmo que pequeno e provisório, no que está sendo vivido. Não precisa ser grandioso. Pode ser: "estou aprendendo algo sobre mim nesse processo" ou "esse momento está me mostrando o que realmente importa." O sentido não elimina o sofrimento, mas transforma a relação com ele.</p>
+<h3>O que é possível tolerar</h3>
+<p>Uma das descobertas mais consistentes da psicoterapia é que as pessoas são capazes de tolerar muito mais do que acreditam. O problema frequente não é a ausência de capacidade, mas a crença, muitas vezes construída por histórias de vida específicas, de que o sofrimento vai durar para sempre, de que será demais, de que não haverá saída.</p>
+<p>Trabalhar a tolerância ao desconforto é, em parte, trabalhar essa crença. É colecionar evidências de que você já atravessou coisas difíceis antes. É observar que emoções intensas têm duração limitada quando não alimentadas por resistência. É aprender, na prática e no corpo, a diferença entre sofrimento e destruição.</p>
+<p>Você pode estar sofrendo e ainda estar inteiro.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Complete a frase</div><p>Responda com honestidade, sem pressa:</p>
+<ul>
+<li>"O sofrimento que eu mais evito é..."</li>
+<li>"Quando esse sofrimento aparece, eu costumo..."</li>
+<li>"O que eu temia que acontecesse se eu não evitasse é..."</li>
+<li>"Uma vez em que atravessei algo muito difícil e continuei aqui foi..."</li>
+</ul>
+<p>A última pergunta é especialmente importante. A experiência de ter sobrevivido é evidência real de capacidade. Ela merece ser lembrada, não guardada no silêncio.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Identifique uma situação desta semana em que você perceba a tentação de evitar ou resistir a um desconforto inevitável.</p>
+<p>Experimente uma postura diferente: em vez de resistir, observe. Não concorde, não celebre, mas tampouco lute. Apenas observe o que acontece com a intensidade quando você para de empurrar de volta.</p>
+<p>Anote o que percebeu.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Nem todo sofrimento pode ser evitado. Mas a forma como nos relacionamos com ele determina, em grande medida, o quanto ele permanece e o que ele nos faz.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-6---construindo-o-habito-regulatorio">Capítulo 6 - Construindo o hábito regulatório</h2>
+<p>Este material percorreu três faixas de ativação, apresentou um repertório de estratégias e propôs que a regulação emocional é uma habilidade que se constrói, não uma característica que se tem ou não se tem.</p>
+<p>Mas conhecimento não é habilidade. Ler sobre respiração regulatória e praticá-la quando o desconforto aparece são coisas completamente distintas. O intervalo entre essas duas coisas é onde mora o trabalho real, e é exatamente esse intervalo que este capítulo propõe atravessar.</p>
+<h3>Por que as estratégias falham no momento certo</h3>
+<p>Existe um fenômeno que qualquer pessoa em processo terapêutico já encontrou: a estratégia que parecia clara e aplicável na sessão simplesmente não veio à mente no momento em que era necessária.</p>
+<p>Isso não é falta de comprometimento. É o reflexo de um fato básico do aprendizado: habilidades que não foram praticadas de forma suficiente ainda não estão automatizadas. Em momentos de ativação emocional, o sistema nervoso tende a recorrer ao que é mais familiar. Se o familiar é evitar, reprimir ou reagir impulsivamente, é isso que vai acontecer, independentemente de quantas estratégias foram estudadas.</p>
+<p>A saída é prática deliberada, repetida e intencional em contextos de baixa pressão, antes que a crise chegue. O treinamento acontece quando não é necessário, para que o recurso esteja disponível quando for.</p>
+<h3>O mapa regulatório pessoal</h3>
+<p>Uma ferramenta simples e eficaz é construir o seu próprio <strong>mapa regulatório pessoal</strong>: um registro claro do que funciona para você em cada faixa de ativação.</p>
+<p>Não existe mapa universal. O que funciona para uma pessoa pode não funcionar para outra. Algumas pessoas regulam com movimento físico. Outras, com escrita. Outras, com contato com alguém de confiança, com música, com natureza. O objetivo é descobrir, por experiência própria e com atenção observacional, o que move o seu sistema em cada direção.</p>
+<p>O mapa tem três colunas:</p>
+<p><strong>Alta ativação:</strong> quais intervenções físicas estabilizam o meu sistema? (temperatura, respiração, movimento intenso, ancoragem sensorial)</p>
+<p><strong>Ativação moderada:</strong> quais estratégias me ajudam a trabalhar o que estou sentindo? (nomeação precisa, reestruturação cognitiva breve, respiração regulatória, movimento moderado)</p>
+<p><strong>Baixa ativação:</strong> quais ações me devolvem contato comigo mesmo? (ativação comportamental, autocompaixão, conexão com valores)</p>
+<p>Esse mapa não é construído de uma vez só. Ele vai sendo refinado com a experiência, a cada situação que você atravessa, a cada estratégia que você testa e avalia com honestidade.</p>
+<h3>A lógica da prática</h3>
+<p>Praticar regulação emocional quando se está regulado pode parecer desnecessário. Por que respirar com intenção se não estou ansioso? Por que praticar ancoragem quando estou bem?</p>
+<p>Mas é exatamente isso que constrói a habilidade: a prática preventiva, regular e consistente em condições tranquilas, torna o recurso disponível nos momentos de maior necessidade. Pesquisas sobre aprendizagem de habilidades comportamentais mostram que a repetição contextualizada é o que consolida uma resposta nova. Praticar a respiração regulatória todos os dias, por dois a três minutos, mesmo sem urgência, vai torná-la uma resposta mais acessível quando a urgência chegar.</p>
+<p>Pequeno, frequente e intencional supera grande, esporádico e motivado pela crise.</p>
+<h3>Um compromisso possível</h3>
+<p>Ao final deste material, a proposta não é que você transforme tudo de uma vez. É que você escolha uma prática, apenas uma, e a incorpore com consistência nos próximos 30 dias.</p>
+<p>Pode ser dois minutos de respiração regulatória ao acordar.</p>
+<p>Pode ser o hábito de nomear a emoção antes de reagir.</p>
+<p>Pode ser a pausa de dez segundos para identificar a faixa de ativação.</p>
+<p>Pode ser uma ação pequena, toda vez que notar baixa ativação, que aponte na direção de algo que importa.</p>
+<p>O que não pode ser é nada. Porque nada não constrói habilidade, e habilidade é o que transforma conhecimento em mudança real.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Registre</div><p>Dedique alguns minutos para esboçar o seu mapa. Não precisa estar completo ou definitivo. Comece com o que você já sabe e vai acrescentando com o tempo.</p>
+<p><strong>Quando estou em alta ativação, o que ajuda meu sistema a se estabilizar:</strong></p>
+<p><em>(espaço para escrita)</em></p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<p><strong>Quando estou em ativação moderada, o que me ajuda a trabalhar o que estou sentindo:</strong></p>
+<p><em>(espaço para escrita)</em></p>
+<hr />
+<p><strong>Quando estou em baixa ativação, o que me ajuda a retomar o contato comigo mesmo:</strong></p>
+<p><em>(espaço para escrita)</em></p>
+<hr />
+<p><strong>A prática que vou incorporar nos próximos 30 dias:</strong></p>
+<p><em>(espaço para escrita)</em></p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Compartilhe o mapa que você esboçou com o seu terapeuta. Ele pode ajudar a refinar o que já está lá e a preencher lacunas que ainda não são visíveis a partir de dentro.</p>
+<p>O processo terapêutico é, em grande medida, o lugar onde esse mapa vai sendo desenhado com mais precisão e mais profundidade. O que você faz entre as sessões é o que o torna real.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Regulação emocional não é um estado que se alcança de uma vez e se mantém para sempre. É uma prática que se sustenta, um passo de cada vez, em cada encontro com o que é difícil de sentir.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="consideracoes-finais">Considerações finais</h2>
+<p>Regulação emocional não é o destino final do processo terapêutico. É uma das habilidades que tornam esse processo possível.</p>
+<p>Quando conseguimos nos estabilizar diante do sofrimento, criamos espaço para o trabalho mais profundo que a terapia propõe: examinar as crenças que organizam nossas experiências, compreender os padrões que nos mantêm presos, construir formas de existir que sejam mais alinhadas com quem queremos ser.</p>
+<p>O que este material oferece são ferramentas para esse processo. Não substituem as sessões. Não apressam o trabalho interno. Mas tornam o intervalo entre as sessões mais navegável e mais rico.</p>
+<p>Leve o que encontrou aqui para a sessão. O mapa que você esboçou, as estratégias que funcionaram, as que não funcionaram, os momentos em que você tentou e não conseguiu. Tudo isso é material de trabalho, e é exatamente o tipo de material que move o processo para frente.</p>
+
+<div class="download-section">
+  <p>Você preencheu os exercícios deste material.<br>
+  Baixe um arquivo com todas as suas respostas para guardar ou levar à próxima sessão.</p>
+  <button class="btn-download" id="btn-download">Baixar minhas respostas</button>
+</div>
+
+</main>
+
+<footer class="doc-footer">
+  Material psicoeducativo de uso clínico &middot; Bruno Santana | Psicologia Clínica &middot; Destinado a pacientes em processo terapêutico
+</footer>
+
+<script>
+
+// Barra de progresso de leitura
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  const pct   = total > 0 ? (window.scrollY / total) * 100 : 0;
+  progressBar.style.width = pct + '%';
+});
+
+// Navegação de capítulos: marca o capítulo ativo
+const navLinks  = document.querySelectorAll('.chapter-nav a');
+const sections  = document.querySelectorAll('h2[id]');
+const observer  = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector('.chapter-nav a[href="#' + e.target.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// Download das respostas como TXT
+document.getElementById('btn-download').addEventListener('click', () => {
+  const fields = document.querySelectorAll('textarea.exercise-field');
+  let output   = '';
+  const title  = document.querySelector('.doc-title')?.textContent || 'Material';
+  const date   = new Date().toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
+
+  output += '='.repeat(60) + '\n';
+  output += title + '\n';
+  output += 'Respostas registradas em ' + date + '\n';
+  output += '='.repeat(60) + '\n\n';
+
+  fields.forEach((f, i) => {
+    const block    = f.closest('.exercise-block');
+    const exTitle  = block?.querySelector('.exercise-title')?.textContent || ('Exercício ' + (i+1));
+    const resp     = f.value.trim();
+    output += '[ ' + exTitle + ' ]\n';
+    output += (resp || '(sem resposta registrada)') + '\n\n';
+    output += '-'.repeat(40) + '\n\n';
+  });
+
+  const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = title.replace(/[^a-zA-Z0-9À-ú\s]/g, '').trim() + ' — Respostas.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+</script>
+
+</body>
+</html>
