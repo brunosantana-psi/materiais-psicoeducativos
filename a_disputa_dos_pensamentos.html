@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Disputa dos Pensamentos — Bruno Santana | Psicologia Clínica</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --sand:          #E8DFD3;
+  --sand-light:    #F2EDE6;
+  --cream:         #FAF8F5;
+  --linen:         #F5F0EB;
+  --amber:         #8B7340;
+  --amber-light:   #AA915A;
+  --amber-deep:    #6E5A32;
+  --forest:        #506B4A;
+  --forest-light:  #7A9472;
+  --forest-pale:   #D4DED0;
+  --deep-brown:    #3D2E22;
+  --walnut:        #5C4433;
+  --charcoal-warm: #4A4240;
+  --night-green:   #2C3B2E;
+  --stone:         #8C8078;
+  --stone-light:   #A69E96;
+  --fog:           #D4CCC4;
+  --white:         #FDFCFB;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Outfit', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--charcoal-warm);
+  line-height: 1.75;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── CABEÇALHO ── */
+.doc-header {
+  background: var(--night-green);
+  padding: 52px 40px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.doc-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light), var(--amber));
+}
+.doc-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber-light);
+  margin-bottom: 16px;
+}
+.doc-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 300;
+  color: var(--sand-light);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.doc-subtitle {
+  font-family: var(--serif);
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--forest-pale);
+}
+
+/* ── PROGRESSO ── */
+.progress-bar-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 3px;
+  background: var(--fog);
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light));
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ── NAVEGAÇÃO DE CAPÍTULOS ── */
+.chapter-nav {
+  background: rgba(250,248,245,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--fog);
+  padding: 0 40px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.chapter-nav::-webkit-scrollbar { display: none; }
+.chapter-nav a {
+  display: inline-block;
+  padding: 14px 0;
+  margin-right: 28px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--stone);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.25s, border-color 0.25s;
+}
+.chapter-nav a:hover,
+.chapter-nav a.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+/* ── CONTEÚDO ── */
+.doc-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 40px 80px;
+}
+
+/* ── METADADOS ── */
+.meta-block {
+  background: var(--linen);
+  border-left: 3px solid var(--amber-light);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  margin-bottom: 48px;
+  font-size: 13px;
+  color: var(--stone);
+  line-height: 1.8;
+}
+.meta-block strong { color: var(--walnut); font-weight: 500; }
+
+/* ── TÍTULOS ── */
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 300;
+  color: var(--deep-brown);
+  margin: 56px 0 20px;
+  line-height: 1.2;
+}
+h2 {
+  font-family: var(--serif);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin: 48px 0 16px;
+  line-height: 1.3;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--fog);
+}
+h3 {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--walnut);
+  margin: 36px 0 14px;
+}
+
+/* ── PARÁGRAFOS E LISTAS ── */
+p { font-size: 15px; margin-bottom: 18px; color: var(--charcoal-warm); }
+ul, ol { padding-left: 22px; margin-bottom: 18px; }
+li { font-size: 15px; margin-bottom: 6px; color: var(--charcoal-warm); }
+strong { font-weight: 500; color: var(--walnut); }
+em { font-style: italic; }
+hr { border: none; border-top: 1px solid var(--fog); margin: 40px 0; }
+.doc-body > hr:first-child { display: none; }
+h2:first-of-type { margin-top: 8px; }
+
+/* ── CITAÇÕES / CASOS CLÍNICOS ── */
+blockquote {
+  border-left: 3px solid var(--amber-light);
+  padding: 16px 20px;
+  margin: 28px 0;
+  background: var(--linen);
+  border-radius: 0 6px 6px 0;
+}
+blockquote p {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--walnut);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── FRASE DE ANCORAGEM ── */
+.anchor-phrase {
+  background: var(--night-green);
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin: 36px 0;
+}
+.anchor-phrase p {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--sand-light);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── BLOCOS DE EXERCÍCIO ── */
+.exercise-block {
+  background: var(--white);
+  border: 1px solid var(--fog);
+  border-top: 3px solid var(--amber);
+  border-radius: 0 0 10px 10px;
+  padding: 28px;
+  margin: 32px 0;
+}
+.exercise-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 10px;
+}
+.exercise-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin-bottom: 14px;
+}
+.exercise-block p {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block ul, .exercise-block ol {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block li { color: var(--stone); }
+
+textarea.exercise-field {
+  width: 100%;
+  min-height: 120px;
+  background: var(--cream);
+  border: 1px solid var(--fog);
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--charcoal-warm);
+  line-height: 1.7;
+  resize: vertical;
+  transition: border-color 0.2s;
+  margin-top: 10px;
+}
+textarea.exercise-field:focus {
+  outline: none;
+  border-color: var(--amber-light);
+  background: var(--white);
+}
+textarea.exercise-field::placeholder { color: var(--stone-light); }
+
+/* ── BOTÃO DE DOWNLOAD ── */
+.download-section {
+  background: var(--linen);
+  border-radius: 10px;
+  padding: 32px;
+  margin: 56px 0 0;
+  text-align: center;
+  border: 1px solid var(--fog);
+}
+.download-section p {
+  font-size: 13px;
+  color: var(--stone);
+  margin-bottom: 20px;
+}
+.btn-download {
+  display: inline-block;
+  padding: 13px 32px;
+  background: var(--amber);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+.btn-download:hover { background: var(--amber-deep); transform: translateY(-1px); }
+.btn-download:active { transform: translateY(0); }
+
+/* ── RODAPÉ ── */
+.doc-footer {
+  text-align: center;
+  padding: 32px 40px;
+  border-top: 1px solid var(--fog);
+  font-size: 11px;
+  color: var(--forest-pale);
+  letter-spacing: 0.5px;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 600px) {
+  .doc-header   { padding: 40px 24px 36px; }
+  .chapter-nav  { padding: 0 24px; }
+  .doc-body     { padding: 40px 24px 64px; }
+  .exercise-block { padding: 20px; }
+  .download-section { padding: 24px; }
+}
+
+/* ── ANIMAÇÃO DE ENTRADA ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.doc-body > * {
+  animation: fadeUp 0.5s ease both;
+}
+
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="doc-label">Material Psicoeducativo</div>
+  <h1 class="doc-title">A Disputa dos Pensamentos</h1>
+  <p class='doc-subtitle'>Compreendendo as distorções cognitivas e a reestruturação na prática</p>
+</header>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<nav class="chapter-nav"><a href="#metadados-da-cartilha">Metadados da Cartilha</a><a href="#apresentacao">Apresentação</a><a href="#capitulo-1-o-tribunal-da-mente"></a><a href="#capitulo-2-como-reconhecer-um-pensamento-que-nao-ajuda"></a><a href="#capitulo-3-os-oito-pares"></a><a href="#capitulo-4-a-disputa-em-quatro-passos"></a><a href="#capitulo-5-antes-de-disputar-validar"></a><a href="#encerramento">Encerramento</a></nav>
+
+<main class="doc-body">
+
+<hr />
+<h2 id="apresentacao">Apresentação</h2>
+<p>Esta cartilha é um convite para olharmos, juntos, para uma parte da nossa vida mental que costuma passar despercebida. Os pensamentos que surgem sozinhos, sem que peçamos, e que muitas vezes pintam a realidade com cores que não correspondem inteiramente a ela.</p>
+<p>Não vamos tratar esses pensamentos como inimigos. Eles têm história, têm motivo, e em algum momento provavelmente serviram a uma função importante. O que vamos aprender é a perceber quando esses pensamentos estão atrapalhando mais do que ajudando, e como podemos cultivar outras vozes internas, igualmente nossas, que oferecem leituras mais úteis.</p>
+<p>O caminho é gradual. Não se trata de pensar diferente da noite para o dia. Trata-se de criar espaço entre o pensamento automático e a ação, e de ir, com paciência, fortalecendo padrões mais funcionais.</p>
+<hr />
+<h2 id="capitulo-1-o-tribunal-da-mente">Capítulo 1: O tribunal da mente</h2>
+<h3>Uma cena que talvez seja familiar</h3>
+<p>Imagine que você cometeu um pequeno deslize numa reunião de trabalho. Talvez tenha trocado um número, ou demorado a responder uma pergunta. A reunião segue. Mas dentro de você, algo começa a fazer barulho. "Todo mundo notou. Vão achar que sou despreparado. Não vão me chamar para o próximo projeto."</p>
+<p>Esse barulho interno tem uma característica curiosa. Ele não pediu licença para aparecer. Veio sozinho, com tom de certeza, e levou junto sua atenção, seu corpo (talvez um aperto no peito, talvez um nó no estômago) e provavelmente o resto do seu dia.</p>
+<p>Esse é o território que vamos explorar nesta cartilha.</p>
+<h3>A mente como tribunal</h3>
+<p>Uma imagem que ajuda muito a entender o que acontece nesses momentos é pensar na mente como um tribunal. Toda situação relevante na vida passa por uma espécie de julgamento interno. Há vozes que acusam, vozes que defendem, e há você, no centro, ouvindo e decidindo.</p>
+<p>Em situações de sofrimento, percebemos que uma dessas vozes costuma falar mais alto. É uma voz parecida com a do promotor. Ela destaca o que deu errado, antecipa o que pode dar errado, e tende a interpretar gestos, silêncios e olhares no pior sentido possível. Na nossa linguagem, chamamos essas vozes de <strong>pensamentos que não ajudam</strong>. A literatura técnica as nomeia como distorções cognitivas.</p>
+<p>Existe também a voz do defensor. Ela não é a voz do "tudo vai dar certo" ingênuo. É uma voz que busca o quadro completo, que pondera, que considera evidências dos dois lados. Essa voz costuma estar mais baixa, especialmente quando estamos cansados, estressados ou inseguros. Vamos chamá-la de <strong>pensamento que ajuda</strong>.</p>
+<p>E há o juiz, que é você. A pessoa que escuta, que pesa, e que escolhe (com prática) a quem dar mais peso.</p>
+<h3>O que essa metáfora muda</h3>
+<p>Algumas coisas importantes acontecem quando passamos a olhar para nossa mente desse jeito.</p>
+<p>A primeira é que deixamos de ser o pensamento. Antes, era comum sentir "eu sou um fracasso". Agora, percebemos que existe um pensamento que diz "você é um fracasso", e que esse pensamento é apenas um dos advogados, não o veredicto.</p>
+<p>A segunda é que reconhecemos o direito de fala de ambas as vozes. Não vamos tentar calar o promotor à força. Vamos, em vez disso, garantir que o defensor também tenha tempo no microfone.</p>
+<p>A terceira é que o juiz tem uma escolha. Talvez não tenha controle sobre quais pensamentos aparecem (de fato, raramente temos). Mas tem cada vez mais escolha sobre em qual deles vai depositar peso, atenção e ação.</p>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Perceba em você</div><p>Pense numa situação recente em que algo te deixou abalado. Pode ser uma conversa difícil, uma cobrança no trabalho, uma decisão que precisou tomar.</p>
+<ul>
+<li>Qual pensamento apareceu primeiro? Como ele "soou" dentro de você?</li>
+<li>Havia outro pensamento possível, mais lá no fundo, que falava mais baixo?</li>
+<li>Como você se sentiu fisicamente quando o primeiro pensamento ganhou força?</li>
+</ul>
+<p>Não precisa responder por escrito agora. Apenas observe.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Experimente esta semana</div><p>Ao longo da próxima semana, sempre que sentir uma emoção desagradável forte (raiva, medo, tristeza, vergonha), pare por trinta segundos e faça uma pergunta simples a si mesmo: <strong>"qual foi o pensamento que passou pela minha cabeça segundos antes desse aperto?"</strong></p>
+<p>Não precisa fazer mais nada com o pensamento. Só identificá-lo. Como se você estivesse olhando para o promotor entrando na sala do tribunal e dizendo, em voz baixa, "ah, foi você que veio falar agora".</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para levar</div><p>Não somos nossos pensamentos automáticos. Somos quem os escuta. E quem escuta tem o poder, mesmo que ainda pequeno, de decidir a quem dar a palavra.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<h2 id="capitulo-2-como-reconhecer-um-pensamento-que-nao-ajuda">Capítulo 2: Como reconhecer um pensamento que não ajuda</h2>
+<h3>Nem toda dor é distorção</h3>
+<p>Antes de qualquer coisa, é importante deixar claro algo que muitas vezes se perde nesse tipo de trabalho. Nem todo pensamento desagradável é um pensamento que não ajuda.</p>
+<p>Se perdemos alguém que amamos e pensamos "estou com saudade, dói muito", isso não é distorção. É uma leitura precisa de uma dor real. Se alguém nos tratou com falta de respeito e pensamos "isso não foi justo", também não é distorção. É reconhecimento legítimo de uma situação injusta.</p>
+<p>A distorção começa quando o pensamento vai além do que a realidade comporta. Quando a saudade vira "ninguém nunca mais vai me amar". Quando a injustiça vira "todo mundo sempre vai me tratar mal".</p>
+<p>Manter essa distinção é fundamental, porque o objetivo nunca é eliminar todo desconforto, e sim devolver proporção àquilo que perdeu proporção.</p>
+<h3>As cinco marcas de um pensamento que não ajuda</h3>
+<p>Os pensamentos que não ajudam têm algumas características em comum. Conhecê-las é como aprender a reconhecer um rosto. No começo precisamos olhar com atenção, depois passamos a identificar quase de imediato.</p>
+<p><strong>1. Automaticidade.</strong> O pensamento aparece sem ser convidado. Não há decisão consciente por trás dele. Ele surge antes da reflexão, e geralmente vem com tom de verdade absoluta.</p>
+<p><strong>2. Generalização.</strong> Um evento específico vira regra universal. Um erro vira "sempre erro". Um silêncio vira "ele nunca presta atenção em mim". A palavra "nunca" e "sempre" frequentemente são pistas.</p>
+<p><strong>3. Rigidez.</strong> Mesmo quando aparecem evidências contrárias, o pensamento se mantém. Alguém pode te elogiar, mas o pensamento continua dizendo "ele só está sendo educado".</p>
+<p><strong>4. Impacto emocional desproporcional.</strong> O pensamento desencadeia emoções intensas, geralmente desagradáveis, que parecem maiores do que a situação real pediria.</p>
+<p><strong>5. Reforço de crenças mais profundas.</strong> O pensamento alimenta visões já antigas que carregamos sobre nós mesmos (sou incapaz, sou indigno de afeto), sobre o mundo (é hostil, é perigoso) ou sobre o futuro (não vai melhorar).</p>
+<p>Quando três ou quatro dessas marcas aparecem juntas, é grande a chance de estarmos diante de um pensamento que não ajuda.</p>
+<h3>Por que esses pensamentos existem</h3>
+<p>Talvez a pergunta mais importante deste capítulo seja esta: por que nossa mente produz pensamentos que nos atrapalham?</p>
+<p>A resposta não é "porque algo está errado em você". A resposta tem duas partes.</p>
+<p>A primeira é que esses pensamentos foram úteis em algum momento. Pensar o pior pode ter sido uma forma de antecipar perigos quando crescer num ambiente instável. Achar que estamos sendo julgados pode ter sido uma forma de proteção quando ser visto significou ser machucado. A mente aprende a se defender, e às vezes essa defesa continua ativa muito tempo depois de a ameaça ter passado.</p>
+<p>A segunda é que esses pensamentos foram reforçados pela repetição. Cada vez que pensamos da mesma forma diante de uma situação parecida, o caminho neural fica um pouco mais fácil de percorrer. Por isso, pensar diferente não é questão de força de vontade. É questão de prática paciente, repetida ao longo do tempo.</p>
+<p><strong>Distorção não é erro. É hábito.</strong> E hábitos, com cuidado e consistência, podem ser remodelados.</p>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Complete a frase</div><p>Tente, sem se cobrar muito, completar mentalmente as frases abaixo. Não precisa achar respostas elaboradas. O que vier primeiro já basta.</p>
+<ul>
+<li>"Um pensamento que aparece muito na minha cabeça e me deixa pior é..."</li>
+<li>"Quando esse pensamento aparece, costumo sentir, no corpo..."</li>
+<li>"Se eu pudesse dar um nome a esse pensamento (como um personagem), ele se chamaria..."</li>
+<li>"Esse pensamento, em algum momento da minha vida, talvez tenha me protegido de..."</li>
+</ul>
+<p>A última pergunta tende a ser a mais reveladora. Vale demorar nela.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Registre</div><p>Ao longo dos próximos sete dias, mantenha um pequeno registro. Pode ser num caderno, no celular, onde for mais prático. A cada vez que perceber um pensamento que não ajuda aparecendo, anote três coisas curtas: a situação, o pensamento exato (em uma frase) e a emoção que veio junto.</p>
+<p>Não precisa fazer mais nada com isso. O registro, por si só, já começa a mudar a relação com o pensamento. Aquilo que era automático e invisível passa a ser observável.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para levar</div><p>Reconhecer um pensamento que não ajuda não é acusá-lo. É olhar para ele com curiosidade, perceber sua função, e começar a abrir espaço para outras possibilidades.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<h2 id="capitulo-3-os-oito-pares">Capítulo 3: Os oito pares</h2>
+<h3>Por que pares</h3>
+<p>Pensamentos que não ajudam não desaparecem no vácuo. Eles cedem espaço quando outro pensamento, mais funcional, ocupa o lugar deles. Esse outro pensamento não é a versão "positiva" do anterior, e isso é importante. Não estamos trocando "vou fracassar" por "vou arrasar". Estamos trocando por algo mais útil e mais ancorado na realidade.</p>
+<p>Cada pensamento que não ajuda tem uma contraparte específica que chamamos de pensamento que ajuda. Não é otimismo ingênuo. É uma leitura mais completa da situação, que considera tanto o que pode dar errado quanto o que está dando certo, tanto o que falta quanto o que está disponível.</p>
+<p>Vamos conhecer os sete pares mais frequentes, com exemplos da vida real.</p>
+<h3>Derrotista × Esforçado</h3>
+<p><strong>Como ele soa</strong>: "Não adianta nem tentar a promoção. Tem gente bem melhor que eu na fila. Vou só me expor."</p>
+<p>O pensamento Derrotista desiste antes de começar. Ele economiza a frustração da tentativa, mas em troca tira de você qualquer chance de experiência nova.</p>
+<p><strong>A contraparte Esforçado</strong>: "Não tenho como saber se vou ser escolhido. O que está sob meu controle é me preparar bem e mostrar o que tenho a oferecer. O resto depende de outras variáveis."</p>
+<p>O Esforçado não promete resultado. Promete relação saudável com o processo.</p>
+<h3>Tudo ou Nada × Equilibrador</h3>
+<p><strong>Como ele soa</strong>: "Perdi essa semana inteira de academia. Pronto, estraguei tudo. Não tem como salvar essa rotina."</p>
+<p>O Tudo ou Nada divide a realidade em apenas duas categorias, geralmente ótimo e horrível. Não há meio-termo. Qualquer falha pequena é vivida como catástrofe total.</p>
+<p><strong>A contraparte Equilibrador</strong>: "Perdi uma semana. Não preciso recomeçar do zero, posso simplesmente retomar amanhã. Uma rotina não exige perfeição para funcionar."</p>
+<p>O Equilibrador devolve os tons intermediários, que são exatamente onde a vida real acontece.</p>
+<h3>Adivinhador × Verificador</h3>
+<p><strong>Como ele soa</strong>: "Ele está esquisito comigo desde ontem. Com certeza está com raiva por causa daquele comentário. Já sei como vai ser quando chegarmos em casa."</p>
+<p>O Adivinhador acredita que sabe o que os outros pensam ou o que vai acontecer, geralmente no pior sentido, e age com base nessa suposição como se fosse certeza.</p>
+<p><strong>A contraparte Verificador</strong>: "Notei que ele está mais calado. Não sei o motivo. Posso perguntar com calma, em vez de já agir como se estivesse certa do que está se passando."</p>
+<p>O Verificador troca certeza imaginada por curiosidade real.</p>
+<h3>Catastrófico × Otimista Realista</h3>
+<p><strong>Como ele soa</strong>: "Senti uma pontada estranha no peito. É um infarto. Estou tendo um infarto agora."</p>
+<p>O Catastrófico salta para o pior cenário possível, frequentemente pulando vários degraus intermediários muito mais prováveis.</p>
+<p><strong>A contraparte Otimista Realista</strong>: "Senti uma pontada. Já tive sensações parecidas em momentos de tensão, e passaram. Vou observar. Se persistir ou piorar, procuro avaliação médica."</p>
+<p>O Otimista Realista não nega risco. Apenas o coloca em proporção, e define um plano de ação concreto.</p>
+<h3>Exagerado × Equilibrador</h3>
+<p><strong>Como ele soa</strong>: "Tropecei em uma frase na apresentação. Foi um desastre total. Vão se lembrar disso por meses."</p>
+<p>O Exagerado infla a importância de pequenos eventos, ou então minimiza eventos que mereciam atenção. Funciona como uma lente que distorce o tamanho.</p>
+<p><strong>A contraparte Equilibrador</strong> (mesmo antídoto que o Tudo ou Nada, porque ambos pedem proporção): "Tive um tropeço numa parte. O restante da apresentação fluiu bem. As pessoas tendem a se lembrar mais do conteúdo geral do que de pequenos escorregões."</p>
+<p>O Equilibrador devolve a escala correta.</p>
+<h3>Carimbador × Autoconfiante</h3>
+<p><strong>Como ele soa</strong>: "Esqueci esse compromisso. Sou um desastre. Não consigo organizar nada na vida."</p>
+<p>O Carimbador cola rótulos fixos e negativos, em nós mesmos ou nos outros. Um comportamento específico vira identidade permanente.</p>
+<p><strong>A contraparte Autoconfiante</strong>: "Esqueci esse compromisso. Foi uma falha pontual. Posso me reorganizar, marcar outro encontro e pensar em estratégias para lembrar das próximas vezes. Isso não me define."</p>
+<p>O Autoconfiante separa o que fizemos do que somos.</p>
+<h3>Vitimizador × Corajoso</h3>
+<p><strong>Como ele soa</strong>: "Não tenho escolha. Preciso aguentar esse trabalho. Ninguém ia me dar oportunidade melhor."</p>
+<p>O Vitimizador coloca todo o controle do lado de fora. Há sempre algo ou alguém impedindo a mudança, e nada que possamos fazer.</p>
+<p><strong>A contraparte Corajoso</strong>: "Estou insatisfeito com a situação atual. Mudança não é fácil, mas posso começar a explorar alternativas, mesmo que devagar. Tenho mais agência do que costumo lembrar."</p>
+<p>O Corajoso não nega dificuldades. Reconhece-as e, ainda assim, reivindica autoria.</p>
+<h3>Uma observação importante</h3>
+<p>Você deve ter notado que dois pares compartilham o mesmo pensamento que ajuda, o Equilibrador. Isso é proposital. Tanto o Tudo ou Nada quanto o Exagerado pedem o mesmo antídoto funcional, que é a restauração da proporção, ainda que operem por mecanismos diferentes. Um binariza, o outro distorce a magnitude. O remédio, em ambos os casos, é o mesmo.</p>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Perceba em você</div><p>Releia os sete pares com calma. Tente identificar:</p>
+<ul>
+<li>Qual desses pensamentos que não ajudam aparece com mais frequência na sua vida hoje?</li>
+<li>Em quais contextos ele costuma aparecer (trabalho, relacionamento, parentalidade, autocuidado, dinheiro)?</li>
+<li>Qual emoção geralmente o acompanha?</li>
+</ul>
+<p>Não precisa identificar todos. Comece por um. O par que mais reverberou agora costuma ser o lugar certo para começar.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Experimente esta semana</div><p>Escolha um único par para observar nos próximos dias. Sempre que perceber o pensamento que não ajuda aparecendo, faça duas coisas: nomeie-o ("ah, é o Carimbador de novo") e escreva mentalmente, ou no papel, qual seria a fala da contraparte naquela situação específica.</p>
+<p>Não precisa acreditar de imediato na contraparte. Só ofereça espaço a ela. Como dar um copo de água a uma voz que andava com muita sede.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para levar</div><p>Cada pensamento que não ajuda tem um antídoto que é seu, próprio, específico. A reestruturação não é positividade genérica, é precisão.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<h2 id="capitulo-4-a-disputa-em-quatro-passos">Capítulo 4: A disputa em quatro passos</h2>
+<h3>Do reconhecimento à mudança</h3>
+<p>Já sabemos identificar os pensamentos que não ajudam, conhecemos suas marcas e seus pares. Agora podemos olhar para o processo concreto de transformar essa identificação em mudança vivida. Esse processo tem quatro passos, que se repetem ao longo do tempo, com pequenas variações.</p>
+<h3>Passo 1: Identificação</h3>
+<p>O primeiro passo é perceber, no momento em que está acontecendo, que um pensamento que não ajuda está ativo. Geralmente, o que avisa primeiro não é o pensamento em si, é o corpo e a emoção.</p>
+<p>Aquele aperto no peito, aquela vontade súbita de fugir, aquele aumento de irritação que parece desproporcional. Esses são sinais. Nossa tarefa é, ao notar o sinal, perguntar: "qual pensamento passou por mim agora?"</p>
+<p>Não precisamos achar resposta na primeira tentativa. Às vezes o pensamento é claro, às vezes é só uma sensação ainda sem palavras. Tudo bem. Com prática, fica mais fácil capturar.</p>
+<h3>Passo 2: Questionamento</h3>
+<p>Identificado o pensamento, abre-se o trabalho de examinar. Aqui usamos algumas perguntas que funcionam como instrumentos. Não são frases mágicas. São formas de criar distância suficiente para que outra leitura possa surgir.</p>
+<p>Algumas perguntas úteis:</p>
+<ul>
+<li>Que evidências eu tenho de que esse pensamento é verdadeiro?</li>
+<li>Que evidências eu tenho de que ele talvez não seja, ou seja apenas parte da verdade?</li>
+<li>Como eu interpretaria essa mesma situação se acontecesse com uma pessoa querida?</li>
+<li>Qual seria uma leitura mais equilibrada da situação?</li>
+<li>Esse pensamento, neste momento, está me ajudando ou está me atrapalhando?</li>
+</ul>
+<p>Essa última pergunta é particularmente potente, porque desvia da discussão de "verdadeiro ou falso" (que costuma ser inconclusiva) e foca em "útil ou não útil" (que é mais concreto).</p>
+<h3>Passo 3: Substituição</h3>
+<p>Com o exame feito, conseguimos formular a contraparte. Aqui vale lembrar de algo importante. O pensamento que ajuda não é uma frase de motivação genérica. Não é "vai dar tudo certo". É uma frase específica, ancorada em evidências reais da sua vida, que oferece uma leitura mais completa da situação.</p>
+<p>Compare:</p>
+<ul>
+<li>Genérico: "Eu sou capaz."</li>
+<li>Específico (Esforçado): "Já enfrentei situações parecidas antes, e mesmo quando não saiu como eu queria, eu aprendi algo. Posso me preparar e tentar."</li>
+</ul>
+<p>A diferença não é só estilística. A frase genérica frequentemente não convence quem a diz. A frase específica oferece base.</p>
+<h3>Passo 4: Prática</h3>
+<p>E aqui chegamos ao passo que costuma ser o mais subestimado. A reestruturação não acontece numa única vez. Não basta ter formulado a contraparte uma vez para que ela passe a aparecer automaticamente no lugar do pensamento antigo.</p>
+<p>A mente trabalha por repetição. Os pensamentos que hoje aparecem sozinhos foram, em algum momento, novos. Eles se consolidaram porque foram pensados muitas vezes, em muitas situações. O mesmo precisa acontecer com os pensamentos que ajudam.</p>
+<p>Por isso a prática diária importa. E por isso, também, falamos em experimentos comportamentais. Às vezes a melhor forma de fazer um pensamento que ajuda virar habitual não é discuti-lo, é testá-lo. Agir como se ele fosse verdade e ver o que acontece.</p>
+<p>Por exemplo, alguém com Adivinhador frequente, que evita conversas porque acha que a pessoa está com raiva, pode fazer o experimento de perguntar diretamente "está tudo bem entre a gente?" e observar a resposta real. A evidência colhida na ação costuma ser muito mais convincente do que qualquer argumento mental.</p>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Complete a frase</div><p>Pense num pensamento que não ajuda que você identificou recentemente. Tente, com calma:</p>
+<ul>
+<li>"A evidência que parece sustentar esse pensamento é..."</li>
+<li>"A evidência que talvez o contradiga, ou complete, é..."</li>
+<li>"Se uma pessoa querida estivesse no meu lugar, eu diria a ela que..."</li>
+<li>"Um pensamento que ajuda, específico para essa situação, seria..."</li>
+</ul>
+<p>Se a última lacuna ficar em branco, tudo bem. Às vezes precisamos de tempo, e às vezes precisamos do espaço da terapia para construir a contraparte. Não há pressa.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Experimente esta semana</div><p>Escolha uma situação concreta dos próximos dias em que você suspeita que um pensamento que não ajuda costuma aparecer. Defina, com antecedência, um pequeno experimento comportamental.</p>
+<p>Por exemplo: se o pensamento é "se eu falar, vou parecer despreparado na reunião", o experimento pode ser falar uma vez na próxima reunião, mesmo que seja uma observação curta. Depois, observe o que de fato aconteceu. Não o que sua mente previu, o que aconteceu.</p>
+<p>Anote o resultado. Essa anotação vira munição para o passo da prática.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para levar</div><p>A disputa cognitiva não é uma discussão filosófica dentro da cabeça. É um processo prático, com passos concretos, que se consolida pela repetição paciente e pela experiência vivida.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<h2 id="capitulo-5-antes-de-disputar-validar">Capítulo 5: Antes de disputar, validar</h2>
+<h3>Um princípio que costuma ser invertido</h3>
+<p>Há um erro frequente que vale a pena nomear desde já. Muita gente, ao começar a trabalhar com pensamentos que não ajudam, tenta disputá-los exatamente no momento em que a emoção está mais forte. O resultado costuma ser frustrante. A pessoa argumenta mentalmente, sabe racionalmente que o pensamento é desproporcional, e ainda assim continua sofrendo.</p>
+<p>Isso não acontece porque o método não funciona. Acontece porque está sendo aplicado fora da ordem certa. <strong>Antes de disputar o pensamento, precisamos validar a emoção.</strong></p>
+<h3>Por que a ordem importa</h3>
+<p>Quando estamos emocionalmente ativados, com o corpo em alerta, com batimentos acelerados, com a respiração curta, nossa capacidade de pensar com flexibilidade fica reduzida. O sistema que governa a emoção (mais antigo, mais rápido) tem prioridade naquele instante sobre o sistema que governa a reflexão (mais novo, mais lento).</p>
+<p>Tentar reestruturar no auge da ativação é como tentar ler um livro de filosofia enquanto o alarme de incêndio está tocando. Não é falta de capacidade. É contexto inadequado.</p>
+<p>A validação emocional muda esse contexto. Quando reconhecemos a emoção, damos nome a ela, acolhemos seu lugar legítimo, o sistema corporal começa a se acalmar. Só então o espaço para a disputa cognitiva se abre.</p>
+<h3>Como validar uma emoção</h3>
+<p>Validar não é concordar com tudo que a emoção sugere. É reconhecer que ela existe, faz sentido (mesmo que parcialmente) e merece atenção.</p>
+<p>Algumas frases que funcionam como ponte:</p>
+<ul>
+<li>"Faz sentido eu estar me sentindo assim agora, considerando o que aconteceu."</li>
+<li>"Essa emoção está aqui por algum motivo. Posso escutar antes de tentar mudá-la."</li>
+<li>"Não preciso resolver isso agora. Posso só ficar com o que estou sentindo, por um momento."</li>
+</ul>
+<p>A validação pode durar alguns minutos, ou às vezes algumas horas, dependendo da intensidade. Quando o corpo se acalma, quando a pulsação volta a um ritmo confortável, quando conseguimos respirar mais fundo sem esforço, é sinal de que o terreno está pronto para a próxima etapa.</p>
+<h3>Quando não disputar</h3>
+<p>Existe um caso ainda mais importante de reconhecer. Há situações em que o pensamento desagradável não é uma distorção. É uma leitura precisa de uma realidade dolorosa.</p>
+<p>Tristeza diante de uma perda real não precisa ser disputada. Precisa ser sentida.</p>
+<p>Medo diante de uma ameaça real não precisa ser disputado. Precisa ser respeitado, e a ameaça precisa ser tratada.</p>
+<p>Raiva diante de uma injustiça real não precisa ser disputada. Precisa ser ouvida, e talvez transformada em ação assertiva.</p>
+<p>Vergonha diante de algo que viola seus valores não precisa ser disputada. Precisa ser examinada como sinal de algo que você quer reparar.</p>
+<p>Tentar reestruturar uma emoção legítima é invalidá-la. E invalidar emoções legítimas, especialmente as próprias, é uma das formas mais frequentes de manter o sofrimento ativo no longo prazo.</p>
+<p>Por isso, antes de qualquer disputa, vale a pergunta: <strong>essa emoção está respondendo a algo real, proporcional e atual, ou está respondendo a uma leitura distorcida da situação?</strong> Se a resposta for a primeira, o trabalho ali não é cognitivo. É emocional.</p>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Respire e observe</div><p>Quando uma emoção forte aparecer nos próximos dias, antes de tentar mudar qualquer coisa, experimente este passo simples.</p>
+<p>Sente-se por alguns instantes. Sinta o ar entrando e saindo, sem mudar o ritmo. Coloque uma mão sobre o peito ou sobre a barriga. Diga internamente, em silêncio, alguma frase como "estou sentindo medo" ou "estou sentindo tristeza", ou outra que descreva o que está aí.</p>
+<p>Permita que a emoção esteja, por dois ou três minutos, sem que você precise fazer nada com ela. Observe se há mudança. Observe se o corpo relaxa um pouco. Observe se, depois, surge espaço para olhar para o pensamento que veio junto.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Registre</div><p>Mantenha, durante a próxima semana, um registro emocional simples. A cada emoção forte que aparecer, anote:</p>
+<ul>
+<li>O que aconteceu (a situação)</li>
+<li>A emoção principal e sua intensidade de 0 a 10</li>
+<li>Se a emoção parecia proporcional à situação, ou desproporcional</li>
+<li>Se houve um pensamento que não ajuda associado</li>
+</ul>
+<p>Esse registro, com o tempo, ajuda a discriminar duas categorias importantes: as emoções que pedem espaço (e tempo) e as emoções que estão sendo amplificadas por distorções cognitivas. As primeiras pedem cuidado e acolhimento. As segundas se beneficiam da disputa.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para levar</div><p>A reestruturação cognitiva só funciona em terreno acolhido. Validar a emoção primeiro não é uma etapa extra, é a condição que torna tudo o que vem depois possível.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<h2 id="encerramento">Encerramento</h2>
+<p>Chegamos ao fim desta cartilha, mas o trabalho começa agora.</p>
+<p>O que vimos aqui é menos um conjunto de técnicas e mais uma forma diferente de habitar a própria mente. Uma forma em que os pensamentos que aparecem não são mais lei, são apenas vozes. Uma forma em que somos, gradualmente, juízes mais experientes do que tem direito a peso na nossa vida.</p>
+<p>Vale lembrar de algumas coisas para o caminho.</p>
+<p>A primeira é que distorção não é erro. É hábito. E hábitos foram aprendidos por bons motivos, mesmo que hoje atrapalhem. Olhar para eles com curiosidade e cuidado funciona melhor do que olhar com julgamento.</p>
+<p>A segunda é que a mudança é gradual. Não esperamos sentir diferente de um dia para o outro. Esperamos, com prática, perceber em algumas semanas que aquele pensamento que sempre nos derrubava agora demora um pouco mais para nos derrubar. Que aquela voz interna severa começa a aparecer com outra mais branda ao lado. Que o tribunal interno, antes dominado por uma única voz, começa a abrigar mais nuance.</p>
+<p>A terceira é que validar antes de disputar não é luxo, é fundamento. Toda vez que tentamos pular essa etapa, o trabalho cognitivo perde força. O cuidado com a emoção é o solo em que a reestruturação enraíza.</p>
+<p>Por fim, lembre-se de que você não está sozinho nesse processo. A terapia é o lugar onde esse trabalho se aprofunda, onde podemos olhar juntos para os pensamentos mais difíceis, e onde construímos, no seu ritmo, as contrapartes mais ajustadas para a sua história.</p>
+<p>A disputa dos pensamentos não termina. Mas, com o tempo, ela fica menos desgastante. E o juiz interno, que é você, vai descobrindo uma autoridade que antes parecia distante.</p>
+<p>Boa caminhada.</p>
+
+<div class="download-section">
+  <p>Você preencheu os exercícios deste material.<br>
+  Baixe um arquivo com todas as suas respostas para guardar ou levar à próxima sessão.</p>
+  <button class="btn-download" id="btn-download">Baixar minhas respostas</button>
+</div>
+
+</main>
+
+<footer class="doc-footer">
+  Material psicoeducativo de uso clínico &middot; Bruno Santana | Psicologia Clínica &middot; Destinado a pacientes em processo terapêutico
+</footer>
+
+<script>
+
+// Barra de progresso de leitura
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  const pct   = total > 0 ? (window.scrollY / total) * 100 : 0;
+  progressBar.style.width = pct + '%';
+});
+
+// Navegação de capítulos: marca o capítulo ativo
+const navLinks  = document.querySelectorAll('.chapter-nav a');
+const sections  = document.querySelectorAll('h2[id]');
+const observer  = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector('.chapter-nav a[href="#' + e.target.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// Download das respostas como TXT
+document.getElementById('btn-download').addEventListener('click', () => {
+  const fields = document.querySelectorAll('textarea.exercise-field');
+  let output   = '';
+  const title  = document.querySelector('.doc-title')?.textContent || 'Material';
+  const date   = new Date().toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
+
+  output += '='.repeat(60) + '\n';
+  output += title + '\n';
+  output += 'Respostas registradas em ' + date + '\n';
+  output += '='.repeat(60) + '\n\n';
+
+  fields.forEach((f, i) => {
+    const block    = f.closest('.exercise-block');
+    const exTitle  = block?.querySelector('.exercise-title')?.textContent || ('Exercício ' + (i+1));
+    const resp     = f.value.trim();
+    output += '[ ' + exTitle + ' ]\n';
+    output += (resp || '(sem resposta registrada)') + '\n\n';
+    output += '-'.repeat(40) + '\n\n';
+  });
+
+  const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = title.replace(/[^a-zA-Z0-9À-ú\s]/g, '').trim() + ' — Respostas.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+</script>
+
+</body>
+</html>
