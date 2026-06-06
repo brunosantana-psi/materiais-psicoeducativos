@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untitled — Bruno Santana | Psicologia Clínica</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --sand:          #E8DFD3;
+  --sand-light:    #F2EDE6;
+  --cream:         #FAF8F5;
+  --linen:         #F5F0EB;
+  --amber:         #8B7340;
+  --amber-light:   #AA915A;
+  --amber-deep:    #6E5A32;
+  --forest:        #506B4A;
+  --forest-light:  #7A9472;
+  --forest-pale:   #D4DED0;
+  --deep-brown:    #3D2E22;
+  --walnut:        #5C4433;
+  --charcoal-warm: #4A4240;
+  --night-green:   #2C3B2E;
+  --stone:         #8C8078;
+  --stone-light:   #A69E96;
+  --fog:           #D4CCC4;
+  --white:         #FDFCFB;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'Outfit', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--charcoal-warm);
+  line-height: 1.75;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── CABEÇALHO ── */
+.doc-header {
+  background: var(--night-green);
+  padding: 52px 40px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.doc-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light), var(--amber));
+}
+.doc-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--amber-light);
+  margin-bottom: 16px;
+}
+.doc-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 300;
+  color: var(--sand-light);
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.doc-subtitle {
+  font-family: var(--serif);
+  font-size: clamp(14px, 2.5vw, 18px);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--forest-pale);
+}
+
+/* ── PROGRESSO ── */
+.progress-bar-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 3px;
+  background: var(--fog);
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--amber-deep), var(--amber-light));
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* ── NAVEGAÇÃO DE CAPÍTULOS ── */
+.chapter-nav {
+  background: rgba(250,248,245,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--fog);
+  padding: 0 40px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.chapter-nav::-webkit-scrollbar { display: none; }
+.chapter-nav a {
+  display: inline-block;
+  padding: 14px 0;
+  margin-right: 28px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--stone);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.25s, border-color 0.25s;
+}
+.chapter-nav a:hover,
+.chapter-nav a.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+/* ── CONTEÚDO ── */
+.doc-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 40px 80px;
+}
+
+/* ── METADADOS ── */
+.meta-block {
+  background: var(--linen);
+  border-left: 3px solid var(--amber-light);
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  margin-bottom: 48px;
+  font-size: 13px;
+  color: var(--stone);
+  line-height: 1.8;
+}
+.meta-block strong { color: var(--walnut); font-weight: 500; }
+
+/* ── TÍTULOS ── */
+h1 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 300;
+  color: var(--deep-brown);
+  margin: 56px 0 20px;
+  line-height: 1.2;
+}
+h2 {
+  font-family: var(--serif);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin: 48px 0 16px;
+  line-height: 1.3;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--fog);
+}
+h3 {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--walnut);
+  margin: 36px 0 14px;
+}
+
+/* ── PARÁGRAFOS E LISTAS ── */
+p { font-size: 15px; margin-bottom: 18px; color: var(--charcoal-warm); }
+ul, ol { padding-left: 22px; margin-bottom: 18px; }
+li { font-size: 15px; margin-bottom: 6px; color: var(--charcoal-warm); }
+strong { font-weight: 500; color: var(--walnut); }
+em { font-style: italic; }
+hr { border: none; border-top: 1px solid var(--fog); margin: 40px 0; }
+.doc-body > hr:first-child { display: none; }
+h2:first-of-type { margin-top: 8px; }
+
+/* ── CITAÇÕES / CASOS CLÍNICOS ── */
+blockquote {
+  border-left: 3px solid var(--amber-light);
+  padding: 16px 20px;
+  margin: 28px 0;
+  background: var(--linen);
+  border-radius: 0 6px 6px 0;
+}
+blockquote p {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--walnut);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── FRASE DE ANCORAGEM ── */
+.anchor-phrase {
+  background: var(--night-green);
+  border-radius: 8px;
+  padding: 24px 28px;
+  margin: 36px 0;
+}
+.anchor-phrase p {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--sand-light);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── BLOCOS DE EXERCÍCIO ── */
+.exercise-block {
+  background: var(--white);
+  border: 1px solid var(--fog);
+  border-top: 3px solid var(--amber);
+  border-radius: 0 0 10px 10px;
+  padding: 28px;
+  margin: 32px 0;
+}
+.exercise-label {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 10px;
+}
+.exercise-title {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--deep-brown);
+  margin-bottom: 14px;
+}
+.exercise-block p {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block ul, .exercise-block ol {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 14px;
+}
+.exercise-block li { color: var(--stone); }
+
+textarea.exercise-field {
+  width: 100%;
+  min-height: 120px;
+  background: var(--cream);
+  border: 1px solid var(--fog);
+  border-radius: 6px;
+  padding: 14px 16px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--charcoal-warm);
+  line-height: 1.7;
+  resize: vertical;
+  transition: border-color 0.2s;
+  margin-top: 10px;
+}
+textarea.exercise-field:focus {
+  outline: none;
+  border-color: var(--amber-light);
+  background: var(--white);
+}
+textarea.exercise-field::placeholder { color: var(--stone-light); }
+
+/* ── BOTÃO DE DOWNLOAD ── */
+.download-section {
+  background: var(--linen);
+  border-radius: 10px;
+  padding: 32px;
+  margin: 56px 0 0;
+  text-align: center;
+  border: 1px solid var(--fog);
+}
+.download-section p {
+  font-size: 13px;
+  color: var(--stone);
+  margin-bottom: 20px;
+}
+.btn-download {
+  display: inline-block;
+  padding: 13px 32px;
+  background: var(--amber);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+.btn-download:hover { background: var(--amber-deep); transform: translateY(-1px); }
+.btn-download:active { transform: translateY(0); }
+
+/* ── RODAPÉ ── */
+.doc-footer {
+  text-align: center;
+  padding: 32px 40px;
+  border-top: 1px solid var(--fog);
+  font-size: 11px;
+  color: var(--forest-pale);
+  letter-spacing: 0.5px;
+}
+
+/* ── RESPONSIVO ── */
+@media (max-width: 600px) {
+  .doc-header   { padding: 40px 24px 36px; }
+  .chapter-nav  { padding: 0 24px; }
+  .doc-body     { padding: 40px 24px 64px; }
+  .exercise-block { padding: 20px; }
+  .download-section { padding: 24px; }
+}
+
+/* ── ANIMAÇÃO DE ENTRADA ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.doc-body > * {
+  animation: fadeUp 0.5s ease both;
+}
+
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <div class="doc-label">Material Psicoeducativo</div>
+  <h1 class="doc-title">Untitled</h1>
+  
+</header>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progress-bar"></div>
+</div>
+
+<nav class="chapter-nav"><a href="#um-guia-sobre-comunicacao-assertiva">Um guia sobre comunicação assertiva</a><a href="#capitulo-1---a-regua-que-todos-carregamos"></a><a href="#capitulo-2---de-onde-vem-o-silencio-aprendido"></a><a href="#capitulo-3---a-estrutura-da-fala-assertiva"></a><a href="#capitulo-4---assertividade-nas-situacoes-do-dia-a-dia"></a><a href="#capitulo-5---assertividade-como-regulacao-emocional"></a><a href="#capitulo-6---praticando-em-campo-real"></a><a href="#consideracoes-finais">Considerações finais</a></nav>
+
+<main class="doc-body">
+
+<h2 id="um-guia-sobre-comunicacao-assertiva">Um guia sobre comunicação assertiva</h2>
+<h2 id="capitulo-1---a-regua-que-todos-carregamos">Capítulo 1 - A régua que todos carregamos</h2>
+<p>Se você passou pela Psicoeducação das Emoções, já encontrou a régua da assertividade. Ela apareceu lá como um conceito de passagem, uma imagem útil para entender que nem sempre reagimos da forma que gostaríamos. Neste material, vamos nos demorar nela. Vamos entender como ela funciona, por que tendemos a ficar presos em certos pontos, e o que é possível fazer quando percebemos que nossa comunicação se afastou de onde gostaríamos estar.</p>
+<p>A primeira coisa que vale dizer - e que muda a forma como olhamos para tudo o que vem depois - é esta: passividade, assertividade e agressividade não são tipos de personalidade. Não são rótulos que descrevem quem somos. São <strong>estilos de comunicação</strong>, e todos nós transitamos por eles dependendo do momento, do contexto e do estado emocional em que estamos.</p>
+<hr />
+<h3>Três estilos, não três tipos de pessoa</h3>
+<p>Imagine a régua como uma escala ou balança. Em uma extremidade, está a <strong>passividade</strong>: a tendência de minimizar as próprias necessidades, calar emoções, ceder antes mesmo de tentar, evitar o confronto a qualquer custo. Na outra extremidade, está a <strong>agressividade</strong>: a tendência de impor, pressionar, desrespeitar os limites do outro na tentativa de garantir os próprios. No centro, está a <strong>assertividade</strong>: a capacidade de expressar o que se sente, o que se pensa e o que se precisa, de forma clara e respeitosa, sem abrir mão de si mesmo nem desrespeitar o outro.</p>
+<p>Esses estilos não são fixos. Uma pessoa pode ser muito assertiva no trabalho, onde se sente segura e competente, e profundamente passiva com a família, onde o peso da história fala mais alto. A mesma pessoa pode ser gentil e cuidadosa em situações tranquilas, e tornar-se agressiva quando está exausta, pressionada ou sentindo que ninguém está ouvindo. O estilo que aparece não é o retrato definitivo de quem somos. É a resposta que aprendemos a dar em determinado contexto.</p>
+<p>Perceber isso muda a pergunta. Em vez de "sou uma pessoa sonsa ou capacho?" ou "sou agressivo demais?", passamos a perguntar: em quais situações minha comunicação se afasta da assertividade, e o que está acontecendo quando isso ocorre? Essa pergunta é mais honesta. E é muito mais útil.</p>
+<hr />
+<h3>O que cada estilo custa</h3>
+<p>Todos os três estilos têm uma lógica interna. A passividade, muitas vezes, protege o vínculo: quem aprendeu que expressar opiniões gera conflito vai preferir o silêncio ao risco de perder a conexão. A agressividade, em muitos casos, é uma forma desesperada de se fazer sentir e de se defender. Ambas as estratégias têm raízes compreensíveis, e não há por que se culpar por usá-las.</p>
+<p>O problema é o custo que cada extremo cobra ao longo do tempo. Quem vive na passividade acumula: emoções não expressas, necessidades não atendidas, uma sensação crescente de invisibilidade! Quem vive na agressividade paga um preço nos vínculos: afasta pessoas, gera culpa, desgasta as relações que mais importam! A assertividade não é um ideal distante. É simplesmente o estilo que, com mais frequência, consegue equilibrar respeito por si mesmo e respeito pelo outro ao mesmo tempo.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Perceba em você</div><p>Pense em três relacionamentos ou contextos diferentes da sua vida atual: pode ser o trabalho, a família, um relacionamento afetivo ou um grupo de amigos.</p>
+<p>Para cada um, responda:</p>
+<ol>
+<li>Como você costuma agir quando precisa expressar uma opinião diferente?</li>
+<li>O que acontece quando algo te incomoda? Você fala, evita ou explode?</li>
+<li>Quando você tem uma necessidade, como costuma comunicá-la?</li>
+</ol>
+<p>Não há resposta certa. O exercício é mapear onde você tende a estar na régua em cada contexto, sem julgamento. Às vezes, o padrão que aparece surpreende.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Escolha uma situação em que você perceba a régua em ação. Pode ser no trabalho, em casa ou numa relação próxima. Observe:</p>
+<ul>
+<li>Em que ponto da régua você esteve?</li>
+<li>O que estava sentindo naquele momento?</li>
+<li>Se pudesse revisar a cena, o que teria feito de diferente?</li>
+</ul>
+<p>Anote o que perceber. Sem autocobrança. A observação já é o primeiro movimento.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Passividade e agressividade não são quem somos. São o que aprendemos a fazer em determinados contextos, e o que se aprende pode ser revisto.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-2---de-onde-vem-o-silencio-aprendido">Capítulo 2 - De onde vem o silêncio aprendido</h2>
+<p>Assertividade não é uma habilidade que vem naturalmente para a maioria das pessoas. Se fosse, não seria necessário falar sobre ela. O que vem naturalmente são os padrões que construímos ao longo da vida. Formas de nos relacionar que foram moldadas pelas mensagens que recebemos, pelas experiências que tivemos e pelas conclusões que tiramos sobre o que acontece quando nos expressamos.</p>
+<p>Para entender por que é difícil ser assertivo, precisamos olhar para onde essa dificuldade começou.</p>
+<hr />
+<h3>As mensagens que moldaram a voz</h3>
+<p>Desde muito cedo, recebemos mensagens - explícitas ou implícitas - sobre o que é aceitável ou não na expressão de sentimentos e opiniões. Essas mensagens chegam de lugares diferentes: da família, da escola, de relações afetivas, da cultura. Muitas delas tinham boa intenção por trás, mesmo quando o efeito tenha sido restritivo.</p>
+<p>Às vezes as mensagens eram diretas: "não faz cara feia!", "para de reclamar!", "quem você é para discordar?". Às vezes eram gestos, silêncios, reações que ensinavam sem palavras: quando peço, gero fardo. Quando discordo, gero conflito. Quando expresso o que sinto, sou demais.</p>
+<p>Caminha e Caminha, ao descreverem o funcionamento das emoções, nomeiam esse processo como <strong>invalidação social</strong>: quando nossas emoções são repetidamente ignoradas, minimizadas ou punidas, aprendemos a duvidar delas. Aprendemos que sentir raiva é "ser difícil", que sentir tristeza é "fraqueza", que sentir medo é "exagero". E, se a emoção em si já parece inapropriada, como seria possível expressá-la?</p>
+<p>É assim que o déficit assertivo muitas vezes se instala. Não porque a pessoa seja incapaz ou covarde. Mas porque aprendeu, de formas muito concretas, que se expressar é arriscado.</p>
+<hr />
+<h3>As regras que construímos</h3>
+<p>A partir dessas experiências, construímos premissas sobre como as coisas funcionam. Aaron Beck chamou essas premissas de <strong>crenças intermediárias</strong>: regras implícitas sobre o que é necessário para sermos aceitos, valorizados ou estar seguros. No campo da assertividade, elas costumam aparecer em formatos como:</p>
+<ul>
+<li>"Se eu pedir o que preciso, vou parecer egoísta."</li>
+<li>"Se eu discordar, vou destruir o relacionamento."</li>
+<li>"Se eu colocar um limite, as pessoas vão me rejeitar."</li>
+<li>"Conflito é perigoso. É melhor ceder."</li>
+<li>"Eu não mereço ocupar tanto espaço."</li>
+</ul>
+<p>Essas regras não estão escritas em nenhum lugar. Mas elas orientam o comportamento com uma precisão surpreendente! Como paredes invisíveis que aparecem toda vez que tentamos nos aproximar da expressão autêntica.</p>
+<p>O que este material propõe não é apagar esse aprendizado. Não é tão simples quanto isso. O que propomos é começar a questionar essas regras com curiosidade e gentileza, e com a evidências que a própria vida fornece quando passamos a prestar mais atenção.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Complete a frase</div><p>Responda de forma espontânea, sem pensar demais:</p>
+<ul>
+<li>"Quando preciso pedir algo para uma pessoa próxima, sinto..."</li>
+<li>"Quando discordo de alguém que é importante para mim, tenho medo de que..."</li>
+<li>"Se eu colocar um limite claro com alguém, acredito que..."</li>
+<li>"Para que as pessoas me valorizem, eu preciso..."</li>
+<li>"Quando eu me expresso e alguém reage mal, costumo pensar que..."</li>
+</ul>
+<p>Não existe resposta errada. O que aparece nesses espaços diz algo sobre as regras que aprendemos. E regras que foram aprendidas podem, com tempo e prática, ser revisadas.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Escolha uma das frases que completou, a que mais te tocou ou surpreendeu. Tente rastrear:</p>
+<ol>
+<li>Quando você começou a acreditar nisso? Existe uma situação ou uma fase da vida que essa crença evoca?</li>
+<li>Como essa crença aparece hoje, na prática? Em quais situações ela te faz recuar?</li>
+</ol>
+<p>Leve o que encontrar para a sessão. Esse material é valioso.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>As crenças que nos tornam passivos ou agressivos não nasceram conosco. Foram aprendidas num contexto que já ficou para trás, e podem ser revisitadas.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-3---a-estrutura-da-fala-assertiva">Capítulo 3 - A estrutura da fala assertiva</h2>
+<p>A assertividade costuma ser descrita como uma qualidade: algo que certas pessoas "têm" e outras "não têm". Mas, na prática, ela funciona muito mais como uma habilidade. E habilidades têm uma estrutura. Quando aprendemos a identificar essa estrutura, a assertividade deixa de ser algo misterioso e passa a ser algo que podemos construir, passo a passo, a partir do que já sabemos sobre nós mesmos.</p>
+<p>O ponto de partida é sempre o mesmo: o que estou sentindo e o que preciso.</p>
+<hr />
+<h3>Os três movimentos</h3>
+<p>A comunicação assertiva pode ser construída a partir de três movimentos encadeados. Eles não precisam aparecer em ordem rígida nem num único bloco, mas quando os três estão presentes a expressão tende a ser mais clara, mais completa e mais fácil de ser recebida.</p>
+<p><strong>Primeiro movimento: reconhecer a emoção.</strong></p>
+<p>Antes de qualquer palavra, vem a pergunta interna: o que estou sentindo agora? Raiva? Tristeza? Frustração? Algo que não tem nome exato, mas que tem peso? Não precisamos esperar ter certeza absoluta. Basta nomear o que está mais presente.</p>
+<p>Aqui, o que aprendemos na Psicoeducação das Emoções encontra uso direto. As emoções têm marcadores somáticos - sinais no corpo que aparecem antes de chegarmos à consciência. O aperto no peito, a tensão nos ombros, o nó na garganta. Esses sinais são informação. E informação disponível é o ponto de partida da expressão assertiva.</p>
+<p><strong>Segundo movimento: nomear a necessidade.</strong></p>
+<p>Por trás de toda emoção há uma necessidade. A frustração diz que algo importante não foi atendido. A raiva aponta para um limite que foi cruzado. A tristeza sinaliza uma perda ou uma ausência. Quando conseguimos nomear o que precisamos - e não apenas o que sentimos - nossa expressão ganha concretude. Deixamos de ser reativos para sermos direcionais.</p>
+<p><strong>Terceiro movimento: propor uma direção.</strong></p>
+<p>O terceiro movimento é o que transforma a expressão em comunicação. Não basta dizer o que sentimos e o que precisamos. Precisamos indicar o que gostaríamos que acontecesse: uma ação concreta, uma mudança específica, um pedido claro. Sem esse movimento, o outro fica sem saber o que fazer com o que ouviu.</p>
+<hr />
+<h3>Uma fala assertiva em ação</h3>
+<p>Veja como os três movimentos se encadeiam numa situação concreta.</p>
+<p>Raquel e uma colega de trabalho combinaram que dividiriam uma tarefa. A colega não cumpriu a parte dela, e Raquel ficou com o trabalho de ambas. Em vez de ficar em silêncio (passividade) ou atacar com uma generalização ("você nunca faz nada direito" - agressividade), Raquel usa os três movimentos:</p>
+<blockquote><p>"Quando percebi que precisei fazer o que tínhamos combinado dividir, fiquei frustrada e sobrecarregada. Preciso que possamos contar uma com a outra nesses casos. Podemos conversar sobre como organizar isso melhor da próxima vez?"</p></blockquote>
+<p>Emoção identificada. Necessidade nomeada. Direção proposta.</p>
+<p>A fala não precisa ser longa nem perfeita. O que precisa estar presente é a tríade: sinto, preciso, peço.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Perceba em você</div><p>Traga à memória uma situação recente em que você se sentiu sobrecarregado, ignorado, desrespeitado ou magoado - e não disse nada, ou disse de uma forma que não era bem o que queria dizer.</p>
+<p>Agora, tente construir os três movimentos:</p>
+<ol>
+<li>O que você estava sentindo naquele momento?</li>
+<li>Qual era a necessidade por trás dessa emoção?</li>
+<li>O que teria sido uma direção possível? Um pedido, uma proposta, um limite claro?</li>
+</ol>
+<p>Não estamos revisitando o passado para mudá-lo. O exercício é treinar o olhar para que, na próxima vez, a estrutura esteja mais disponível.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Escolha uma situação que provavelmente vai aparecer nos próximos dias, seja uma conversa que você precisa ter, um pedido que tem adiado, algo que precisa ser dito. Antes de chegar nessa situação, escreva uma versão assertiva usando os três movimentos:</p>
+<ul>
+<li>O que estou sentindo?</li>
+<li>O que preciso?</li>
+<li>O que vou pedir ou propor?</li>
+</ul>
+<p>Não precisa usar essas palavras exatas em voz alta. Mas ter feito esse exercício internamente já prepara o terreno.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Assertividade é a capacidade de reunir o que sentimos e o que precisamos, e oferecer isso ao outro de uma forma que possa ser recebida.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-4---assertividade-nas-situacoes-do-dia-a-dia">Capítulo 4 - Assertividade nas situações do dia a dia</h2>
+<p>Falar sobre assertividade em termos abstratos é mais fácil do que praticá-la quando estamos sentados à mesa com alguém que amamos, ou numa reunião de trabalho, ou tentando dizer "não" para um pedido que não temos condições de atender. O desafio não é entender o conceito. É saber o que fazer quando a situação chega.</p>
+<p>Este capítulo vai direto ao ponto: cinco situações concretas onde a assertividade é frequentemente desafiada, e o que é possível fazer em cada uma delas.</p>
+<hr />
+<h3>Pedir</h3>
+<p>Pedir parece simples. Não é! Para muitas pessoas, pedir carrega um peso considerável: a crença de que estão gerando fardo, incomodando, ocupando espaço que não merecem. Quando o pedido não aparece de forma direta, ele costuma aparecer de forma indireta: insinuações, comportamentos que esperam que o outro adivinhe, ou frustração acumulada quando a necessidade não é atendida.</p>
+<p>Pedir de forma assertiva é formular o pedido com clareza, sem se desculpar em excesso e sem exigir. "Você poderia me ajudar com isso hoje?" é diferente de "Ah, sei que você está ocupado, mas talvez, se não for incômodo, me ajuda?", que é diferente de "Por que você nunca me ajuda?". O pedido direto é, paradoxalmente, o mais respeitoso dos três: ele trata o outro como alguém capaz de responder honestamente.</p>
+<hr />
+<h3>Recusar</h3>
+<p>Dizer "não" é um dos atos de comunicação mais difíceis para a maioria das pessoas. A crença que aparece com mais frequência é a de que recusar significa rejeitar a pessoa - e não apenas o pedido. Mas um "não" assertivo é, em muitos casos, um ato de honestidade e de cuidado com o vínculo. Dizer "sim" quando queremos dizer "não" gera ressentimento. E ressentimento cobra um preço nos relacionamentos ao longo do tempo.</p>
+<p>Recusar de forma assertiva não exige justificativas longas nem pedidos de desculpa. "Não vou conseguir fazer isso agora" é uma frase completa. Se houver uma alternativa possível, oferecê-la. Se não houver, dizer com clareza. O outro merece honestidade mais do que uma resposta que não vamos cumprir.</p>
+<hr />
+<h3>Discordar</h3>
+<p>Discordar em um relacionamento saudável é sinal de que ambas as pessoas têm presença real nele. Não é ameaça, é contato! Mas para quem aprendeu que conflito é perigoso, discordar pode parecer uma aposta de alto risco.</p>
+<p>Discordar de forma assertiva começa pelo reconhecimento genuíno da perspectiva do outro, não como estratégia retórica, mas como gesto real: eu ouvi, eu entendi, e ainda assim vejo diferente. "Faz sentido o que você está dizendo. Eu vejo essa situação de outro jeito" é uma forma de discordar que não anula ninguém, e que abre conversa em vez de encerrar.</p>
+<hr />
+<h3>Dar e receber o retorno</h3>
+<p>Dar o retorno de forma assertiva é descrever o que se observa com precisão, sem generalizar e sem atacar o caráter da pessoa. "Quando você chegou atrasado nas últimas três reuniões, o grupo precisou esperar e a agenda ficou comprometida" é diferente de "você é irresponsável". O primeiro descreve um comportamento. O segundo julga a pessoa. O retorno assertivo abre espaço para a mudança. O julgamento costuma fechá-lo.</p>
+<p>Receber um retorno com assertividade é igualmente desafiador. A tendência comum oscila entre dois extremos: colapsar ("eu sabia que faço tudo errado") ou contra-atacar ("e você, hein?"). A postura assertiva é diferente das duas: ouvir, considerar, perguntar se necessário. O retorno não é sentença. É informação. E podemos escolher o que fazemos com ela.</p>
+<hr />
+<h3>Impor limites</h3>
+<p>Limites não são paredes. São comunicações claras sobre o que é possível e aceitável para nós. Quando não conseguimos impor limites, estamos, implicitamente, sinalizando ao outro que pode continuar, mesmo quando o custo disso é alto.</p>
+<p>Impor um limite de forma assertiva é descrevê-lo com calma e firmeza: "não estou disponível após as 19h para questões de trabalho" ou "quando a nossa conversa fica tensa assim, preciso pausar e retomar quando os dois estivermos mais calmos". Não é agressivo. É claro. E clareza, mesmo quando desconforta, é um ato de respeito, com o outro e com si mesmo!</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Complete a frase</div><p>Leia cada situação abaixo e complete de forma espontânea:</p>
+<ul>
+<li>"Pedir algo para uma pessoa próxima me faz sentir..."</li>
+<li>"Quando preciso dizer 'não', o que mais temo é..."</li>
+<li>"Discordar de alguém que respeito me parece..."</li>
+<li>"Quando recebo um <em>feedback</em> crítico, minha primeira reação é..."</li>
+<li>"Colocar um limite claro com alguém que amo me parece..."</li>
+</ul>
+<p>O padrão que aparecer é um mapa. Guarde-o.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Escolha uma das cinco situações, aquela que pareceu mais carregada quando você respondeu. Durante os próximos sete dias, observe pelo menos uma vez em que ela aparece na sua vida. Não precisa agir diferente ainda. Só observe o que acontece, o que você sente e o que você faz.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Pedir, recusar, discordar, dar e receber um retorno, impor limites: nenhum desses atos é agressão. Todos são formas de presença honesta.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-5---assertividade-como-regulacao-emocional">Capítulo 5 - Assertividade como regulação emocional</h2>
+<p>Até aqui, falamos da assertividade principalmente como uma habilidade de comunicação: algo que acontece entre pessoas, nas palavras escolhidas, na forma como nos expressamos. E ela é isso. Mas há uma dimensão que merece atenção especial, porque muda a forma como entendemos a urgência de desenvolvê-la.</p>
+<p>A assertividade é também - e talvez principalmente - uma estratégia de <strong>regulação emocional relacional</strong>. Uma das formas mais eficazes que temos de processar emoções em tempo real, através do contato com o outro, em vez de carregá-las indefinidamente.</p>
+<hr />
+<h3>O que acontece quando a emoção não encontra saída</h3>
+<p>Caminha e Caminha são precisos num ponto que vale trazer aqui: emoções que não são expressas não desaparecem. Elas se acumulam! No corpo, no estado emocional de fundo, na forma como reagimos na próxima situação semelhante… O que ficou represado hoje vai aparecer amanhã, com mais peso e menos contexto.</p>
+<p>Quando nos calamos por passividade, a emoção vai para dentro. Vira ruminação. Vira autocobrança. Às vezes vira sintoma físico, o corpo carregando o que a voz não disse. Quem acumula tensões não expressas costuma perceber um estado emocional de fundo sem causa óbvia: uma irritabilidade difusa, uma tristeza sem rosto, um cansaço que não é só de não dormir bem.</p>
+<p>Quando nos expressamos de forma agressiva, a emoção sai, mas às custas do vínculo. A raiva é expressada, mas de uma forma que machuca. E o arrependimento que vem depois volta a ser guardado, acumulando outra camada.</p>
+<hr />
+<h3>Assertividade como canal</h3>
+<p>Quando nos expressamos de forma assertiva, a emoção encontra um canal. Ela é reconhecida, nomeada e comunicada, sem se esconder e sem se impor. Esse processo, que Caminha e Caminha descrevem como <strong>expressão assertiva</strong>, não é apenas uma técnica. É uma forma de regulação: um jeito de processar o que sentimos em contato com o outro, de modo que a emoção cumpra sua função - informar, mobilizar, comunicar - e possa, depois, acomodar-se.</p>
+<p>A palavra "acomodar" é importante. As emoções não precisam ser eliminadas. Precisam ser sentidas e expressadas. Quando isso acontece, elas passam. A assertividade, nesse sentido, não é um esforço de controle emocional. É quase o oposto: é dar à emoção o espaço e o canal que ela precisa para fluir.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Respire e observe</div><p>Da próxima vez que você perceber uma emoção desagradável de sentir ligada a uma relação - pode ser frustração, mágoa, irritação, decepção - pause antes de agir.</p>
+<p>Respire devagar. Então, observe:</p>
+<ol>
+<li>O que você está sentindo, exatamente? Consiga nomear.</li>
+<li>Essa emoção está relacionada com o que está acontecendo agora, ou carrega algo acumulado de outras situações?</li>
+<li>Há uma necessidade por trás dela? Qual?</li>
+<li>Existe algo que poderia ser dito ou pedido, de forma clara e respeitosa?</li>
+</ol>
+<p>Não é necessário agir no momento. O exercício é criar espaço entre a emoção e a reação. Esse espaço é onde a escolha vive.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Ao longo da semana, observe pelo menos uma situação em que você sentiu uma emoção, mas não se expressou. Anote:</p>
+<ul>
+<li>O que sentiu?</li>
+<li>O que fez com essa emoção (calou, desviou, expressou de outro jeito)?</li>
+<li>Qual era a necessidade que ficou sem expressão?</li>
+<li>O que você carregou depois?</li>
+</ul>
+<p>Observar o custo do silêncio é, às vezes, o primeiro passo para escolher o movimento contrário.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Emoções que não encontram expressão não desaparecem. Encontram outros caminhos, e o custo de percorrer esses caminhos costuma ser maior do que o de se fazer presente.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="capitulo-6---praticando-em-campo-real">Capítulo 6 - Praticando em campo real</h2>
+<p>Conhecimento, sozinho, não muda comportamento. Podemos entender muito bem a lógica da assertividade, reconhecer os padrões que nos afastam dela, saber estruturar uma fala assertiva e, ainda assim, na hora em que a situação chega, fazer exatamente o que sempre fizemos. Não por falta de compreensão. Mas porque o comportamento muda com prática, não com teoria.</p>
+<p>Este capítulo é sobre isso: começar a praticar. Com cuidado. Sem pressa. Em campo real, mas em condições que favoreçam o aprendizado.</p>
+<hr />
+<h3>A lógica dos experimentos comportamentais</h3>
+<p>Na TCC, o que chamamos de <strong>experimento comportamental</strong> é um teste de hipótese. Não uma performance, não uma prova de competência. A lógica é simples: temos uma crença ("se eu disser não, a pessoa vai se afastar de mim"), e em vez de apenas discuti-la em teoria, vamos testá-la na prática.</p>
+<p>O experimento não precisa começar pelo mais difícil. Na verdade, começar pelo mais difícil é a forma mais eficiente de confirmar a crença de que não conseguimos. A estratégia mais eficaz é construir uma hierarquia - uma sequência de situações ordenadas do menor para o maior custo emocional - e começar pelo primeiro degrau.</p>
+<p>Cada experimento, independentemente do resultado, ensina algo. Quando corre bem, enfraquece a crença limitante. Quando não corre como esperado, fornece informação valiosa sobre o que ajustar. O erro, nessa perspectiva, não é fracasso, é dado!</p>
+<hr />
+<h3>Construindo a sua hierarquia</h3>
+<p>Uma hierarquia de experimentos é uma lista pessoal. Ela varia de pessoa para pessoa porque as situações que cada um evita, e as crenças que sustentam essa evitação, são diferentes.</p>
+<p>Para construir a sua, pense nas situações em que você reconhece o déficit assertivo, onde costuma recuar, calar, ceder ou reagir de uma forma que não queria. Ordene essas situações pela carga emocional que cada uma carrega, da menor para a maior.</p>
+<p>Alguns exemplos de degraus mais acessíveis:</p>
+<ul>
+<li>Dizer "não" para um pedido pequeno de alguém com quem você tem uma relação tranquila.</li>
+<li>Expressar uma preferência numa decisão conjunta de baixo risco (onde ir, o que fazer).</li>
+<li>Pedir uma informação ou esclarecimento que você normalmente deixaria passar.</li>
+</ul>
+<p>Alguns exemplos de degraus mais carregados:</p>
+<ul>
+<li>Colocar um limite claro com uma figura de autoridade.</li>
+<li>Discordar de alguém que você teme decepcionar.</li>
+<li>Revisitar um padrão antigo e enraizado numa relação importante.</li>
+</ul>
+<p>O início precisa ser acessível o suficiente para que o experimento aconteça. Situações muito carregadas, logo de início, costumam ser evitadas, o que confirma a crença em vez de testá-la.</p>
+<hr />
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Registre</div><p>Antes de realizar o seu experimento, escreva:</p>
+<ol>
+<li>Qual é a situação que vou testar?</li>
+<li>Qual é a crença em jogo? O que eu acredito que vai acontecer?</li>
+<li>Como eu gostaria de me expressar? Use os três movimentos: emoção, necessidade, direção.</li>
+</ol>
+<p>Depois do experimento:</p>
+<ol>
+<li>O que aconteceu, de fato?</li>
+<li>Como a crença se saiu no teste? Foi confirmada, enfraquecida ou ficou mais nuançada do que você esperava?</li>
+<li>O que você leva desse experimento para o próximo?</li>
+</ol><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="exercise-block"><div class="exercise-label">Exercício</div><div class="exercise-title">Para a semana</div><p>Escolha o primeiro degrau da sua hierarquia, a situação com menor carga emocional. Realize o experimento até a próxima sessão. Não precisa ser perfeito. Não precisa ter o resultado que você espera. Precisa acontecer.</p>
+<p>Leve o que encontrar para a sessão: o que aconteceu, o que sentiu, o que pensou antes, durante e depois. Esse material é valioso para o processo.</p><textarea class="exercise-field" placeholder="Escreva aqui suas observações e respostas…"></textarea></div>
+<div class="anchor-phrase"><p>Assertividade não se aprende lendo. Se aprende fazendo! De forma gradual, com curiosidade, e com a disposição de aprender com cada tentativa.</p></div>
+<blockquote></blockquote>
+<hr />
+<h2 id="consideracoes-finais">Considerações finais</h2>
+<p>Este material não encerra um assunto. Abre um campo de prática.</p>
+<p>A assertividade é uma das habilidades mais profundamente humanas que existem: a capacidade de se fazer presente, de se fazer audível, sem precisar impor nem desaparecer. Ela não exige perfeição nem ausência de desconforto. Exige, acima de tudo, disposição para se conhecer! Para se arriscar, passo a passo, na direção de uma comunicação que reflita quem você é de verdade.</p>
+<p>O caminho que percorremos aqui foi este: entendemos que os estilos de comunicação não são traços fixos. Investigamos as crenças que nos afastam da assertividade. Aprendemos a estrutura da fala assertiva. Olhamos para situações concretas do dia a dia. Compreendemos que a assertividade é também uma forma de cuidar das próprias emoções. E começamos a praticar.</p>
+<p>Esse começo é o que importa.</p>
+<p>Leve o que encontrou aqui - o que incomodou, o que surpreendeu, o que ressoou - para as suas sessões. O material é um convite. O trabalho real acontece em você.</p>
+
+<div class="download-section">
+  <p>Você preencheu os exercícios deste material.<br>
+  Baixe um arquivo com todas as suas respostas para guardar ou levar à próxima sessão.</p>
+  <button class="btn-download" id="btn-download">Baixar minhas respostas</button>
+</div>
+
+</main>
+
+<footer class="doc-footer">
+  Material psicoeducativo de uso clínico &middot; Bruno Santana | Psicologia Clínica &middot; Destinado a pacientes em processo terapêutico
+</footer>
+
+<script>
+
+// Barra de progresso de leitura
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  const pct   = total > 0 ? (window.scrollY / total) * 100 : 0;
+  progressBar.style.width = pct + '%';
+});
+
+// Navegação de capítulos: marca o capítulo ativo
+const navLinks  = document.querySelectorAll('.chapter-nav a');
+const sections  = document.querySelectorAll('h2[id]');
+const observer  = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const active = document.querySelector('.chapter-nav a[href="#' + e.target.id + '"]');
+      if (active) active.classList.add('active');
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+
+// Download das respostas como TXT
+document.getElementById('btn-download').addEventListener('click', () => {
+  const fields = document.querySelectorAll('textarea.exercise-field');
+  let output   = '';
+  const title  = document.querySelector('.doc-title')?.textContent || 'Material';
+  const date   = new Date().toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
+
+  output += '='.repeat(60) + '\n';
+  output += title + '\n';
+  output += 'Respostas registradas em ' + date + '\n';
+  output += '='.repeat(60) + '\n\n';
+
+  fields.forEach((f, i) => {
+    const block    = f.closest('.exercise-block');
+    const exTitle  = block?.querySelector('.exercise-title')?.textContent || ('Exercício ' + (i+1));
+    const resp     = f.value.trim();
+    output += '[ ' + exTitle + ' ]\n';
+    output += (resp || '(sem resposta registrada)') + '\n\n';
+    output += '-'.repeat(40) + '\n\n';
+  });
+
+  const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = title.replace(/[^a-zA-Z0-9À-ú\s]/g, '').trim() + ' — Respostas.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+</script>
+
+</body>
+</html>
